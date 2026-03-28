@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amaanullah Bhatti (Hafzan Osmanoğlu)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf8;
+  --bg2: #f3f3ef;
+  --bg3: #eceae3;
+  --text: #111110;
+  --text2: #4a4a46;
+  --text3: #88887e;
+  --border: rgba(0,0,0,0.09);
+  --border2: rgba(0,0,0,0.15);
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --gold-bg: #fdf8ee;
+  --card: #ffffff;
+  --nav-bg: rgba(250,250,248,0.88);
+  --glow: rgba(201,168,76,0.12);
+  --tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Syne', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+[data-theme="dark"] {
+  --bg: #0c0c0b;
+  --bg2: #141413;
+  --bg3: #1e1e1c;
+  --text: #f0efe8;
+  --text2: #a8a89e;
+  --text3: #555550;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --gold: #d4aa5a;
+  --gold2: #c9a84c;
+  --gold-bg: #1a1710;
+  --card: #161614;
+  --nav-bg: rgba(12,12,11,0.9);
+  --glow: rgba(201,168,76,0.08);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;transition:background var(--tr),color var(--tr);overflow-x:hidden;line-height:1.6}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* ── NOISE TEXTURE ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:background var(--tr),border-color var(--tr)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 40px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text);text-decoration:none;letter-spacing:-0.01em;display:flex;align-items:center;gap:8px}
+.nav-logo-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all var(--tr);cursor:pointer;border:none;background:none;font-family:var(--sans)}
+.nav-link:hover,.nav-link.active{color:var(--text);background:var(--bg3)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.theme-btn{width:36px;height:20px;border-radius:10px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;position:relative;transition:all var(--tr);flex-shrink:0}
+.theme-btn::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--text3);transition:all var(--tr)}
+[data-theme="dark"] .theme-btn::after{transform:translateX(16px);background:var(--gold)}
+.layout-btn{font-size:11px;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;background:transparent;font-family:var(--sans);transition:all var(--tr);white-space:nowrap}
+.layout-btn:hover{border-color:var(--border2);color:var(--text)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:100px 40px 80px}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.35;animation:orb-drift 12s ease-in-out infinite alternate}
+.hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,var(--gold) 0%,transparent 70%);top:-100px;right:-100px;animation-delay:0s}
+.hero-orb-2{width:350px;height:350px;background:radial-gradient(circle,rgba(100,140,255,0.3) 0%,transparent 70%);bottom:0;left:-50px;animation-delay:-4s}
+@keyframes orb-drift{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.1)}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.5;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 80%)}
+.hero-inner{max-width:1280px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+.hero-left{animation:hero-in 0.9s cubic-bezier(0.16,1,0.3,1) both}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.hero-eyebrow-line{width:32px;height:1px;background:var(--gold)}
+.hero-eyebrow-text{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.hero-name{font-family:var(--serif);font-size:clamp(48px,6vw,82px);font-weight:500;line-height:1.02;letter-spacing:-0.03em;color:var(--text);margin-bottom:8px}
+.hero-name-alt{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-weight:400;font-style:italic;color:var(--text3);margin-bottom:24px;letter-spacing:-0.01em}
+.hero-desc{font-size:15px;color:var(--text2);line-height:1.75;max-width:520px;margin-bottom:36px;font-weight:300}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:36px}
+.hero-stat{background:var(--card);padding:16px 18px;transition:background var(--tr)}
+.hero-stat:hover{background:var(--bg2)}
+.hero-stat-n{font-family:var(--serif);font-size:28px;font-weight:500;color:var(--text);line-height:1;margin-bottom:4px}
+.hero-stat-n sup{font-size:14px;font-weight:400;color:var(--gold)}
+.hero-stat-l{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{font-size:13px;font-weight:400;letter-spacing:0.04em;color:var(--bg);background:var(--text);border:1px solid var(--text);border-radius:8px;padding:11px 22px;cursor:pointer;text-decoration:none;transition:all var(--tr);font-family:var(--sans);display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--gold);border-color:var(--gold);color:#111}
+.btn-secondary{font-size:13px;font-weight:400;letter-spacing:0.04em;color:var(--text);background:transparent;border:1px solid var(--border2);border-radius:8px;padding:11px 22px;cursor:pointer;text-decoration:none;transition:all var(--tr);font-family:var(--sans);display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-right{animation:hero-in 0.9s 0.15s cubic-bezier(0.16,1,0.3,1) both}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.06)}
+.hero-card-top{padding:28px 28px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px}
+.hero-avatar{width:72px;height:72px;border-radius:50%;background:var(--bg3);border:2px solid var(--border2);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:24px;color:var(--text3);letter-spacing:-0.02em;font-weight:500}
+.hero-avatar img{width:100%;height:100%;object-fit:cover}
+.hero-card-name{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text);margin-bottom:3px;letter-spacing:-0.01em}
+.hero-card-role{font-size:12px;color:var(--text3);letter-spacing:0.02em}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite;margin-left:auto}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
+.hero-card-body{padding:20px 28px 24px}
+.hero-card-item{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}
+.hero-card-item:last-child{border-bottom:none;padding-bottom:0}
+.hero-card-key{color:var(--text3);font-size:12px;font-weight:300}
+.hero-card-val{color:var(--text);text-align:right;font-weight:400;max-width:200px}
+.hero-card-val a{color:var(--gold);text-decoration:none}
+.hero-card-tags{padding:0 28px 24px;display:flex;flex-wrap:wrap;gap:6px}
+.htag{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--border);border-radius:100px;padding:4px 10px;color:var(--text3);transition:all var(--tr)}
+.htag:hover{border-color:var(--gold);color:var(--gold)}
+@keyframes hero-in{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MAIN LAYOUT ── */
+.main-wrap{max-width:1280px;margin:0 auto;padding:0 40px 120px}
+
+/* ── SECTION TABS ── */
+.tabs-outer{position:sticky;top:56px;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin:0 -40px;padding:0 40px;transition:background var(--tr)}
+.tabs-inner{display:flex;align-items:flex-end;gap:0;overflow-x:auto;scrollbar-width:none;max-width:1280px;margin:0 auto}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab-btn{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);border:none;background:none;cursor:pointer;padding:14px 18px 13px;font-family:var(--sans);white-space:nowrap;border-bottom:2px solid transparent;transition:all var(--tr);position:relative}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--gold)}
+/* single page mode */
+body.sp .section-wrap{display:block !important}
+body.sp .section-head{display:flex !important}
+
+/* ── SECTIONS ── */
+.sections{padding-top:60px}
+.section-wrap{display:none}
+.section-wrap.active{display:block;animation:sec-in 0.35s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes sec-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section-head{display:none;align-items:center;gap:16px;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.section-eyebrow{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);padding:3px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:100px;background:var(--gold-bg)}
+.section-title{font-family:var(--serif);font-size:34px;font-weight:500;letter-spacing:-0.02em;color:var(--text)}
+
+/* ── ABOUT ── */
+.about-layout{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:start}
+.about-text h2{font-family:var(--serif);font-size:32px;font-weight:500;letter-spacing:-0.02em;color:var(--text);margin-bottom:18px;line-height:1.2}
+.about-text h2 em{font-style:italic;color:var(--gold)}
+.about-text p{font-size:14.5px;color:var(--text2);line-height:1.8;margin-bottom:14px;font-weight:300}
+.about-quote{border-left:2px solid var(--gold);padding:14px 20px;margin:24px 0;background:var(--gold-bg);border-radius:0 8px 8px 0}
+.about-quote p{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--text);margin:0;line-height:1.6}
+.about-quote cite{font-size:12px;color:var(--text3);font-style:normal;letter-spacing:0.04em;display:block;margin-top:8px}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.info-card-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.info-card-header h3{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--text)}
+.info-card-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:11px 22px;border-bottom:1px solid var(--border);font-size:13px;transition:background var(--tr)}
+.info-row:last-child{border-bottom:none}
+.info-row:hover{background:var(--bg2)}
+.info-key{color:var(--text3);font-size:12px;font-weight:300;letter-spacing:0.02em}
+.info-val{color:var(--text);font-weight:400}
+.info-val a{color:var(--gold);text-decoration:none}
+.about-awards{margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.award-item{display:flex;align-items:flex-start;gap:12px;padding:14px 22px;border-bottom:1px solid var(--border);transition:background var(--tr)}
+.award-item:last-child{border-bottom:none}
+.award-item:hover{background:var(--bg2)}
+.award-icon{width:32px;height:32px;border-radius:8px;background:var(--gold-bg);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.award-title{font-size:13px;color:var(--text);font-weight:400;margin-bottom:2px}
+.award-org{font-size:11px;color:var(--text3);letter-spacing:0.02em}
+
+/* ── EXPERIENCE ── */
+.exp-timeline{position:relative;padding-left:28px}
+.exp-timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--gold) 0%,var(--border) 60%,transparent 100%)}
+.exp-item{position:relative;padding-bottom:48px}
+.exp-item:last-child{padding-bottom:0}
+.exp-dot{position:absolute;left:-33px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--card);border:2px solid var(--border);transition:all var(--tr)}
+.exp-item:first-child .exp-dot{background:var(--gold);border-color:var(--gold)}
+.exp-item:hover .exp-dot{border-color:var(--gold)}
+.exp-header{margin-bottom:12px}
+.exp-meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.exp-date-badge{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.06em;background:var(--bg3);padding:3px 8px;border-radius:4px;border:1px solid var(--border)}
+.exp-current{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#22c55e;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:2px 7px;border-radius:100px}
+.exp-title{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--text);margin-bottom:3px;letter-spacing:-0.01em}
+.exp-co{font-size:13px;color:var(--gold);font-weight:400;margin-bottom:12px}
+.exp-co span{color:var(--text3);font-weight:300;margin-left:6px}
+.exp-bullets{list-style:none}
+.exp-bullets li{font-size:13.5px;color:var(--text2);line-height:1.7;padding:4px 0 4px 18px;position:relative;font-weight:300}
+.exp-bullets li::before{content:'';position:absolute;left:0;top:12px;width:5px;height:1px;background:var(--gold);opacity:0.7}
+
+/* ── EDUCATION ── */
+.edu-grid{display:grid;gap:16px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 28px;transition:all var(--tr);cursor:default}
+.edu-card:hover{border-color:rgba(201,168,76,0.4);box-shadow:0 8px 40px var(--glow)}
+.edu-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.edu-degree{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text);letter-spacing:-0.01em;flex:1;margin-right:16px}
+.edu-status{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;padding:4px 10px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.edu-status.active{color:#22c55e;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2)}
+.edu-status.done{color:var(--gold);background:var(--gold-bg);border:1px solid rgba(201,168,76,0.25)}
+.edu-inst{font-size:13px;color:var(--gold);margin-bottom:6px}
+.edu-meta-row{display:flex;gap:16px;font-size:12px;color:var(--text3);flex-wrap:wrap}
+.edu-meta-row span{display:flex;align-items:center;gap:5px}
+.edu-sep{display:block;height:1px;background:var(--border);margin:20px 0}
+.des-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.des-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;transition:all var(--tr)}
+.des-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-1px)}
+.des-name{font-size:13.5px;font-weight:400;color:var(--text);margin-bottom:4px}
+.des-issuer{font-size:11px;color:var(--text3)}
+.des-badge{font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--gold);background:var(--gold-bg);border:1px solid rgba(201,168,76,0.25);border-radius:4px;padding:2px 6px;margin-top:6px;display:inline-block}
+
+/* ── PUBLICATIONS ── */
+.pub-list{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.pub-item{background:var(--card);padding:24px 28px;transition:all var(--tr);cursor:default;position:relative;overflow:hidden}
+.pub-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background var(--tr)}
+.pub-item:hover{background:var(--bg2)}
+.pub-item:hover::before{background:var(--gold)}
+.pub-num{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:0.06em;margin-bottom:8px}
+.pub-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--text);line-height:1.35;margin-bottom:8px;letter-spacing:-0.01em}
+.pub-journal{font-size:11px;color:var(--gold);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px}
+.pub-abstract{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.pub-item.expanded .pub-abstract{max-height:200px}
+.pub-toggle{font-size:11px;color:var(--text3);cursor:pointer;display:flex;align-items:center;gap:5px;margin-top:6px;transition:color var(--tr);background:none;border:none;font-family:var(--sans);padding:0}
+.pub-toggle:hover{color:var(--gold)}
+.pub-toggle-icon{transition:transform 0.3s;display:inline-block;font-style:normal}
+.pub-item.expanded .pub-toggle-icon{transform:rotate(180deg)}
+
+/* ── PROJECTS ── */
+.proj-masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 24px;transition:all var(--tr);cursor:default;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.proj-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,var(--glow),transparent 60%);opacity:0;transition:opacity var(--tr);pointer-events:none}
+.proj-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
+.proj-card:hover::after{opacity:1}
+.proj-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.proj-icon{width:36px;height:36px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.proj-year{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.05em}
+.proj-name{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px;line-height:1.3;letter-spacing:-0.01em}
+.proj-desc{font-size:12.5px;color:var(--text2);line-height:1.65;font-weight:300;flex:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.proj-tag{font-size:10px;color:var(--text3);border:1px solid var(--border);border-radius:4px;padding:2px 7px;letter-spacing:0.04em}
+
+/* ── CERTIFICATIONS ── */
+.cert-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.cert-search{flex:1;min-width:220px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:13px;color:var(--text);font-family:var(--sans);outline:none;transition:all var(--tr);position:relative}
+.cert-search:focus{border-color:rgba(201,168,76,0.5);box-shadow:0 0 0 3px var(--glow)}
+.cert-search-wrap{position:relative;flex:1;min-width:220px}
+.cert-search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
+.cert-filters{display:flex;gap:6px;flex-wrap:wrap}
+.cert-filter-btn{font-size:11px;color:var(--text3);border:1px solid var(--border);border-radius:100px;padding:5px 12px;cursor:pointer;background:transparent;font-family:var(--sans);transition:all var(--tr);letter-spacing:0.03em}
+.cert-filter-btn:hover,.cert-filter-btn.active{border-color:var(--gold);color:var(--gold);background:var(--gold-bg)}
+.cert-count{font-size:12px;color:var(--text3);margin-left:auto;white-space:nowrap}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;transition:all var(--tr);display:flex;align-items:flex-start;gap:11px}
+.cert-card:hover{border-color:rgba(201,168,76,0.3);background:var(--gold-bg)}
+.cert-card.hidden{display:none}
+.cert-card-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);margin-top:5px;flex-shrink:0;transition:background var(--tr)}
+.cert-card:hover .cert-card-dot{background:var(--gold)}
+.cert-card-name{font-size:12.5px;color:var(--text);line-height:1.4;margin-bottom:3px;font-weight:400}
+.cert-card-meta{font-size:11px;color:var(--text3);display:flex;gap:6px;align-items:center}
+.cert-card-year{font-family:var(--mono);font-size:10px;color:var(--text3)}
+.cert-card-sep{color:var(--border2)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;background:var(--bg2);margin-top:80px}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-left{display:flex;flex-direction:column;gap:4px}
+.footer-name{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--text);letter-spacing:-0.01em}
+.footer-copy{font-size:12px;color:var(--text3)}
+.footer-right{display:flex;gap:20px;align-items:center}
+.footer-link{font-size:12px;color:var(--text3);text-decoration:none;transition:color var(--tr);letter-spacing:0.03em}
+.footer-link:hover{color:var(--gold)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-right{display:none}
+  .about-layout{grid-template-columns:1fr}
+  .proj-masonry{grid-template-columns:1fr 1fr}
+  .main-wrap,.nav-inner,footer .footer-inner{padding-left:24px;padding-right:24px}
+  .tabs-outer{margin:0 -24px;padding:0 24px}
+  #hero{padding-left:24px;padding-right:24px}
+}
+@media(max-width:580px){
+  .proj-masonry{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .cert-grid{grid-template-columns:1fr}
+  footer{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">
+      <span class="nav-logo-dot"></span>
+      Amaanullah Bhatti
+    </a>
+    <div class="nav-links" id="navLinks">
+      <button class="nav-link active" data-tab="about">About</button>
+      <button class="nav-link" data-tab="experience">Experience</button>
+      <button class="nav-link" data-tab="education">Education</button>
+      <button class="nav-link" data-tab="publications">Publications</button>
+      <button class="nav-link" data-tab="projects">Projects</button>
+      <button class="nav-link" data-tab="certifications">Certifications</button>
+    </div>
+    <div class="nav-actions">
+      <button class="layout-btn" id="layoutBtn">Light/Dark Mode</button>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Finance · Research · Dubai</span>
+      </div>
+      <h1 class="hero-name">Amaanullah<br>Bhatti</h1>
+      <p class="hero-name-alt">(Hafzan Osmanoğlu)</p>
+      <p class="hero-desc">Finance professional and researcher with a deep passion for global economics, quantitative finance, and sustainable development. Currently a Junior Risk Analyst at Stonefort Securities — ranked Top 5% researcher on SSRN globally.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-n">14<sup>+</sup></div>
+          <div class="hero-stat-l">Publications</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">233<sup>+</sup></div>
+          <div class="hero-stat-l">Certifications</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">Top&nbsp;5<sup>%</sup></div>
+          <div class="hero-stat-l">SSRN Global</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn-primary" href="https://www.linkedin.com/in/amaanullah-bhatti/" target="_blank">LinkedIn ↗</a>
+        <button class="btn-secondary" onclick="document.querySelector('[data-tab=publications]').click()">View Research</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div class="hero-avatar">
+            <img src="https://ui-avatars.com/api/?name=A+B&background=e8e4d8&color=666&size=200&bold=false&font-size=0.35" alt="Amaanullah Bhatti" onerror="this.style.display='none'">
+          </div>
+          <div>
+            <div class="hero-card-name">Amaanullah Bhatti</div>
+            <div class="hero-card-role">Junior Risk Analyst · Stonefort Securities</div>
+          </div>
+          <div class="status-dot" title="Available for opportunities"></div>
+        </div>
+        <div class="hero-card-body">
+          <div class="hero-card-item">
+            <span class="hero-card-key">Location</span>
+            <span class="hero-card-val">Dubai, UAE</span>
+          </div>
+          <div class="hero-card-item">
+            <span class="hero-card-key">Degree</span>
+            <span class="hero-card-val">BBA Financial Markets · 8.57/10</span>
+          </div>
+          <div class="hero-card-item">
+            <span class="hero-card-key">SSRN Rank</span>
+            <span class="hero-card-val">#1 IMF Category · Top 5% Global</span>
+          </div>
+          <div class="hero-card-item">
+            <span class="hero-card-key">Designations</span>
+            <span class="hero-card-val">FMVA® · CMSA® · NCIAC · 7 more</span>
+          </div>
+          <div class="hero-card-item">
+            <span class="hero-card-key">LinkedIn</span>
+            <span class="hero-card-val"><a href="https://www.linkedin.com/in/amaanullah-bhatti/" target="_blank">amaanullah-bhatti ↗</a></span>
+          </div>
+        </div>
+        <div class="hero-card-tags">
+          <span class="htag">Quant Finance</span>
+          <span class="htag">Risk Analysis</span>
+          <span class="htag">Research</span>
+          <span class="htag">Actuarial</span>
+          <span class="htag">Foreign Policy</span>
+          <span class="htag">Blockchain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- TABS -->
+  <div class="tabs-outer">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="about">About</button>
+      <button class="tab-btn" data-tab="experience">Experience</button>
+      <button class="tab-btn" data-tab="education">Education</button>
+      <button class="tab-btn" data-tab="publications">Publications</button>
+      <button class="tab-btn" data-tab="projects">Projects</button>
+      <button class="tab-btn" data-tab="certifications">Certifications</button>
+    </div>
+  </div>
+
+  <div class="sections">
+
+    <!-- ABOUT -->
+    <div class="section-wrap active" id="sec-about">
+      <div class="section-head">
+        <span class="section-eyebrow">Profile</span>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-layout">
+        <div class="about-text">
+          <h2>Finance. Research. <em>Impact.</em></h2>
+          <p>My name is Amaanullah Bhatti (Hafzan Osmanoğlu), and I am a dedicated finance professional and researcher currently working as a Junior Risk Analyst at Stonefort Securities in Dubai. I hold a Bachelor of Business Administration in Financial Markets from Marwadi University, graduating First Class with Distinction with a CGPA of 8.57/10.</p>
+          <p>I am concurrently pursuing a Master of Science in Economics at Symbiosis International University, the CS Executive Programme with the Institute of Company Secretaries of India (ICSI), and Actuarial Studies with the Institute and Faculty of Actuaries (IFoA, UK).</p>
+          <div class="about-quote">
+            <p>"I welcome opportunities to collaborate with scholars, researchers, and professionals who share a vision for sustainable development, transparent innovation, and a progressive global future."</p>
+            <cite>— Amaanullah Bhatti (Hafzan Osmanoğlu)</cite>
+          </div>
+          <p>My research interests span quantitative finance, foreign policy, Islamic jurisprudence, sustainable agriculture, urban development, and socio-political dynamics. As the author of a top-ranked paper on SSRN, I hold the #1 position in the IMF category and Top 10 placements across nine fields including Debt Crises and International Financial Crisis.</p>
+          <p>I hold seven prestigious designations from the Corporate Finance Institute — FMVA®, CMSA®, CBCA®, BIDA®, FTIP®, FPWMP®, and FPAP — alongside the NSE Academy Certified Investment Analyst Champion (NCIAC) and NSE Certified Market Professional (NCMP) Level 3.</p>
+        </div>
+        <div>
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-dot"></div>
+              <h3>Quick Facts</h3>
+            </div>
+            <div class="info-row"><span class="info-key">Current Role</span><span class="info-val">Junior Risk Analyst</span></div>
+            <div class="info-row"><span class="info-key">Organisation</span><span class="info-val">Stonefort Securities</span></div>
+            <div class="info-row"><span class="info-key">Location</span><span class="info-val">Dubai, UAE</span></div>
+            <div class="info-row"><span class="info-key">SSRN Rank</span><span class="info-val">Top 5% Globally</span></div>
+            <div class="info-row"><span class="info-key">SSRN #1</span><span class="info-val">IMF Category</span></div>
+            <div class="info-row"><span class="info-key">Publications</span><span class="info-val">14+ Papers</span></div>
+            <div class="info-row"><span class="info-key">Certifications</span><span class="info-val">233+</span></div>
+            <div class="info-row"><span class="info-key">Projects Built</span><span class="info-val">14</span></div>
+            <div class="info-row"><span class="info-key">LinkedIn</span><span class="info-val"><a href="https://www.linkedin.com/in/amaanullah-bhatti/" target="_blank">View Profile ↗</a></span></div>
+          </div>
+          <div class="about-awards">
+            <div class="info-card-header" style="border-bottom:1px solid var(--border)">
+              <div class="info-card-dot"></div>
+              <h3>Honours & Awards</h3>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">★</div>
+              <div><div class="award-title">Dean's List — Corporate Finance Institute</div><div class="award-org">CFI · Oct 2025</div></div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">🏆</div>
+              <div><div class="award-title">Winner — India Tomorrow Roundtable Discussion</div><div class="award-org">Marwadi University · Feb 2025</div></div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">🥇</div>
+              <div><div class="award-title">Winner — Avlokan 2024: Union Budget Discussion</div><div class="award-org">Marwadi University · Feb 2024</div></div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">📊</div>
+              <div><div class="award-title">Expert Panel — Union Budget 2024 Discussion</div><div class="award-org">Marwadi University · Feb 2024</div></div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">⚡</div>
+              <div><div class="award-title">Winner — Shot Put Competition</div><div class="award-org">Chanakya Science School · Aug 2019</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section-wrap" id="sec-experience">
+      <div class="section-head">
+        <span class="section-eyebrow">Career</span>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="exp-timeline">
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta">
+              <span class="exp-date-badge">Jan 2026 — Present</span>
+              <span class="exp-current">Current</span>
+            </div>
+            <div class="exp-title">Junior Risk Analyst</div>
+            <div class="exp-co">Stonefort Securities <span>· Dubai, UAE · Full-time · On-site</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Conduct granular spread log analysis and real-time trade surveillance via MT5 Manager and RMS to identify abusive patterns and flow anomalies</li>
+            <li>Evaluate client-level exposure, margin utilization, and position concentration to deliver actionable recommendations on leverage and limit parameters</li>
+            <li>Drive A-Book/B-Book reclassification decisions through systematic analysis of client flow toxicity, execution behaviour, and risk profile</li>
+            <li>Compile and interpret daily P&L summaries to provide structured risk reporting across the dealing and risk desk</li>
+            <li>Maintain continuous oversight of live market risk and client activity to inform and optimize order routing decisions</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta"><span class="exp-date-badge">Oct 2024 — Present</span><span class="exp-current">Active</span></div>
+            <div class="exp-title">Research Fellow</div>
+            <div class="exp-co">ResearchGate <span>· Remote · Self-employed</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Conducting independent research in economics and international relations</li>
+            <li>Publishing articles and developing original theoretical frameworks</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta"><span class="exp-date-badge">Apr 2024 — Present</span><span class="exp-current">Active</span></div>
+            <div class="exp-title">Foreign Policy Analyst & Author</div>
+            <div class="exp-co">Medium <span>· Remote · San Francisco, USA</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Writing long-form analyses on global diplomacy, defense economics, and international conflict</li>
+            <li>Built a niche readership among policy professionals and academics</li>
+          </ul>
+        </div>
+
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta"><span class="exp-date-badge">Oct 2024 — May 2025</span></div>
+            <div class="exp-title">Vice President — Finance Club</div>
+            <div class="exp-co">Marwadi University <span>· Rajkot, India</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Led finance initiatives, student competitions, and real-time trading workshops</li>
+            <li>Represented the club at university-wide symposiums and industry panels</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta"><span class="exp-date-badge">Dec 2023 — Nov 2024</span></div>
+            <div class="exp-title">Research Intern</div>
+            <div class="exp-co">Marwadi University <span>· Rajkot, India</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Worked on empirical and theoretical research papers under faculty guidance</li>
+            <li>Developed strong academic writing and advanced research methodology skills</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta"><span class="exp-date-badge">Jul — Nov 2024</span></div>
+            <div class="exp-title">Campus Ambassador</div>
+            <div class="exp-co">E-Cell, IIT Bombay <span>· Rajkot, India</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Promoted entrepreneurship and innovation events across campus</li>
+            <li>Onboarded students for national startup initiatives</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta"><span class="exp-date-badge">Dec 2023 — Jan 2024</span></div>
+            <div class="exp-title">Data Science Intern</div>
+            <div class="exp-co">Bharat Intern <span>· Remote · New Delhi, India</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Worked on exploratory data analysis and visualization projects</li>
+            <li>Applied Python, Pandas, and machine learning basics to real datasets</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section-wrap" id="sec-education">
+      <div class="section-head">
+        <span class="section-eyebrow">Academic</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div class="edu-degree">Bachelor of Business Administration — Financial Markets</div>
+            <span class="edu-status done">Completed</span>
+          </div>
+          <div class="edu-inst">Marwadi University · Rajkot, India</div>
+          <div class="edu-meta-row">
+            <span>Jul 2022 — May 2025</span>
+            <span>CGPA: 8.57 / 10</span>
+            <span>First Class with Distinction</span>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div class="edu-degree">Master of Science — Economics (Online)</div>
+            <span class="edu-status active">In Progress</span>
+          </div>
+          <div class="edu-inst">Symbiosis International University</div>
+          <div class="edu-meta-row"><span>Jul 2025 — Ongoing</span></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div class="edu-degree">Actuarial Science — Exam Pathway</div>
+            <span class="edu-status active">In Progress</span>
+          </div>
+          <div class="edu-inst">Institute and Faculty of Actuaries (IFoA) · UK (Remote)</div>
+          <div class="edu-meta-row"><span>Jan 2025 — Ongoing</span></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div class="edu-degree">Company Secretary — Executive Level</div>
+            <span class="edu-status active">In Progress</span>
+          </div>
+          <div class="edu-inst">Institute of Company Secretaries of India (ICSI)</div>
+          <div class="edu-meta-row"><span>May 2023 — Ongoing</span><span>Corporate Governance · Business Law · Financial Regulations</span></div>
+        </div>
+      </div>
+
+      <div class="edu-sep"></div>
+      <div class="section-head" style="margin-top:0;margin-bottom:24px;padding-bottom:14px">
+        <span class="section-eyebrow">CFI® + NSE</span>
+        <h2 class="section-title" style="font-size:24px">Professional Designations</h2>
+      </div>
+      <div class="des-grid">
+        <div class="des-card"><div class="des-name">Financial Modeling &amp; Valuation Analyst (FMVA®)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Oct 2025</span></div>
+        <div class="des-card"><div class="des-name">Capital Markets &amp; Securities Analyst (CMSA®)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Sep 2025</span></div>
+        <div class="des-card"><div class="des-name">Commercial Banking &amp; Credit Analyst (CBCA®)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Oct 2025</span></div>
+        <div class="des-card"><div class="des-name">Business Intelligence &amp; Data Analyst (BIDA®)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Oct 2025</span></div>
+        <div class="des-card"><div class="des-name">FinTech Industry Professional (FTIP®)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Sep 2025</span></div>
+        <div class="des-card"><div class="des-name">Financial Planning &amp; Wealth Management (FPWMP®)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Sep 2025</span></div>
+        <div class="des-card"><div class="des-name">Financial Planning &amp; Analysis Professional (FPAP)</div><div class="des-issuer">Corporate Finance Institute (CFI)</div><span class="des-badge">Oct 2025</span></div>
+        <div class="des-card"><div class="des-name">NSE Certified Investment Analyst Champion (NCIAC)</div><div class="des-issuer">NSE Academy</div><span class="des-badge">Feb 2025</span></div>
+        <div class="des-card"><div class="des-name">NSE Certified Investment Analyst Pro (NCIAP)</div><div class="des-issuer">NSE Academy</div><span class="des-badge">Sep 2024</span></div>
+        <div class="des-card"><div class="des-name">NSE Certified Market Professional (NCMP) — Level 3</div><div class="des-issuer">NSE Academy</div><span class="des-badge">Dec 2024</span></div>
+        <div class="des-card"><div class="des-name">Google Analytics Individual Qualification (GAIQ)</div><div class="des-issuer">Google</div><span class="des-badge">2023</span></div>
+        <div class="des-card"><div class="des-name">Google Search Ads 360 (SA360)</div><div class="des-issuer">Google</div><span class="des-badge">2024</span></div>
+      </div>
+    </div>
+
+    <!-- PUBLICATIONS -->
+    <div class="section-wrap" id="sec-publications">
+      <div class="section-head">
+        <span class="section-eyebrow">SSRN · Zenodo</span>
+        <h2 class="section-title">Publications</h2>
+      </div>
+      <div class="pub-list" id="pubList">
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section-wrap" id="sec-projects">
+      <div class="section-head">
+        <span class="section-eyebrow">Built</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <div class="proj-masonry" id="projGrid"></div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="section-wrap" id="sec-certifications">
+      <div class="section-head">
+        <span class="section-eyebrow">233+ Credentials</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <div class="cert-toolbar">
+        <div class="cert-search-wrap">
+          <span class="cert-search-icon">⌕</span>
+          <input class="cert-search" type="text" id="certSearch" placeholder="Search certifications, issuers…">
+        </div>
+        <div class="cert-filters" id="certFilters"></div>
+        <span class="cert-count" id="certCount"></span>
+      </div>
+      <div class="cert-grid" id="certGrid"></div>
+    </div>
+
+  </div><!-- /sections -->
+</div><!-- /main-wrap -->
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-name">Amaanullah Bhatti (Hafzan Osmanoğlu)</div>
+      <div class="footer-copy">© 2026 Amaanullah Bhatti. All rights reserved.</div>
+    </div>
+    <div class="footer-right">
+      <a class="footer-link" href="https://www.linkedin.com/in/amaanullah-bhatti/" target="_blank">LinkedIn ↗</a>
+      <a class="footer-link" href="https://www.ssrn.com" target="_blank">SSRN ↗</a>
+      <span class="footer-link">Dubai, UAE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── DATA ──
+const publications = [
+  {num:"01",title:"The Nexus of Choice and Scarcity: A Conceptual Review of Modern Economics",journal:"European Economics: Macroeconomics & Monetary Economics eJournal, Vol 18, Issue 130",date:"Oct 2025",abstract:"Synthesizes microeconomic and macroeconomic concepts — opportunity cost, comparative advantage, supply and demand, monetary and fiscal policy, and GDP measurement. Explores behavioral and institutional forces influencing real-world markets."},
+  {num:"02",title:"Measuring Market Power with Vertical Control: A Modified Lerner Index Framework",journal:"Development Economics eJournal, Vol 14, No. 143",date:"Aug 2025",abstract:"Introduces the Modified Lerner Index with Vertical Integration (LVI), incorporating a Vertical Integration Factor and elasticity parameter. Pharmaceutical case study demonstrates LVI's superior sensitivity versus HHI. Applied to the Pfizer-Allergan merger for antitrust enforcement."},
+  {num:"03",title:"Dynamic Inflation-Adjusted Bond Pricing: Integrating Real-Time Expectations and Tax Policy",journal:"Discrete Mathematics & Combinatorics eJournal, Vol 3, No. 14",date:"Aug 2025",abstract:"Introduces a dynamic bond pricing model integrating real-time inflation expectations and tax adjustments. Reduces pricing errors by 12–15% relative to Vasicek and CIR models, validated through RMSE analysis of Eurozone sovereign bonds using ECB and OECD data."},
+  {num:"04",title:"Introducing the Post-Shock Elastic Recovery Index (PERI): A Novel Metric for Economic Resilience",journal:"European Economics: Political Economy & Public Economics eJournal, Vol 18, Issue 108",date:"Jul 2025",abstract:"Introduces PERI, a composite metric integrating output rebound, fiscal space, institutional trust, and trade openness. Panel dataset of 30 OECD countries (2008–2020): a one-unit PERI increase is associated with 0.87% higher GDP growth (p < 0.01)."},
+  {num:"05",title:"Quantifying Market Resilience: The Hafzan Market Resilience Ratio (HMRR)",journal:"Risk Management eJournal, Vol 17, No. 65",date:"Jul 2025",abstract:"Introduces HMRR combining GARCH-estimated return volatility, the Amihud illiquidity ratio, and Time-To-Recovery (TTR) following a 5% drawdown into a comprehensive quantitative framework for evaluating financial market robustness."},
+  {num:"06",title:"The Hafzan Prosperity Index (HPI): A Multidimensional Human-Centered Framework for National Well-being",journal:"Economic Anthropology eJournal, Vol. 8, Issue 11",date:"May 2025",abstract:"Proposed the HPI, a 10-dimensional index capturing human-centered national well-being using global data — an alternative to GDP and HDI, including justice, freedom, culture, environment, and digital access dimensions."},
+  {num:"07",title:"Hafzan's Tariff-Elasticity Model (HTEM): A Novel Framework for Trade Balance Analysis Under Retaliatory Tariff Dynamics",journal:"Financial Crises eJournal, Vol. 13, Issue 38",date:"May 2025",abstract:"Introduced HTEM, integrating retaliation sensitivity (α) into a non-linear, log-linearizable model of trade flow responsiveness to tariffs and FX, advancing upon Marshall-Lerner conditions."},
+  {num:"08",title:"Hafzan Composite Adaptive Valuation Model (HCAVM): A Comprehensive Framework for Startup and Private Firm Valuation",journal:"Corporate Finance eJournal, Vol. 16, No. 37",date:"May 2025",abstract:"Developed HCAVM, combining DCF, market comparables, real options, and sentiment/liquidity adjustments to value high-risk startups and private firms more accurately under uncertainty."},
+  {num:"09",title:"A Nonlinear Framework for Dynamic Tail-Risk Hedging Using Conditional VaR, Variance Swaps, and Regime Probabilities",journal:"Quantitative Methods in Investing eJournal, Vol. 4, Issue 53",date:"May 2025",abstract:"Created the Nonlinear Hafzan Hedge Ratio (NHHR), adjusting hedge ratios dynamically using CVaR, variance swaps, and regime-switching for real-time tail risk hedging."},
+  {num:"10",title:"Inequality-Adjusted Endogenous Growth: A Theoretical and Empirical Exploration",journal:"Development Economics eJournal, Vol. 14, Issue 85",date:"May 2025",abstract:"Proposed the Hafzan Endogenous Inequality-Growth Equation (HEIGE). Found a 1-point Gini increase reduces per capita GDP growth by 0.12–0.18pp across 80 countries (1990–2020)."},
+  {num:"11",title:"Introducing the Hafzan Stagflation Resilience Index (HSRI): A Composite Measure for Macroeconomic Adaptability",journal:"Macroeconomics eJournal, Vol. 18, Issue 64",date:"May 2025",abstract:"Developed HSRI combining Phillips Curve and Quantity Theory components to evaluate macroeconomic capacity to withstand stagflation."},
+  {num:"12",title:"Extending Merton: A Jump-Diffusion Structural Model for Sovereign Default Prediction",journal:"International Political Economy eJournal, Vol. 13, Issue 8",date:"Feb 2025",abstract:"Extended Merton's model with jump-diffusion to model sovereign-specific risks including political instability. Achieved 22% higher predictive accuracy on CDS and Moody's data."},
+  {num:"13",title:"The Relationship Between Faith and Reason in Early Islamic Theology",journal:"Zenodo · DOI: 10.5281/zenodo.14838791",date:"Feb 2025",abstract:"Analyzed frameworks of Al-Ghazālī, Ibn Sīnā, Al-Fārābī, Ibn Rushd, and theological schools on harmonizing revelation and rationality in early Islamic thought."},
+  {num:"14",title:"Quantum-Augmented Dynamic Networks for Real-Time Systemic Risk Management",journal:"Zenodo · DOI: 10.5281/zenodo.14788915",date:"Feb 2025",abstract:"Proposed a hybrid model fusing GNNs, transformers, and quantum annealing to monitor systemic risk. Improved AUC-ROC by 23.6% and reduced capital buffer requirements by 22%."},
+];
+
+const projects = [
+  {icon:"⚡",name:"Hafzan Quant Labs Risk Toolkit",year:"Mar 2026",desc:"Browser-based quant risk analytics toolkit for A/B-book exposure, trader flow, and hedging in FX environments. Modules: client toxicity scoring, VaR/CVaR, delta/gamma exposure, VPIN, and stop-loss clustering.",tags:["JavaScript","Risk Analytics","FX"]},
+  {icon:"📊",name:"Hafzan QT Research Terminal",year:"Mar 2026",desc:"Single-file quantitative terminal: IV Surface (Three.js 3D), Options Greeks Engine (BSM, 80×70 grid), Correlation Matrix Analyser (4 regimes, Ledoit-Wolf), and Monte Carlo Engine (GBM, Jump-Diffusion, CEV).",tags:["Three.js","BSM","Monte Carlo"]},
+  {icon:"📚",name:"Hafzan FRM Guide",year:"Mar 2026",desc:"Free single-file FRM Part I interactive study app covering VaR, BSM, Forwards/Futures/Swaps, Duration & Convexity, GARCH/EWMA, Probability Distributions, Financial Disasters, and GARP Code of Conduct.",tags:["Education","FRM","HTML"]},
+  {icon:"📈",name:"Hafzan DXY Correlation Engine",year:"Mar 2026",desc:"Quantitative platform studying the relationship between the U.S. Dollar Index (DXY) and financial assets. Interactive charting via Chart.js to examine macro cross-asset correlations.",tags:["Chart.js","Macro","DXY"]},
+  {icon:"🔍",name:"HQL Smart Money Structure",year:"Feb–Mar 2026",desc:"Proprietary Pine Script v5 TradingView indicator. Multi-timeframe trend analysis (7 TFs), BOS & CHoCH detection, RSI divergence, market profile, and liquidity zone mapping. Public on GitHub.",tags:["Pine Script","TradingView","Quant"]},
+  {icon:"📉",name:"Hafzan Equity Composite Index (HECI)",year:"Apr 2025–Present",desc:"Shariah-compliant equity index tracking 23 ethically screened Indian companies. Excludes banking, gambling, and alcohol. Base value 1000, quarterly rebalancing, stringent liquidity/sustainability criteria.",tags:["Shariah","Index","ESG"]},
+  {icon:"🌐",name:"Finance Club Website",year:"Oct 2024",desc:"Responsive website for Marwadi University's Finance Club. Event listings, announcements, professional UI/UX to promote financial literacy.",tags:["Web","UI/UX","Finance"]},
+  {icon:"📄",name:"CraftMyCV",year:"Jan 2024",desc:"Interactive resume builder with real-time preview, customizable templates, and encrypted data handling. Full-stack frontend/backend development.",tags:["Full-stack","Encryption","UX"]},
+  {icon:"🤖",name:"SMS Classification Model",year:"Dec 2023–Jan 2024",desc:"Spam detection model using Python and ML. Preprocessing, vectorization, and classification using Naive Bayes and SVM algorithms on real SMS datasets.",tags:["Python","NLP","ML"]},
+  {icon:"🔬",name:"Hafzan Research Platform",year:"Nov–Dec 2023",desc:"Collaborative research-sharing platform enabling researchers to publish and connect globally. Encouraged open access and interdisciplinary engagement.",tags:["Research","Open Access","Web"]},
+  {icon:"🪙",name:"Hafzan Coin — Polygon Mumbai",year:"Feb–Mar 2022",desc:"Cryptocurrency token deployed on Polygon Mumbai Testnet to explore decentralized finance and smart contract development.",tags:["Blockchain","Solidity","DeFi"]},
+  {icon:"💻",name:"Crystal OS",year:"May 2019–Feb 2021",desc:"Lightweight Linux-based operating system focused on daily usability. Clean interface, smooth performance, pre-installed utilities. A major personal milestone in OS design.",tags:["Linux","OS","Systems"]},
+];
+
+const certs = [
+  {name:"Research Paper Presentation — ICEIM 2026",issuer:"Pandit Deendayal Energy University",year:2026,cat:"Academic"},
+  {name:"FinTech Industry Professional (FTIP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Financial Planning & Wealth Management Professional (FPWMP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Capital Markets & Securities Analyst (CMSA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Commercial Banking & Credit Analyst (CBCA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Business Intelligence & Data Analyst (BIDA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Financial Planning & Analysis Professional (FPAP)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Financial Modeling & Valuation Analyst (FMVA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
+  {name:"Sustainable Energy Access for Communities",issuer:"Edraak",year:2025,cat:"Sustainability"},
+  {name:"Data Privacy Analyst Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Tech"},
+  {name:"BUS614: International Finance",issuer:"Saylor Academy",year:2025,cat:"Finance"},
+  {name:"BUS641: Strategic Negotiations and Conflict Management",issuer:"Saylor Academy",year:2025,cat:"Business"},
+  {name:"Canva for Work",issuer:"Canva",year:2025,cat:"Tech"},
+  {name:"Certificate Course in Market Research",issuer:"Reliance Foundation",year:2025,cat:"Business"},
+  {name:"Combating Terrorism Financing",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
+  {name:"English Language Trainer Certification Program",issuer:"Reliance Foundation",year:2025,cat:"Academic"},
+  {name:"Financial Integration in Southeast Asia",issuer:"Asian Development Bank Institute",year:2025,cat:"Finance"},
+  {name:"International Cooperation and Mutual Legal Assistance",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
+  {name:"Legal Assistant Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Legal"},
+  {name:"Open-source Intelligence",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
+  {name:"Operational Analysis of Suspicious Transaction Reports",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
+  {name:"Private Financing for Infrastructure and Sustainable Growth",issuer:"Asian Development Bank Institute",year:2025,cat:"Finance"},
+  {name:"Project Associate Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Business"},
+  {name:"Source and Application of Funds Analysis",issuer:"Basel Institute on Governance",year:2025,cat:"Finance"},
+  {name:"The Field Guide to Human-Centered Design",issuer:"Canva",year:2025,cat:"Design"},
+  {name:"Certificate Programme in Banking, Finance and Insurance",issuer:"Bajaj Finserv",year:2025,cat:"Finance"},
+  {name:"HR Workshop — Certificate Programme in Banking, Finance and Insurance",issuer:"Bajaj Finserv",year:2025,cat:"Business"},
+  {name:"Webinar — IoT Application Development: From Concept to Reality",issuer:"Marwadi University",year:2025,cat:"Tech"},
+  {name:"Winner — Roundtable Discussion: India Tomorrow",issuer:"Marwadi University",year:2025,cat:"Academic"},
+  {name:"Advisors & Consulting Services",issuer:"Mastercard",year:2025,cat:"Finance"},
+  {name:"An Introduction to Risk: Evaluating Client Profiles and Real Estate Investments",issuer:"Goldman Sachs",year:2025,cat:"Finance"},
+  {name:"Participation Certificate — Roundtable Discussion: India Tomorrow",issuer:"Marwadi University",year:2025,cat:"Academic"},
+  {name:"Entrepreneurship and Innovation",issuer:"City of Moreton Bay",year:2025,cat:"Business"},
+  {name:"Financial Services: Climate Change",issuer:"Oliver Wyman",year:2025,cat:"Finance"},
+  {name:"Global Markets Sales and Trading Analyst",issuer:"Bank of America",year:2025,cat:"Finance"},
+  {name:"Introduction to Sales Strategies",issuer:"PepsiCo",year:2025,cat:"Business"},
+  {name:"Law and Professional Development",issuer:"Clyde & Co",year:2025,cat:"Legal"},
+  {name:"US Capital Markets",issuer:"White & Case LLP",year:2025,cat:"Finance"},
+  {name:"Webinar — Gen AI: Transforming the Future of Technology",issuer:"Marwadi University",year:2025,cat:"Tech"},
+  {name:"NCFM Mutual Fund Module",issuer:"NSE Academy",year:2025,cat:"Finance"},
+  {name:"NCFM Securities Market (Basic) Module",issuer:"NSE Academy",year:2025,cat:"Finance"},
+  {name:"National Financial Literacy Quiz 2025",issuer:"NISM",year:2025,cat:"Finance"},
+  {name:"Raisina Hackathon 2025 — Certificate of Contribution",issuer:"Ministry of External Affairs, India",year:2025,cat:"Academic"},
+  {name:"Assessing Contemporary Science",issuer:"The Open University",year:2025,cat:"Academic"},
+  {name:"Data Analysis: Hypothesis Testing",issuer:"The Open University",year:2025,cat:"Tech"},
+  {name:"Sustainability in Banking",issuer:"ACCA",year:2025,cat:"Finance"},
+  {name:"Art and the Environment in Southeast Asia: Landscape as Ideology",issuer:"National Gallery Singapore",year:2025,cat:"Academic"},
+  {name:"Organizing Committee — Vishleshan 2025: National Symposium on Union Budget",issuer:"Marwadi University",year:2025,cat:"Academic"},
+  {name:"Exercise and Mental Health",issuer:"The Open University",year:2025,cat:"Academic"},
+  {name:"Introduction to Offshore Wind Learning",issuer:"Offshore Wind Learning",year:2025,cat:"Sustainability"},
+  {name:"NCFM Wealth Management Module",issuer:"NSE Academy",year:2025,cat:"Finance"},
+  {name:"NSE Certified Investment Analyst Champion (NCIAC)",issuer:"NSE Academy",year:2025,cat:"Finance"},
+  {name:"Business Communication: Writing a SWOT Analysis",issuer:"The Open University",year:2025,cat:"Business"},
+  {name:"NCFM Capital Market (Dealers) Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"NCFM Commercial Banking: A Beginners Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"NCFM Derivatives Market (Dealers) Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"NCFM Financial Markets: A Beginners Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"NSE Certified Market Professional (NCMP) — Level 3",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"Advanced Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
+  {name:"Art and the Environment in Southeast Asia: Environment as Contested Space",issuer:"National Gallery Singapore",year:2024,cat:"Academic"},
+  {name:"Decision Making: How to Choose the Right Problem to Solve",issuer:"University of Leeds",year:2024,cat:"Business"},
+  {name:"Digital Citizenship and Safety",issuer:"Google",year:2024,cat:"Tech"},
+  {name:"Distance Learning for Educators",issuer:"Google",year:2024,cat:"Academic"},
+  {name:"Exploring Gender Equality in Education",issuer:"British Council",year:2024,cat:"Academic"},
+  {name:"Fraud Investigation: Following the Money",issuer:"Coventry University",year:2024,cat:"Compliance"},
+  {name:"How Do Empires Work",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"Microsoft Power BI",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
+  {name:"Nationalism, Self-Determination and Secession",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"Political Ordering",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
+  {name:"Power BI for Business Professionals",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
+  {name:"Presenting Your Work with Impact: Presentation Skills",issuer:"University of Leeds",year:2024,cat:"Business"},
+  {name:"Rights and Justice in International Relations",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"The Use of Force in International Law",issuer:"The Open University",year:2024,cat:"Legal"},
+  {name:"Certificate of Recognition — Explorer 2024 National Business Conclave",issuer:"GLS University",year:2024,cat:"Academic"},
+  {name:"Economy's Vision Board & Investor Awareness Quiz",issuer:"NSE India",year:2024,cat:"Finance"},
+  {name:"Financial Literacy for Bharat",issuer:"NISM",year:2024,cat:"Finance"},
+  {name:"Modern Slavery",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"Online Dispute Resolution (ODR) Mechanism",issuer:"NISM",year:2024,cat:"Legal"},
+  {name:"Essay Competition — The Economics and Sustainability Side of Festivals",issuer:"Marwadi University",year:2024,cat:"Academic"},
+  {name:"Web Horizons: Expanding the Digital Landscape",issuer:"Marwadi University",year:2024,cat:"Tech"},
+  {name:"Commercial Banking",issuer:"HSBC",year:2024,cat:"Finance"},
+  {name:"Corporate Finance Fundamentals",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
+  {name:"Indian Knowledge System Quiz — Coinage of India",issuer:"Marwadi University",year:2024,cat:"Academic"},
+  {name:"NCFM Technical Analysis Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"NSE Certified Investment Analyst Pro (NCIAP)",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"NSE Certified Market Professional (NCMP) — Level 1",issuer:"NSE Academy",year:2024,cat:"Finance"},
+  {name:"Soft Power at The Workplace",issuer:"Chung Yuan Christian University",year:2024,cat:"Business"},
+  {name:"British Airways — Data Science",issuer:"British Airways",year:2024,cat:"Tech"},
+  {name:"Investment Management",issuer:"Fidelity International",year:2024,cat:"Finance"},
+  {name:"Corporate Advisory: Investment Banking",issuer:"Goodbody",year:2024,cat:"Finance"},
+  {name:"Global Banking & Markets",issuer:"HSBC",year:2024,cat:"Finance"},
+  {name:"NSE Quiz Series 4",issuer:"NSE India",year:2024,cat:"Finance"},
+  {name:"Winner of Group Discussion on Anti-Ragging",issuer:"Marwadi University",year:2024,cat:"Academic"},
+  {name:"Accounting Fundamentals",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
+  {name:"Consulting Unplugged: The Ultimate Consulting BootCamp",issuer:"Delhi Technological University (DTU)",year:2024,cat:"Business"},
+  {name:"EcoWizz Quiz Competition",issuer:"Great Lakes Institute of Management",year:2024,cat:"Sustainability"},
+  {name:"Equity in Informal STEM Learning: Using the Equity Compass",issuer:"University College London",year:2024,cat:"Academic"},
+  {name:"Global Challenges in Practice: Designing a Development Intervention",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"International Relations: Exploring Territorial Divisions",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"Introduction to Arabic",issuer:"The Open University",year:2024,cat:"Academic"},
+  {name:"Sustainable Seafood: Barriers and Opportunities",issuer:"EIT Food",year:2024,cat:"Sustainability"},
+  {name:"Participation in Stockathon: A Stock Market Simulation Game",issuer:"Marwadi University",year:2024,cat:"Finance"},
+  {name:"TCS iON Career Edge — Young Professional",issuer:"TCS iON",year:2024,cat:"Business"},
+  {name:"the Apex Spark | Ignite Your Business Acumen",issuer:"IIT Roorkee",year:2024,cat:"Business"},
+  {name:"Behavioural Economics",issuer:"Standard Bank Group",year:2024,cat:"Finance"},
+  {name:"Corporate Tax",issuer:"PwC Switzerland",year:2024,cat:"Legal"},
+  {name:"Cybersecurity",issuer:"Mastercard",year:2024,cat:"Tech"},
+  {name:"Data Visualisation: Empowering Business with Effective Insights",issuer:"Tata Consultancy Services",year:2024,cat:"Tech"},
+  {name:"Digital Assurance & Transparency",issuer:"PwC",year:2024,cat:"Finance"},
+  {name:"Excel Skills",issuer:"JPMorgan Chase",year:2024,cat:"Tech"},
+  {name:"Excel Skills for Business",issuer:"Goldman Sachs",year:2024,cat:"Tech"},
+  {name:"Fraud Prevention in the Charity Sector",issuer:"Australian Charities and Not-for-profits Commission",year:2024,cat:"Compliance"},
+  {name:"Fundamental Analysis Module",issuer:"NSE India",year:2024,cat:"Finance"},
+  {name:"G3Q Quiz Competition",issuer:"Government of Gujarat",year:2024,cat:"Academic"},
+  {name:"Global Private Banking",issuer:"J.P. Morgan Private Bank",year:2024,cat:"Finance"},
+  {name:"Group Discussion",issuer:"TCS iON",year:2024,cat:"Business"},
+  {name:"Presentation Skills",issuer:"TCS iON",year:2024,cat:"Business"},
+  {name:"Research Methods: A Practical Guide to Peer and Community Research",issuer:"King's College London",year:2024,cat:"Academic"},
+  {name:"The Corporate Investment Banking",issuer:"Standard Bank Group",year:2024,cat:"Finance"},
+  {name:"Understanding Risk Management in Financial Sector",issuer:"TCS iON",year:2024,cat:"Finance"},
+  {name:"Wealth Management",issuer:"Goodbody",year:2024,cat:"Finance"},
+  {name:"Agriculture, Economics and Nature",issuer:"The University of Western Australia",year:2024,cat:"Academic"},
+  {name:"Application of Advanced Analytics in Securities Markets",issuer:"NISM",year:2024,cat:"Finance"},
+  {name:"Asset Management",issuer:"J.P. Morgan",year:2024,cat:"Finance"},
+  {name:"Bushfires: Response, Relief, and Resilience",issuer:"CIFAL Newcastle",year:2024,cat:"Academic"},
+  {name:"Commercial Law",issuer:"Clyde & Co",year:2024,cat:"Legal"},
+  {name:"Economics and the 2008 Crisis: A Keynesian View",issuer:"The Open University",year:2024,cat:"Finance"},
+  {name:"Economics for Capital Markets",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
+  {name:"Equity Allocation for Wealth Management",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
+  {name:"Financial Analyst",issuer:"New York Jobs CEO Council",year:2024,cat:"Finance"},
+  {name:"Financial Markets",issuer:"Great Learning",year:2024,cat:"Finance"},
+  {name:"Google Certified Search Ads 360 Professional",issuer:"Google",year:2024,cat:"Tech"},
+  {name:"Ignite the Future: Startup & Entrepreneurship Odyssey",issuer:"Delhi School of Economics",year:2024,cat:"Business"},
+  {name:"Investment Banking",issuer:"Bank of America",year:2024,cat:"Finance"},
+  {name:"Making Anti-Corruption Effective",issuer:"SOAS University of London",year:2024,cat:"Compliance"},
+  {name:"NIT Agartala Trading Competition 2023",issuer:"National Institute of Technology Agartala",year:2024,cat:"Finance"},
+  {name:"Online Pre Examination Test Executive Module — 1",issuer:"Institute of Company Secretaries of India",year:2024,cat:"Legal"},
+  {name:"Quantitative Research",issuer:"JPMorgan Chase",year:2024,cat:"Finance"},
+  {name:"Strategic Planning",issuer:"HP LIFE",year:2024,cat:"Business"},
+  {name:"Teaching and Assessing Core Skills",issuer:"British Council",year:2024,cat:"Academic"},
+  {name:"The Annual Information Statement",issuer:"Australian Charities and Not-for-profits Commission",year:2024,cat:"Compliance"},
+  {name:"The Constitutional Chronicle Quiz",issuer:"IIM Kozhikode",year:2024,cat:"Academic"},
+  {name:"The Mediterranean Action Plan and the Barcelona Convention",issuer:"InforMEA",year:2024,cat:"Sustainability"},
+  {name:"Understanding Real Estate Investment Trusts (REITs)",issuer:"NISM",year:2024,cat:"Finance"},
+  {name:"Virtual, Augmented and Mixed Reality",issuer:"Lancaster University",year:2024,cat:"Tech"},
+  {name:"Winner of Student's Discussion Forum on Union Budget 2024",issuer:"Marwadi University",year:2024,cat:"Academic"},
+  {name:"Advancing Sustainable Development in Practice",issuer:"UNITAR",year:2023,cat:"Sustainability"},
+  {name:"Asia Analyst Development Program (AADP)",issuer:"JPMorgan Chase",year:2023,cat:"Finance"},
+  {name:"Aspects of Prevention of Money Laundering Activities",issuer:"NISM",year:2023,cat:"Compliance"},
+  {name:"Business and Human Rights Global",issuer:"Clifford Chance",year:2023,cat:"Legal"},
+  {name:"Career Catalyst: Advisory",issuer:"KPMG US",year:2023,cat:"Finance"},
+  {name:"Certified Google Creative Professional",issuer:"Google",year:2023,cat:"Tech"},
+  {name:"Data Privacy Fundamentals",issuer:"IBM",year:2023,cat:"Tech"},
+  {name:"Data Science for Business Level 2",issuer:"IBM",year:2023,cat:"Tech"},
+  {name:"Development Economics",issuer:"Marginal Revolution University",year:2023,cat:"Finance"},
+  {name:"Digital Analytics & Regression",issuer:"IBM",year:2023,cat:"Tech"},
+  {name:"Digital Intelligence",issuer:"PwC Switzerland",year:2023,cat:"Tech"},
+  {name:"Financial Methods in Environmental Decisions",issuer:"The Open University",year:2023,cat:"Finance"},
+  {name:"Option Strategies",issuer:"Zerodha Varsity",year:2023,cat:"Finance"},
+  {name:"Predictive Modeling Fundamentals",issuer:"IBM",year:2023,cat:"Tech"},
+  {name:"Presenting Data",issuer:"HP",year:2023,cat:"Tech"},
+  {name:"Python for Data Science",issuer:"IBM",year:2023,cat:"Tech"},
+  {name:"The Overall Opportunities in the Securities Markets",issuer:"NISM",year:2023,cat:"Finance"},
+  {name:"Virtual Stock Market Event",issuer:"GSFC University",year:2023,cat:"Finance"},
+  {name:"Anti Money Laundering",issuer:"Alfaisal University",year:2023,cat:"Compliance"},
+  {name:"Certified Google Analytics Individual Qualification (GAIQ)",issuer:"Google",year:2023,cat:"Tech"},
+  {name:"Data Analytics Consulting",issuer:"KPMG Australia",year:2023,cat:"Finance"},
+  {name:"Data Visualization with Advanced Excel",issuer:"PwC",year:2023,cat:"Tech"},
+  {name:"Do Well Do Good Quiz",issuer:"IIM Calcutta",year:2023,cat:"Academic"},
+  {name:"FINQUEST '23",issuer:"Aryabhatta College, University of Delhi",year:2023,cat:"Finance"},
+  {name:"Green Economy and Trade",issuer:"Partnership for Action on Green Economy (PAGE)",year:2023,cat:"Sustainability"},
+  {name:"Green Industrial Policy",issuer:"Partnership for Action on Green Economy (PAGE)",year:2023,cat:"Sustainability"},
+  {name:"Introduction to Capital Markets",issuer:"Corporate Finance Institute (CFI)",year:2023,cat:"Finance"},
+  {name:"NISM Financial Literacy Quiz",issuer:"NISM",year:2023,cat:"Finance"},
+  {name:"Private Equity and Venture Capital",issuer:"Università Bocconi / Coursera",year:2023,cat:"Finance"},
+  {name:"Quantitative and Qualitative Research in Finance",issuer:"The Open University",year:2023,cat:"Finance"},
+  {name:"The India Policy: The Open India Quiz",issuer:"IIM Calcutta",year:2023,cat:"Academic"},
+  {name:"Global Diplomacy",issuer:"University of London",year:2023,cat:"Academic"},
+  {name:"Investment Banking",issuer:"Citi",year:2023,cat:"Finance"},
+  {name:"Management Consulting",issuer:"PwC",year:2023,cat:"Business"},
+  {name:"Microsoft Word — Business Documents",issuer:"Corporate Finance Institute (CFI)",year:2023,cat:"Tech"},
+  {name:"SIMSREE Trading League",issuer:"SIMSREE",year:2023,cat:"Finance"},
+  {name:"Talent Titan Quiz Participation",issuer:"NIT Calicut",year:2023,cat:"Academic"},
+  {name:"The Economics of Festivals 2.0 Quiz",issuer:"IIM Rohtak",year:2023,cat:"Academic"},
+  {name:"5-Day Soft Skill Training and Mock Interview",issuer:"IIT Madras",year:2023,cat:"Business"},
+  {name:"Financial Markets",issuer:"Yale University",year:2023,cat:"Finance"},
+  {name:"Investment Analysis & Portfolio Management",issuer:"NSE India",year:2023,cat:"Finance"},
+  {name:"Strategy Consulting Virtual Internship",issuer:"Accenture",year:2023,cat:"Business"},
+  {name:"Understanding Financial Markets",issuer:"University of Geneva",year:2023,cat:"Finance"},
+  {name:"Certificate of Participation in Shri Ram Trading Challenge 2023",issuer:"Shri Ram College of Commerce (SRCC)",year:2023,cat:"Finance"},
+  {name:"Corporate Analyst Development Program (CADP)",issuer:"JPMorgan Chase",year:2023,cat:"Finance"},
+  {name:"Wealth and Personal Banking Virtual Internship",issuer:"HSBC",year:2023,cat:"Finance"},
+  {name:"Asset Allocation in Investment",issuer:"The Open University",year:2023,cat:"Finance"},
+  {name:"Liquidity Management",issuer:"The Open University",year:2023,cat:"Finance"},
+  {name:"Options Trading",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
+  {name:"Fundamental Analysis",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
+  {name:"Stock Market Basics",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
+  {name:"Technical Analysis",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
+  {name:"Computer Science 101",issuer:"Stanford Online",year:2020,cat:"Tech"},
+  {name:"The Fundamentals of Digital Marketing",issuer:"Google Digital Garage",year:2020,cat:"Tech"},
+  {name:"Reading Financial Statements",issuer:"Corporate Finance Institute (CFI)",year:2020,cat:"Finance"},
+  {name:"Effective Presentations",issuer:"HP",year:2020,cat:"Business"},
+  {name:"Android Enterprise Professional",issuer:"Google",year:2019,cat:"Tech"},
+  {name:"Bing Ads Accredited Professional Status",issuer:"Microsoft",year:2019,cat:"Tech"},
+  {name:"Introductory Course to International Environmental Law",issuer:"InforMEA",year:2019,cat:"Legal"},
+  {name:"Introduction to Sustainable Finance",issuer:"GIZ",year:2019,cat:"Finance"},
+  {name:"Specialized Module on Cities and Climate Change",issuer:"UNITAR",year:2019,cat:"Sustainability"},
+  {name:"Google My Business",issuer:"Google",year:2019,cat:"Tech"},
+  {name:"Launching Microsoft Teams to the Company",issuer:"Microsoft",year:2019,cat:"Tech"},
+  {name:"Mobile in Display & Video 360 Basics",issuer:"Google",year:2019,cat:"Tech"},
+  {name:"Windows 10: Speech Recognition and Cortana Integration",issuer:"Microsoft",year:2018,cat:"Tech"},
+  {name:"YouTube Creative Essentials",issuer:"Google",year:2018,cat:"Tech"},
+  {name:"3D Printing",issuer:"HP",year:2018,cat:"Tech"},
+  {name:"ASP .NET Core",issuer:"Microsoft",year:2018,cat:"Tech"},
+  {name:"Edit and Manage Facebook Ads",issuer:"Facebook",year:2018,cat:"Tech"},
+  {name:"Facebook and Instagram",issuer:"Facebook",year:2018,cat:"Tech"},
+  {name:"Google Web Designer Basics",issuer:"Google",year:2018,cat:"Tech"},
+  {name:"IT Expert Roundtable Information Protection at Microsoft",issuer:"Microsoft",year:2018,cat:"Tech"},
+  {name:"Redesign for the Cloud: Building a Cloud-First Network",issuer:"Microsoft",year:2018,cat:"Tech"},
+  {name:"Send/Receive API: Building for the Messenger Platform",issuer:"Facebook",year:2018,cat:"Tech"},
+  {name:"Top Design Thinking Concepts",issuer:"Microsoft",year:2018,cat:"Design"},
+  {name:"C++",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"CSS",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"HTML",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"JQuery",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"Java",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"PHP",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"SQL",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"Swift 4",issuer:"Sololearn",year:2018,cat:"Tech"},
+  {name:"JavaScript",issuer:"Sololearn",year:2017,cat:"Tech"},
+];
+
+// ── RENDER PUBLICATIONS ──
+(function(){
+  const el = document.getElementById('pubList');
+  publications.forEach((p,i) => {
+    const div = document.createElement('div');
+    div.className = 'pub-item';
+    div.innerHTML = `<div class="pub-num">${p.num} / ${publications.length}</div>
+      <div class="pub-title">${p.title}</div>
+      <div class="pub-journal">${p.journal} · ${p.date}</div>
+      <div class="pub-abstract">${p.abstract}</div>
+      <button class="pub-toggle"><span class="pub-toggle-icon">↓</span> Abstract</button>`;
+    div.querySelector('.pub-toggle').addEventListener('click',()=>div.classList.toggle('expanded'));
+    el.appendChild(div);
+  });
+})();
+
+// ── RENDER PROJECTS ──
+(function(){
+  const el = document.getElementById('projGrid');
+  projects.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'proj-card';
+    div.innerHTML = `<div class="proj-card-top"><div class="proj-icon">${p.icon}</div><span class="proj-year">${p.year}</span></div>
+      <div class="proj-name">${p.name}</div>
+      <p class="proj-desc">${p.desc}</p>
+      <div class="proj-tags">${p.tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>`;
+    el.appendChild(div);
+  });
+})();
+
+// ── RENDER CERTS ──
+const cats = ['All',...[...new Set(certs.map(c=>c.cat))].sort()];
+const filterEl = document.getElementById('certFilters');
+const gridEl = document.getElementById('certGrid');
+const countEl = document.getElementById('certCount');
+let activeCat = 'All', activeSearch = '';
+
+cats.forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'cert-filter-btn' + (cat==='All'?' active':'');
+  btn.textContent = cat;
+  btn.addEventListener('click',()=>{
+    activeCat = cat;
+    document.querySelectorAll('.cert-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCerts();
+  });
+  filterEl.appendChild(btn);
+});
+
+function renderCerts(){
+  const q = activeSearch.toLowerCase();
+  gridEl.innerHTML = '';
+  let n = 0;
+  certs.forEach(c => {
+    const show = (activeCat==='All'||c.cat===activeCat) && (!q || c.name.toLowerCase().includes(q) || c.issuer.toLowerCase().includes(q));
+    if(!show) return;
+    n++;
+    const d = document.createElement('div');
+    d.className = 'cert-card';
+    d.innerHTML = `<div class="cert-card-dot"></div><div><div class="cert-card-name">${c.name}</div><div class="cert-card-meta"><span>${c.issuer}</span><span class="cert-card-sep">·</span><span class="cert-card-year">${c.year}</span></div></div>`;
+    gridEl.appendChild(d);
+  });
+  countEl.textContent = n + ' certificates';
+}
+renderCerts();
+document.getElementById('certSearch').addEventListener('input',e=>{activeSearch=e.target.value;renderCerts();});
+
+// ── TABS ──
+function setTab(t){
+  document.querySelectorAll('.tab-btn,.nav-link').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===t);
+  });
+  document.querySelectorAll('.section-wrap').forEach(s=>s.classList.remove('active'));
+  const target = document.getElementById('sec-'+t);
+  if(target) target.classList.add('active');
+}
+document.querySelectorAll('.tab-btn,.nav-link').forEach(b=>{
+  b.addEventListener('click',()=>setTab(b.dataset.tab));
+});
+
+// ── LAYOUT TOGGLE ──
+const layoutBtn = document.getElementById('layoutBtn');
+let isSingle = false;
+layoutBtn.addEventListener('click',()=>{
+  isSingle = !isSingle;
+  document.body.classList.toggle('sp', isSingle);
+  layoutBtn.textContent = isSingle ? 'Tab View' : 'Light/Dark Mode';
+  if(isSingle){
+    document.querySelectorAll('.section-wrap').forEach(s=>s.classList.add('active'));
+  } else {
+    document.querySelectorAll('.section-wrap').forEach(s=>s.classList.remove('active'));
+    document.getElementById('sec-about').classList.add('active');
+    setTab('about');
+  }
+});
+
+// ── THEME ──
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const html = document.documentElement;
+  html.dataset.theme = html.dataset.theme==='dark'?'light':'dark';
+});
+
+// ── SCROLL SPY ──
+window.addEventListener('scroll',()=>{
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 10 ? '0 1px 20px rgba(0,0,0,0.06)' : '';
+});
+</script>
+</body>
+</html>
