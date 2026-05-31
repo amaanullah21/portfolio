@@ -7,40 +7,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #fafaf8;
-  --bg2: #f3f3ef;
-  --bg3: #eceae3;
-  --text: #111110;
-  --text2: #4a4a46;
-  --text3: #88887e;
-  --border: rgba(0,0,0,0.09);
-  --border2: rgba(0,0,0,0.15);
-  --gold: #c9a84c;
-  --gold2: #e8c97a;
-  --gold-bg: #fdf8ee;
+  /* High-Contrast Professional Palette */
+  --bg: #ffffff;           /* Pure white for maximum clarity */
+  --bg2: #f8f8f8;          /* Very light gray for subtle depth */
+  --bg3: #eeeeee;          /* Defined contrast for buttons/hover */
+  --text: #000000;         /* Absolute black for headings */
+  --text2: #333333;        /* Soft black for body text */
+  --text3: #666666;        /* Muted gray for metadata */
+  
+  --border: #e0e0e0;       /* Thin, sharp borders */
+  --border2: #cccccc;
+  
+  /* Replaced Cyan with a "Success Slate" or Pure Black */
+  --gold: #000000;         /* Primary accents are now black */
+  --gold2: #444444;        /* Secondary accents are dark gray */
+  --gold-bg: #f0f0f0;      /* Light neutral for badges */
+  
   --card: #ffffff;
-  --nav-bg: rgba(250,250,248,0.88);
-  --glow: rgba(201,168,76,0.12);
-  --tr: 0.3s cubic-bezier(0.4,0,0.2,1);
-  --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'Syne', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --glow: rgba(0, 0, 0, 0.05);
+  --tr: 0.2s ease;         /* Snappier transitions */
+
+  /* Functional Typography Stack */
+  --serif: "Times New Roman", Times, serif; /* Professional, traditional serif */
+  --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
+
 [data-theme="dark"] {
-  --bg: #0c0c0b;
-  --bg2: #141413;
-  --bg3: #1e1e1c;
-  --text: #f0efe8;
-  --text2: #a8a89e;
-  --text3: #555550;
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
-  --gold: #d4aa5a;
-  --gold2: #c9a84c;
-  --gold-bg: #1a1710;
-  --card: #161614;
-  --nav-bg: rgba(12,12,11,0.9);
-  --glow: rgba(201,168,76,0.08);
+  --bg: #0a0a0a;           /* Deep OLED black */
+  --bg2: #141414;
+  --bg3: #1f1f1f;
+  --text: #ffffff;
+  --text2: #d1d1d1;
+  --text3: #888888;
+  
+  --border: #262626;
+  --border2: #404040;
+  
+  --gold: #ffffff;         /* Accents flip to white */
+  --gold2: #aaaaaa;
+  --gold-bg: #1a1a1a;
+  
+  --card: #111111;
+  --nav-bg: rgba(10, 10, 10, 0.95);
+  --glow: rgba(255, 255, 255, 0.03);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -61,7 +72,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .nav-logo{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text);text-decoration:none;letter-spacing:-0.01em;display:flex;align-items:center;gap:8px}
 .nav-logo-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:2px}
-.nav-link{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all var(--tr);cursor:pointer;border:none;background:none;font-family:var(--sans)}
+.nav-link{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all var(--tr);cursor:pointer;border:none;background:none;font-family:var(--sans);display:inline-flex;align-items:center}
 .nav-link:hover,.nav-link.active{color:var(--text);background:var(--bg3)}
 .nav-actions{display:flex;align-items:center;gap:10px}
 .theme-btn{width:36px;height:20px;border-radius:10px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;position:relative;transition:all var(--tr);flex-shrink:0}
@@ -124,19 +135,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .tabs-outer{position:sticky;top:56px;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin:0 -40px;padding:0 40px;transition:background var(--tr)}
 .tabs-inner{display:flex;align-items:flex-end;gap:0;overflow-x:auto;scrollbar-width:none;max-width:1280px;margin:0 auto}
 .tabs-inner::-webkit-scrollbar{display:none}
-.tab-btn{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);border:none;background:none;cursor:pointer;padding:14px 18px 13px;font-family:var(--sans);white-space:nowrap;border-bottom:2px solid transparent;transition:all var(--tr);position:relative}
+.tab-btn{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);border:none;background:none;cursor:pointer;padding:14px 18px 13px;font-family:var(--sans);white-space:nowrap;border-bottom:2px solid transparent;transition:all var(--tr);position:relative;text-decoration:none;display:inline-block}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--gold)}
-/* single page mode */
-body.sp .section-wrap{display:block !important}
-body.sp .section-head{display:flex !important}
+/* single page mode — always on */
 
 /* ── SECTIONS ── */
 .sections{padding-top:60px}
-.section-wrap{display:none}
-.section-wrap.active{display:block;animation:sec-in 0.35s cubic-bezier(0.16,1,0.3,1) both}
+.section-wrap{display:block}
 @keyframes sec-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.section-head{display:none;align-items:center;gap:16px;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.section-wrap + .section-wrap{margin-top:100px}
 .section-eyebrow{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);padding:3px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:100px;background:var(--gold-bg)}
 .section-title{font-family:var(--serif);font-size:34px;font-weight:500;letter-spacing:-0.02em;color:var(--text)}
 
@@ -295,15 +304,14 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
       Amaanullah Bhatti
     </a>
     <div class="nav-links" id="navLinks">
-      <button class="nav-link active" data-tab="about">About</button>
-      <button class="nav-link" data-tab="experience">Experience</button>
-      <button class="nav-link" data-tab="education">Education</button>
-      <button class="nav-link" data-tab="publications">Publications</button>
-      <button class="nav-link" data-tab="projects">Projects</button>
-      <button class="nav-link" data-tab="certifications">Certifications</button>
+      <a class="nav-link" href="#sec-about">About</a>
+      <a class="nav-link" href="#sec-experience">Experience</a>
+      <a class="nav-link" href="#sec-education">Education</a>
+      <a class="nav-link" href="#sec-publications">Publications</a>
+      <a class="nav-link" href="#sec-projects">Projects</a>
+      <a class="nav-link" href="#sec-certifications">Certifications</a>
     </div>
     <div class="nav-actions">
-      <button class="layout-btn" id="layoutBtn">Light/Dark Mode</button>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"></button>
     </div>
   </div>
@@ -341,14 +349,14 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
       </div>
       <div class="hero-cta">
         <a class="btn-primary" href="https://www.linkedin.com/in/amaanullah-bhatti/" target="_blank">LinkedIn ↗</a>
-        <a class="btn-secondary" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=7376580" target="_blank">View Research ↗</a>
+        <a class="btn-secondary" href="#sec-publications">View Research</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="hero-card">
         <div class="hero-card-top">
           <div class="hero-avatar">
-            <img src="https://media.licdn.com/dms/image/v2/D5603AQHyY6CdBd28Vg/profile-displayphoto-scale_400_400/B56ZuiuxUkJsAg-/0/1767961730536?e=1776297600&v=beta&t=mpnEUVq0-80MNdIDhH36wYU7mEv70GJGXvS8QlbTBuE" alt="Amaanullah Bhatti" onerror="this.style.display='none'">
+            <img src="https://ui-avatars.com/api/?name=A+B&background=e8e4d8&color=666&size=200&bold=false&font-size=0.35" alt="Amaanullah Bhatti" onerror="this.style.display='none'">
           </div>
           <div>
             <div class="hero-card-name">Amaanullah Bhatti</div>
@@ -397,19 +405,19 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
   <!-- TABS -->
   <div class="tabs-outer">
     <div class="tabs-inner">
-      <button class="tab-btn active" data-tab="about">About</button>
-      <button class="tab-btn" data-tab="experience">Experience</button>
-      <button class="tab-btn" data-tab="education">Education</button>
-      <button class="tab-btn" data-tab="publications">Publications</button>
-      <button class="tab-btn" data-tab="projects">Projects</button>
-      <button class="tab-btn" data-tab="certifications">Certifications</button>
+      <a class="tab-btn active" href="#sec-about">About</a>
+      <a class="tab-btn" href="#sec-experience">Experience</a>
+      <a class="tab-btn" href="#sec-education">Education</a>
+      <a class="tab-btn" href="#sec-publications">Publications</a>
+      <a class="tab-btn" href="#sec-projects">Projects</a>
+      <a class="tab-btn" href="#sec-certifications">Certifications</a>
     </div>
   </div>
 
   <div class="sections">
 
     <!-- ABOUT -->
-    <div class="section-wrap active" id="sec-about">
+    <div class="section-wrap" id="sec-about">
       <div class="section-head">
         <span class="section-eyebrow">Profile</span>
         <h2 class="section-title">About</h2>
@@ -1036,46 +1044,32 @@ function renderCerts(){
 renderCerts();
 document.getElementById('certSearch').addEventListener('input',e=>{activeSearch=e.target.value;renderCerts();});
 
-// ── TABS ──
-function setTab(t){
-  document.querySelectorAll('.tab-btn,.nav-link').forEach(b=>{
-    b.classList.toggle('active', b.dataset.tab===t);
-  });
-  document.querySelectorAll('.section-wrap').forEach(s=>s.classList.remove('active'));
-  const target = document.getElementById('sec-'+t);
-  if(target) target.classList.add('active');
-}
-document.querySelectorAll('.tab-btn,.nav-link').forEach(b=>{
-  b.addEventListener('click',()=>setTab(b.dataset.tab));
-});
-
-// ── LAYOUT TOGGLE ──
-const layoutBtn = document.getElementById('layoutBtn');
-let isSingle = false;
-layoutBtn.addEventListener('click',()=>{
-  isSingle = !isSingle;
-  document.body.classList.toggle('sp', isSingle);
-  layoutBtn.textContent = isSingle ? 'Tab View' : 'Light/Dark Mode';
-  if(isSingle){
-    document.querySelectorAll('.section-wrap').forEach(s=>s.classList.add('active'));
-  } else {
-    document.querySelectorAll('.section-wrap').forEach(s=>s.classList.remove('active'));
-    document.getElementById('sec-about').classList.add('active');
-    setTab('about');
-  }
-});
-
 // ── THEME ──
 document.getElementById('themeBtn').addEventListener('click',()=>{
   const html = document.documentElement;
   html.dataset.theme = html.dataset.theme==='dark'?'light':'dark';
 });
 
-// ── SCROLL SPY ──
-window.addEventListener('scroll',()=>{
+// ── SCROLL SPY — highlight active tab/nav link ──
+const sections = ['about','experience','education','publications','projects','certifications'];
+function updateActive(){
+  const scrollY = window.scrollY + 120;
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById('sec-'+id);
+    if(el && el.offsetTop <= scrollY) current = id;
+  });
+  document.querySelectorAll('.tab-btn, .nav-link').forEach(b => {
+    const href = b.getAttribute('href') || '';
+    b.classList.toggle('active', href === '#sec-'+current);
+  });
+}
+window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
   nav.style.boxShadow = window.scrollY > 10 ? '0 1px 20px rgba(0,0,0,0.06)' : '';
-});
+  updateActive();
+}, {passive:true});
+updateActive();
 </script>
 </body>
 </html>
