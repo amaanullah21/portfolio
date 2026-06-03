@@ -244,6 +244,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
 .proj-tag{font-size:10px;color:var(--text3);border:1px solid var(--border);border-radius:4px;padding:2px 7px;letter-spacing:0.04em}
 
+/* Styling for the project link */
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 15px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity var(--tr);
+}
+
+.proj-link:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
+/* Optional: change cursor if card has a link */
+.proj-card:has(.proj-link) {
+  cursor: pointer;
+}
+
 /* ── CERTIFICATIONS ── */
 .cert-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
 .cert-search{flex:1;min-width:220px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0 14px 0 38px;font-size:13px;color:var(--text);font-family:var(--sans);outline:none;transition:all var(--tr);position:relative}
@@ -335,7 +360,7 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
       <p class="hero-desc">Finance professional and researcher with a deep passion for global economics, quantitative finance, and sustainable development. Currently a Junior Risk Analyst at Stonefort Securities — ranked Top 5% researcher on SSRN globally.</p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-n">14<sup>+</sup></div>
+          <div class="hero-stat-n">18<sup>+</sup></div>
           <div class="hero-stat-l">Publications</div>
         </div>
         <div class="hero-stat">
@@ -356,7 +381,7 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
       <div class="hero-card">
         <div class="hero-card-top">
           <div class="hero-avatar">
-            <img src="https://ui-avatars.com/api/?name=A+B&background=e8e4d8&color=666&size=200&bold=false&font-size=0.35" alt="Amaanullah Bhatti" onerror="this.style.display='none'">
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQHyY6CdBd28Vg/profile-displayphoto-crop_800_800/B56ZuiuxUkJsAI-/0/1767961730441?e=1782345600&v=beta&t=KgZkEb-CB7_YyvElqP7XL5GPSAskm_B7TdV68O1oraA" alt="Amaanullah Bhatti" onerror="this.style.display='none'">
           </div>
           <div>
             <div class="hero-card-name">Amaanullah Bhatti</div>
@@ -444,10 +469,10 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
             <div class="info-row"><span class="info-key">Organisation</span><span class="info-val">Stonefort Securities</span></div>
             <div class="info-row"><span class="info-key">Location</span><span class="info-val">Dubai, UAE</span></div>
             <div class="info-row"><span class="info-key">SSRN Rank</span><span class="info-val">Top 5% Globally</span></div>
-            <div class="info-row"><span class="info-key">SSRN #1</span><span class="info-val">IMF Category</span></div>
-            <div class="info-row"><span class="info-key">Publications</span><span class="info-val">14+ Papers</span></div>
+            <div class="info-row"><span class="info-key">SSRN #1</span><span class="info-val">IMF, Debt Crisis and 12+ Categories</span></div>
+            <div class="info-row"><span class="info-key">Publications</span><span class="info-val">18+ Papers</span></div>
             <div class="info-row"><span class="info-key">Certifications</span><span class="info-val">235+</span></div>
-            <div class="info-row"><span class="info-key">Projects Built</span><span class="info-val">14</span></div>
+            <div class="info-row"><span class="info-key">Projects Built</span><span class="info-val">16</span></div>
             <div class="info-row"><span class="info-key">LinkedIn</span><span class="info-val"><a href="https://www.linkedin.com/in/amaanullah-bhatti/" target="_blank">View Profile ↗</a></span></div>
           </div>
           <div class="about-awards">
@@ -572,6 +597,31 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
             <li>Onboarded students for national startup initiatives</li>
           </ul>
         </div>
+
+          <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-header">
+                <div class="exp-meta"><span class="exp-date-badge">Dec 2023 — Feb 2024</span></div>
+                <div class="exp-title">Campus Ambassador</div>
+                <div class="exp-co">Indian Institute of Management Kozhikode <span>· Rajkot, India</span></div>
+              </div>
+              <ul class="exp-bullets">
+                <li>Promoted IIM Kozhikode events across campus</li>
+              </ul>
+            </div>
+  
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-header">
+                <div class="exp-meta"><span class="exp-date-badge">Dec 2023 — Feb 2024</span></div>
+                <div class="exp-title">University Relations Coordinator</div>
+                <div class="exp-co">Upsurge.club<span>· Rajkot, India</span></div>
+              </div>
+              <ul class="exp-bullets">
+                <li>Represented Upsurge across the university campus, promoting its online courses and serving as the primary liaison between the company, university administration, and students.
+              </li>
+              </ul>
+            </div>
 
         <div class="exp-item">
           <div class="exp-dot"></div>
@@ -711,30 +761,35 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
 <script>
 // ── DATA ──
 const publications = [
-  {num:"01",title:"The Nexus of Choice and Scarcity: A Conceptual Review of Modern Economics",journal:"European Economics: Macroeconomics & Monetary Economics eJournal, Vol 18, Issue 130",date:"Oct 2025",abstract:"Synthesizes microeconomic and macroeconomic concepts — opportunity cost, comparative advantage, supply and demand, monetary and fiscal policy, and GDP measurement. Explores behavioral and institutional forces influencing real-world markets."},
-  {num:"02",title:"Measuring Market Power with Vertical Control: A Modified Lerner Index Framework",journal:"Development Economics eJournal, Vol 14, No. 143",date:"Aug 2025",abstract:"Introduces the Modified Lerner Index with Vertical Integration (LVI), incorporating a Vertical Integration Factor and elasticity parameter. Pharmaceutical case study demonstrates LVI's superior sensitivity versus HHI. Applied to the Pfizer-Allergan merger for antitrust enforcement."},
-  {num:"03",title:"Dynamic Inflation-Adjusted Bond Pricing: Integrating Real-Time Expectations and Tax Policy",journal:"Discrete Mathematics & Combinatorics eJournal, Vol 3, No. 14",date:"Aug 2025",abstract:"Introduces a dynamic bond pricing model integrating real-time inflation expectations and tax adjustments. Reduces pricing errors by 12–15% relative to Vasicek and CIR models, validated through RMSE analysis of Eurozone sovereign bonds using ECB and OECD data."},
-  {num:"04",title:"Introducing the Post-Shock Elastic Recovery Index (PERI): A Novel Metric for Economic Resilience",journal:"European Economics: Political Economy & Public Economics eJournal, Vol 18, Issue 108",date:"Jul 2025",abstract:"Introduces PERI, a composite metric integrating output rebound, fiscal space, institutional trust, and trade openness. Panel dataset of 30 OECD countries (2008–2020): a one-unit PERI increase is associated with 0.87% higher GDP growth (p < 0.01)."},
-  {num:"05",title:"Quantifying Market Resilience: The Hafzan Market Resilience Ratio (HMRR)",journal:"Risk Management eJournal, Vol 17, No. 65",date:"Jul 2025",abstract:"Introduces HMRR combining GARCH-estimated return volatility, the Amihud illiquidity ratio, and Time-To-Recovery (TTR) following a 5% drawdown into a comprehensive quantitative framework for evaluating financial market robustness."},
-  {num:"06",title:"The Hafzan Prosperity Index (HPI): A Multidimensional Human-Centered Framework for National Well-being",journal:"Economic Anthropology eJournal, Vol. 8, Issue 11",date:"May 2025",abstract:"Proposed the HPI, a 10-dimensional index capturing human-centered national well-being using global data — an alternative to GDP and HDI, including justice, freedom, culture, environment, and digital access dimensions."},
-  {num:"07",title:"Hafzan's Tariff-Elasticity Model (HTEM): A Novel Framework for Trade Balance Analysis Under Retaliatory Tariff Dynamics",journal:"Financial Crises eJournal, Vol. 13, Issue 38",date:"May 2025",abstract:"Introduced HTEM, integrating retaliation sensitivity (α) into a non-linear, log-linearizable model of trade flow responsiveness to tariffs and FX, advancing upon Marshall-Lerner conditions."},
-  {num:"08",title:"Hafzan Composite Adaptive Valuation Model (HCAVM): A Comprehensive Framework for Startup and Private Firm Valuation",journal:"Corporate Finance eJournal, Vol. 16, No. 37",date:"May 2025",abstract:"Developed HCAVM, combining DCF, market comparables, real options, and sentiment/liquidity adjustments to value high-risk startups and private firms more accurately under uncertainty."},
-  {num:"09",title:"A Nonlinear Framework for Dynamic Tail-Risk Hedging Using Conditional VaR, Variance Swaps, and Regime Probabilities",journal:"Quantitative Methods in Investing eJournal, Vol. 4, Issue 53",date:"May 2025",abstract:"Created the Nonlinear Hafzan Hedge Ratio (NHHR), adjusting hedge ratios dynamically using CVaR, variance swaps, and regime-switching for real-time tail risk hedging."},
-  {num:"10",title:"Inequality-Adjusted Endogenous Growth: A Theoretical and Empirical Exploration",journal:"Development Economics eJournal, Vol. 14, Issue 85",date:"May 2025",abstract:"Proposed the Hafzan Endogenous Inequality-Growth Equation (HEIGE). Found a 1-point Gini increase reduces per capita GDP growth by 0.12–0.18pp across 80 countries (1990–2020)."},
-  {num:"11",title:"Introducing the Hafzan Stagflation Resilience Index (HSRI): A Composite Measure for Macroeconomic Adaptability",journal:"Macroeconomics eJournal, Vol. 18, Issue 64",date:"May 2025",abstract:"Developed HSRI combining Phillips Curve and Quantity Theory components to evaluate macroeconomic capacity to withstand stagflation."},
-  {num:"12",title:"Extending Merton: A Jump-Diffusion Structural Model for Sovereign Default Prediction",journal:"International Political Economy eJournal, Vol. 13, Issue 8",date:"Feb 2025",abstract:"Extended Merton's model with jump-diffusion to model sovereign-specific risks including political instability. Achieved 22% higher predictive accuracy on CDS and Moody's data."},
-  {num:"13",title:"The Relationship Between Faith and Reason in Early Islamic Theology",journal:"Zenodo · DOI: 10.5281/zenodo.14838791",date:"Feb 2025",abstract:"Analyzed frameworks of Al-Ghazālī, Ibn Sīnā, Al-Fārābī, Ibn Rushd, and theological schools on harmonizing revelation and rationality in early Islamic thought."},
-  {num:"14",title:"Quantum-Augmented Dynamic Networks for Real-Time Systemic Risk Management",journal:"Zenodo · DOI: 10.5281/zenodo.14788915",date:"Feb 2025",abstract:"Proposed a hybrid model fusing GNNs, transformers, and quantum annealing to monitor systemic risk. Improved AUC-ROC by 23.6% and reduced capital buffer requirements by 22%."},
+  {num:"01",title: "A Regime-Filtered Intraday Trading Framework for Gold: Integrating VWAP Microstructure and EMA-Based Dynamic Exit Mechanisms",journal: "Capital Markets: Market Microstructure Vol 18, Issue 60",date: "Apr 2026",abstract: "Presents a rule-based intraday strategy for XAU/USD using VWAP as a structural reference and EMAs as dynamic trend filters. Addresses gold's volatility using a 200-period EMA regime classifier and a 50-period EMA dynamic trailing stop to mitigate 'wick' penetrations. Backtested results demonstrate a 1.76 profit factor and 3.99 Sharpe ratio."},
+  {num:"02",title: "Momentum Exhaustion and Fair Value Reversion: An ADX-conditioned VWAP Strategy in FX Markets",journal: "Econometric Modeling: International Financial Markets - Foreign Exchange Vol 15, Issue 14,",date: "Apr 2026",abstract: "Develops a regime-conditioned framework for FX markets exploiting mean reversion toward volume-weighted benchmarks. Integrates price location, VWAP deviation, and ADX trend strength to identify fading momentum at prior-session extremes, bridging market-microstructure theory with technical regime filtering."},
+  {num:"03",title: "A Regime-Conditioned Statistical Mean Reversion Framework for Intraday FX Markets",journal: "Financial Mathematics Vol 4, Issue 65",date: "Jan 2026",abstract: "Proposes a framework for intraday FX markets that conditions mean reversion on higher-timeframe momentum states. Utilizes volatility-normalized Z-scores and multi-timeframe filtering to address performance degradation during trending regimes, including a MetaTrader 5 (MQL5) prototype for retail infrastructure implementation."},
+  {num:"04",title: "The Observable Universe as the Interior of a Schwarzschild Black Hole: A Lemaître-FLRW Correspondence",journal: "Mathematical Physics Vol 5, Issue 90,",date: "Dec 2025",abstract: "Proposes that the observable universe exists within the event horizon of a supermassive black hole. Using Lemaître coordinates, the study demonstrates that Schwarzschild interior dynamics are isomorphic to FLRW cosmology, offering a unified relativistic interpretation of cosmic expansion and the Big Bang singularity."},
+  {num:"05",title:"The Nexus of Choice and Scarcity: A Conceptual Review of Modern Economics",journal:"European Economics: Macroeconomics & Monetary Economics eJournal, Vol 18, Issue 130",date:"Oct 2025",abstract:"Synthesizes microeconomic and macroeconomic concepts — opportunity cost, comparative advantage, supply and demand, monetary and fiscal policy, and GDP measurement. Explores behavioral and institutional forces influencing real-world markets."},
+  {num:"06",title:"Measuring Market Power with Vertical Control: A Modified Lerner Index Framework",journal:"Development Economics eJournal, Vol 14, No. 143",date:"Aug 2025",abstract:"Introduces the Modified Lerner Index with Vertical Integration (LVI), incorporating a Vertical Integration Factor and elasticity parameter. Pharmaceutical case study demonstrates LVI's superior sensitivity versus HHI. Applied to the Pfizer-Allergan merger for antitrust enforcement."},
+  {num:"07",title:"Dynamic Inflation-Adjusted Bond Pricing: Integrating Real-Time Expectations and Tax Policy",journal:"Discrete Mathematics & Combinatorics eJournal, Vol 3, No. 14",date:"Aug 2025",abstract:"Introduces a dynamic bond pricing model integrating real-time inflation expectations and tax adjustments. Reduces pricing errors by 12–15% relative to Vasicek and CIR models, validated through RMSE analysis of Eurozone sovereign bonds using ECB and OECD data."},
+  {num:"08",title:"Introducing the Post-Shock Elastic Recovery Index (PERI): A Novel Metric for Economic Resilience",journal:"European Economics: Political Economy & Public Economics eJournal, Vol 18, Issue 108",date:"Jul 2025",abstract:"Introduces PERI, a composite metric integrating output rebound, fiscal space, institutional trust, and trade openness. Panel dataset of 30 OECD countries (2008–2020): a one-unit PERI increase is associated with 0.87% higher GDP growth (p < 0.01)."},
+  {num:"09",title:"Quantifying Market Resilience: The Hafzan Market Resilience Ratio (HMRR)",journal:"Risk Management eJournal, Vol 17, No. 65",date:"Jul 2025",abstract:"Introduces HMRR combining GARCH-estimated return volatility, the Amihud illiquidity ratio, and Time-To-Recovery (TTR) following a 5% drawdown into a comprehensive quantitative framework for evaluating financial market robustness."},
+  {num:"10",title:"The Hafzan Prosperity Index (HPI): A Multidimensional Human-Centered Framework for National Well-being",journal:"Economic Anthropology eJournal, Vol. 8, Issue 11",date:"May 2025",abstract:"Proposed the HPI, a 10-dimensional index capturing human-centered national well-being using global data — an alternative to GDP and HDI, including justice, freedom, culture, environment, and digital access dimensions."},
+  {num:"11",title:"Hafzan's Tariff-Elasticity Model (HTEM): A Novel Framework for Trade Balance Analysis Under Retaliatory Tariff Dynamics",journal:"Financial Crises eJournal, Vol. 13, Issue 38",date:"May 2025",abstract:"Introduced HTEM, integrating retaliation sensitivity (α) into a non-linear, log-linearizable model of trade flow responsiveness to tariffs and FX, advancing upon Marshall-Lerner conditions."},
+  {num:"12",title:"Hafzan Composite Adaptive Valuation Model (HCAVM): A Comprehensive Framework for Startup and Private Firm Valuation",journal:"Corporate Finance eJournal, Vol. 16, No. 37",date:"May 2025",abstract:"Developed HCAVM, combining DCF, market comparables, real options, and sentiment/liquidity adjustments to value high-risk startups and private firms more accurately under uncertainty."},
+  {num:"13",title:"A Nonlinear Framework for Dynamic Tail-Risk Hedging Using Conditional VaR, Variance Swaps, and Regime Probabilities",journal:"Quantitative Methods in Investing eJournal, Vol. 4, Issue 53",date:"May 2025",abstract:"Created the Nonlinear Hafzan Hedge Ratio (NHHR), adjusting hedge ratios dynamically using CVaR, variance swaps, and regime-switching for real-time tail risk hedging."},
+  {num:"14",title:"Inequality-Adjusted Endogenous Growth: A Theoretical and Empirical Exploration",journal:"Development Economics eJournal, Vol. 14, Issue 85",date:"May 2025",abstract:"Proposed the Hafzan Endogenous Inequality-Growth Equation (HEIGE). Found a 1-point Gini increase reduces per capita GDP growth by 0.12–0.18pp across 80 countries (1990–2020)."},
+  {num:"15",title:"Introducing the Hafzan Stagflation Resilience Index (HSRI): A Composite Measure for Macroeconomic Adaptability",journal:"Macroeconomics eJournal, Vol. 18, Issue 64",date:"May 2025",abstract:"Developed HSRI combining Phillips Curve and Quantity Theory components to evaluate macroeconomic capacity to withstand stagflation."},
+  {num:"16",title:"Extending Merton: A Jump-Diffusion Structural Model for Sovereign Default Prediction",journal:"International Political Economy eJournal, Vol. 13, Issue 8",date:"Feb 2025",abstract:"Extended Merton's model with jump-diffusion to model sovereign-specific risks including political instability. Achieved 22% higher predictive accuracy on CDS and Moody's data."},
+  {num:"17",title:"The Relationship Between Faith and Reason in Early Islamic Theology",journal:"Zenodo · DOI: 10.5281/zenodo.14838791",date:"Feb 2025",abstract:"Analyzed frameworks of Al-Ghazālī, Ibn Sīnā, Al-Fārābī, Ibn Rushd, and theological schools on harmonizing revelation and rationality in early Islamic thought."},
+  {num:"18",title:"Quantum-Augmented Dynamic Networks for Real-Time Systemic Risk Management",journal:"Zenodo · DOI: 10.5281/zenodo.14788915",date:"Feb 2025",abstract:"Proposed a hybrid model fusing GNNs, transformers, and quantum annealing to monitor systemic risk. Improved AUC-ROC by 23.6% and reduced capital buffer requirements by 22%."},
 ];
 
 const projects = [
-  {icon:"📉",name: "Hafzan’s Stagflation Resilience Index (HSRI)",year: "May 2026",desc: "Macroeconomic metric designed to assess an economy's capacity to withstand stagflationary pressures. Integrates components from the Phillips Curve and Quantity Theory of Money to quantify national adaptability.",tags: ["Macroeconomics", "Monetary Policy", "JavaScript"]},
-  {icon:"📊",name: "The Hafzan Prosperity Index (HPI)",year: "May 2026",desc: "A multidimensional, human-centered framework for measuring national well-being. Features a dynamic radar chart visualization to evaluate 10 dimensions of growth beyond traditional GDP metrics.",tags: ["Development Economics", "Chart.js", "Data Visualization"]},
-  {icon:"🕸️",name: "Hafzan Network Impact Framework (HNIF)",year: "May 2026",desc: "A network-based model for predicting market impact in fragmented financial markets. Integrates trade size, depth, and volatility with eigenvector centrality to track price propagation across multiple venues.",tags: ["Quantitative Finance", "Network Theory", "Market Microstructure"]},
-  {icon:"⚡",name:"Hafzan Quant Labs Risk Toolkit",year:"Mar 2026",desc:"Browser-based quant risk analytics toolkit for A/B-book exposure, trader flow, and hedging in FX environments. Modules: client toxicity scoring, VaR/CVaR, delta/gamma exposure, VPIN, and stop-loss clustering.",tags:["JavaScript","Risk Analytics","FX"]},
-  {icon:"📊",name:"Hafzan QT Research Terminal",year:"Mar 2026",desc:"Single-file quantitative terminal: IV Surface (Three.js 3D), Options Greeks Engine (BSM, 80×70 grid), Correlation Matrix Analyser (4 regimes, Ledoit-Wolf), and Monte Carlo Engine (GBM, Jump-Diffusion, CEV).",tags:["Three.js","BSM","Monte Carlo"]},
-  {icon:"📚",name:"Hafzan FRM Guide",year:"Mar 2026",desc:"Free single-file FRM Part I interactive study app covering VaR, BSM, Forwards/Futures/Swaps, Duration & Convexity, GARCH/EWMA, Probability Distributions, Financial Disasters, and GARP Code of Conduct.",tags:["Education","FRM","HTML"]},
-  {icon:"📈",name:"Hafzan DXY Correlation Engine",year:"Mar 2026",desc:"Quantitative platform studying the relationship between the U.S. Dollar Index (DXY) and financial assets. Interactive charting via Chart.js to examine macro cross-asset correlations.",tags:["Chart.js","Macro","DXY"]},
+  {icon:"📉",name: "Hafzan’s Stagflation Resilience Index (HSRI)",year: "May 2026",desc: "Macroeconomic metric designed to assess an economy's capacity to withstand stagflationary pressures. Integrates components from the Phillips Curve and Quantity Theory of Money to quantify national adaptability.",link: "https://amaanullah21.github.io/hsri/",tags: ["Macroeconomics", "Monetary Policy", "JavaScript"]},
+  {icon:"📊",name: "The Hafzan Prosperity Index (HPI)",year: "May 2026",desc: "A multidimensional, human-centered framework for measuring national well-being. Features a dynamic radar chart visualization to evaluate 10 dimensions of growth beyond traditional GDP metrics.",link: "https://amaanullah21.github.io/hpi/",tags: ["Development Economics", "Chart.js", "Data Visualization"]},
+  {icon:"🕸️",name: "Hafzan Network Impact Framework (HNIF)",year: "May 2026",desc: "A network-based model for predicting market impact in fragmented financial markets. Integrates trade size, depth, and volatility with eigenvector centrality to track price propagation across multiple venues.",link: "https://amaanullah21.github.io/hnif/",tags: ["Quantitative Finance", "Network Theory", "Market Microstructure"]},
+  {icon:"📈",name:"Risk Simulator Pro — Dynamic Trading Dashboard",year:"May 2026",desc:"Risk Simulator Pro helps traders and risk analysts understand the real consequences of a trade before placing it. You input your trade parameters — entry price, lot size, leverage, account balance, and bonus type — and the dashboard instantly calculates whether your trade will survive or get stopped out at your projected price.",link:"https://amaanullah21.github.io/Risk-Simulator-Pro/",tags:["FX","Finance"]},
+  {icon:"⚡",name:"Hafzan Quant Labs Risk Toolkit",year:"Mar 2026",desc:"Browser-based quant risk analytics toolkit for A/B-book exposure, trader flow, and hedging in FX environments. Modules: client toxicity scoring, VaR/CVaR, delta/gamma exposure, VPIN, and stop-loss clustering.",link:"https://hafzan-quant-labs.github.io/risk-toolkit/",tags:["JavaScript","Risk Analytics","FX"]},
+  {icon:"📊",name:"Hafzan QT Research Terminal",year:"Mar 2026",desc:"Single-file quantitative terminal: IV Surface (Three.js 3D), Options Greeks Engine (BSM, 80×70 grid), Correlation Matrix Analyser (4 regimes, Ledoit-Wolf), and Monte Carlo Engine (GBM, Jump-Diffusion, CEV).",link:"https://hafzan-quant-labs.github.io/qt-research-terminal/",tags:["Three.js","BSM","Monte Carlo"]},
+  {icon:"📚",name:"Hafzan FRM Guide",year:"Mar 2026",desc:"Free single-file FRM Part I interactive study app covering VaR, BSM, Forwards/Futures/Swaps, Duration & Convexity, GARCH/EWMA, Probability Distributions, Financial Disasters, and GARP Code of Conduct.",link:"https://amaanullah21.github.io/frm-guide-one/",tags:["Education","FRM","HTML"]},
+  {icon:"📈",name:"Hafzan DXY Correlation Engine",year:"Mar 2026",desc:"Quantitative platform studying the relationship between the U.S. Dollar Index (DXY) and financial assets. Interactive charting via Chart.js to examine macro cross-asset correlations.",link: "https://hafzan-quant-labs.github.io/dxy-correlation-engine/",tags:["Chart.js","Macro","DXY"]},
   {icon:"🔍",name:"HQL Smart Money Structure",year:"Feb–Mar 2026",desc:"Proprietary Pine Script v5 TradingView indicator. Multi-timeframe trend analysis (7 TFs), BOS & CHoCH detection, RSI divergence, market profile, and liquidity zone mapping. Public on GitHub.",tags:["Pine Script","TradingView","Quant"]},
   {icon:"📉",name:"Hafzan Equity Composite Index (HECI)",year:"Apr 2025–Present",desc:"Shariah-compliant equity index tracking 23 ethically screened Indian companies. Excludes banking, gambling, and alcohol. Base value 1000, quarterly rebalancing, stringent liquidity/sustainability criteria.",tags:["Shariah","Index","ESG"]},
   {icon:"🌐",name:"Finance Club Website",year:"Oct 2024",desc:"Responsive website for Marwadi University's Finance Club. Event listings, announcements, professional UI/UX to promote financial literacy.",tags:["Web","UI/UX","Finance"]},
@@ -746,7 +801,7 @@ const projects = [
   ];
 
 const certs = [
-  {name:"Islamic Finance for the Substainable Development Goals",issuer:"United Nations Development Programme (UNDP)",year:2026,cat:"Sustainability"},
+{name:"Islamic Finance for the Substainable Development Goals",issuer:"United Nations Development Programme (UNDP)",year:2026,cat:"Sustainability"},
   {name:"ICAT Climate Finance Transparency",issuer:"Initiative for Climate Action Transparency (ICAT)",year:2026,cat:"Finance"},
   {name:"Research Paper Presentation — ICEIM 2026",issuer:"Pandit Deendayal Energy University",year:2026,cat:"Academic"},
   {name:"FinTech Industry Professional (FTIP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
@@ -819,6 +874,7 @@ const certs = [
   {name:"Political Ordering",issuer:"The Open University",year:2024,cat:"Academic"},
   {name:"Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
   {name:"Power BI for Business Professionals",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
+  {name: "Wealth Management",issuer: "TCS iON",year: 2024,cat: "Finance"},
   {name:"Presenting Your Work with Impact: Presentation Skills",issuer:"University of Leeds",year:2024,cat:"Business"},
   {name:"Rights and Justice in International Relations",issuer:"The Open University",year:2024,cat:"Academic"},
   {name:"The Use of Force in International Law",issuer:"The Open University",year:2024,cat:"Legal"},
@@ -1003,10 +1059,33 @@ const certs = [
   projects.forEach(p => {
     const div = document.createElement('div');
     div.className = 'proj-card';
-    div.innerHTML = `<div class="proj-card-top"><div class="proj-icon">${p.icon}</div><span class="proj-year">${p.year}</span></div>
+    
+    // Create the Link HTML only if a link exists in the data
+    const linkHTML = p.link 
+      ? `<a href="${p.link}" target="_blank" class="proj-link">View Project ↗</a>` 
+      : '';
+
+    div.innerHTML = `
+      <div class="proj-card-top">
+        <div class="proj-icon">${p.icon}</div>
+        <span class="proj-year">${p.year}</span>
+      </div>
       <div class="proj-name">${p.name}</div>
       <p class="proj-desc">${p.desc}</p>
-      <div class="proj-tags">${p.tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>`;
+      <div class="proj-tags">
+        ${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}
+      </div>
+      ${linkHTML} 
+    `;
+    
+    // Optional: Make the whole card clickable if link exists
+    if(p.link) {
+        div.onclick = (e) => {
+            // Prevent trigger if tags or existing links are clicked directly
+            if(e.target.tagName !== 'A') window.open(p.link, '_blank');
+        };
+    }
+    
     el.appendChild(div);
   });
 })();
