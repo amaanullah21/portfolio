@@ -84,9 +84,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 /* ── HERO ── */
 #hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:100px 40px 80px}
 .hero-bg{position:absolute;inset:0;pointer-events:none}
-.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.35;animation:orb-drift 12s ease-in-out infinite alternate}
+/*.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.35;animation:orb-drift 12s ease-in-out infinite alternate}
 .hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,var(--gold) 0%,transparent 70%);top:-100px;right:-100px;animation-delay:0s}
-.hero-orb-2{width:350px;height:350px;background:radial-gradient(circle,rgba(100,140,255,0.3) 0%,transparent 70%);bottom:0;left:-50px;animation-delay:-4s}
+.hero-orb-2{width:350px;height:350px;background:radial-gradient(circle,rgba(100,140,255,0.3) 0%,transparent 70%);bottom:0;left:-50px;animation-delay:-4s}*/
 @keyframes orb-drift{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.1)}}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.5;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 80%)}
 .hero-inner{max-width:1280px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
@@ -97,7 +97,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .hero-name{font-family:var(--serif);font-size:clamp(48px,6vw,82px);font-weight:500;line-height:1.02;letter-spacing:-0.03em;color:var(--text);margin-bottom:8px}
 .hero-name-alt{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-weight:400;font-style:italic;color:var(--text3);margin-bottom:24px;letter-spacing:-0.01em}
 .hero-desc{font-size:15px;color:var(--text2);line-height:1.75;max-width:520px;margin-bottom:36px;font-weight:300}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:36px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:36px}
 .hero-stat{background:var(--card);padding:16px 18px;transition:background var(--tr)}
 .hero-stat:hover{background:var(--bg2)}
 .hero-stat-n{font-family:var(--serif);font-size:28px;font-weight:500;color:var(--text);line-height:1;margin-bottom:4px}
@@ -317,6 +317,108 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
   .cert-grid{grid-template-columns:1fr}
   footer{padding:24px}
 }
+
+/* Publication Action Buttons */
+.pub-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+.pub-btn {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: var(--sans);
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text2);
+  cursor: pointer;
+}
+.pub-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-bg);
+}
+
+/* Certificate Modal (The Box) */
+.cert-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(8px);
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cert-modal.active { display: flex; }
+.modal-content {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  background: #000;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
+}
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  z-index: 10001;
+  transition: transform 0.2s;
+}
+.modal-close:hover { transform: scale(1.1); }
+
+/* Fix for the modal image visibility */
+#modalImg {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh; /* Ensures it doesn't go off-screen */
+  margin: 0 auto;
+  object-fit: contain;
+  background-color: #eeeeee; /* Adds a light grey background so you can see the image loading */
+  border-radius: 4px;
+}
+
+.modal-content {
+  background: #111; /* Dark background for the frame */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -370,6 +472,10 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
         <div class="hero-stat">
           <div class="hero-stat-n">Top&nbsp;5<sup>%</sup></div>
           <div class="hero-stat-l">SSRN Global</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">11&nbsp;<sup>+</sup></div>
+          <div class="hero-stat-l">Designations</div>
         </div>
       </div>
       <div class="hero-cta">
@@ -531,24 +637,24 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
             <li>Maintain continuous oversight of live market risk and client activity to inform and optimize order routing decisions</li>
           </ul>
         </div>
-        
+
         <div class="exp-item">
-  <div class="exp-dot"></div>
-  <div class="exp-header">
-    <div class="exp-meta">
-      <span class="exp-date-badge">Dec 2022 — Nov 2025</span>
-    </div>
-    <div class="exp-title">Private Investment Analyst (Proprietary Mandate)</div>
-    <div class="exp-co">Private Investment Office <span>· Mumbai, India · Contract · Hybrid</span></div>
-  </div>
-  <ul class="exp-bullets">
-    <li>Formulated high-conviction investment theses through bottom-up fundamental research and quantitative analysis across equities, derivatives, and bullion</li>
-    <li>Managed and optimized a multi-asset portfolio, achieving a consistent 18% CAGR over a three-year horizon through tactical positioning and disciplined execution</li>
-    <li>Engineered bespoke strategic asset allocation models and risk mitigation frameworks tailored to long-term capital preservation and growth objectives</li>
-    <li>Synthesized performance attribution, Greeks, and volatility metrics into comprehensive reporting to inform tactical shifts and portfolio rebalancing</li>
-    <li>Conducted rigorous backtesting of derivative strategies to enhance alpha generation while maintaining strict drawdown controls and margin efficiency</li>
-  </ul>
-        </div>
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-meta">
+              <span class="exp-date-badge">Dec 2022 — Nov 2025</span>
+            </div>
+            <div class="exp-title">Private Investment Analyst (Proprietary Mandate)</div>
+            <div class="exp-co">Private Investment Office <span>· Mumbai, India · Contract · Hybrid</span></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Formulated high-conviction investment theses through bottom-up fundamental research and quantitative analysis across equities, derivatives, and bullion</li>
+            <li>Managed and optimized a multi-asset portfolio, achieving a consistent 18% CAGR over a three-year horizon through tactical positioning and disciplined execution</li>
+            <li>Engineered bespoke strategic asset allocation models and risk mitigation frameworks tailored to long-term capital preservation and growth objectives</li>
+            <li>Synthesized performance attribution, Greeks, and volatility metrics into comprehensive reporting to inform tactical shifts and portfolio rebalancing</li>
+            <li>Conducted rigorous backtesting of derivative strategies to enhance alpha generation while maintaining strict drawdown controls and margin efficiency</li>
+          </ul>
+         </div>
 
         <div class="exp-item">
           <div class="exp-dot"></div>
@@ -779,24 +885,26 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
 <script>
 // ── DATA ──
 const publications = [
-  {num:"01",title: "A Regime-Filtered Intraday Trading Framework for Gold: Integrating VWAP Microstructure and EMA-Based Dynamic Exit Mechanisms",journal: "Capital Markets: Market Microstructure Vol 18, Issue 60",date: "Apr 2026",abstract: "Presents a rule-based intraday strategy for XAU/USD using VWAP as a structural reference and EMAs as dynamic trend filters. Addresses gold's volatility using a 200-period EMA regime classifier and a 50-period EMA dynamic trailing stop to mitigate 'wick' penetrations. Backtested results demonstrate a 1.76 profit factor and 3.99 Sharpe ratio."},
-  {num:"02",title: "Momentum Exhaustion and Fair Value Reversion: An ADX-conditioned VWAP Strategy in FX Markets",journal: "Econometric Modeling: International Financial Markets - Foreign Exchange Vol 15, Issue 14,",date: "Apr 2026",abstract: "Develops a regime-conditioned framework for FX markets exploiting mean reversion toward volume-weighted benchmarks. Integrates price location, VWAP deviation, and ADX trend strength to identify fading momentum at prior-session extremes, bridging market-microstructure theory with technical regime filtering."},
-  {num:"03",title: "A Regime-Conditioned Statistical Mean Reversion Framework for Intraday FX Markets",journal: "Financial Mathematics Vol 4, Issue 65",date: "Jan 2026",abstract: "Proposes a framework for intraday FX markets that conditions mean reversion on higher-timeframe momentum states. Utilizes volatility-normalized Z-scores and multi-timeframe filtering to address performance degradation during trending regimes, including a MetaTrader 5 (MQL5) prototype for retail infrastructure implementation."},
-  {num:"04",title: "The Observable Universe as the Interior of a Schwarzschild Black Hole: A Lemaître-FLRW Correspondence",journal: "Mathematical Physics Vol 5, Issue 90,",date: "Dec 2025",abstract: "Proposes that the observable universe exists within the event horizon of a supermassive black hole. Using Lemaître coordinates, the study demonstrates that Schwarzschild interior dynamics are isomorphic to FLRW cosmology, offering a unified relativistic interpretation of cosmic expansion and the Big Bang singularity."},
-  {num:"05",title:"The Nexus of Choice and Scarcity: A Conceptual Review of Modern Economics",journal:"European Economics: Macroeconomics & Monetary Economics eJournal, Vol 18, Issue 130",date:"Oct 2025",abstract:"Synthesizes microeconomic and macroeconomic concepts — opportunity cost, comparative advantage, supply and demand, monetary and fiscal policy, and GDP measurement. Explores behavioral and institutional forces influencing real-world markets."},
-  {num:"06",title:"Measuring Market Power with Vertical Control: A Modified Lerner Index Framework",journal:"Development Economics eJournal, Vol 14, No. 143",date:"Aug 2025",abstract:"Introduces the Modified Lerner Index with Vertical Integration (LVI), incorporating a Vertical Integration Factor and elasticity parameter. Pharmaceutical case study demonstrates LVI's superior sensitivity versus HHI. Applied to the Pfizer-Allergan merger for antitrust enforcement."},
-  {num:"07",title:"Dynamic Inflation-Adjusted Bond Pricing: Integrating Real-Time Expectations and Tax Policy",journal:"Discrete Mathematics & Combinatorics eJournal, Vol 3, No. 14",date:"Aug 2025",abstract:"Introduces a dynamic bond pricing model integrating real-time inflation expectations and tax adjustments. Reduces pricing errors by 12–15% relative to Vasicek and CIR models, validated through RMSE analysis of Eurozone sovereign bonds using ECB and OECD data."},
-  {num:"08",title:"Introducing the Post-Shock Elastic Recovery Index (PERI): A Novel Metric for Economic Resilience",journal:"European Economics: Political Economy & Public Economics eJournal, Vol 18, Issue 108",date:"Jul 2025",abstract:"Introduces PERI, a composite metric integrating output rebound, fiscal space, institutional trust, and trade openness. Panel dataset of 30 OECD countries (2008–2020): a one-unit PERI increase is associated with 0.87% higher GDP growth (p < 0.01)."},
-  {num:"09",title:"Quantifying Market Resilience: The Hafzan Market Resilience Ratio (HMRR)",journal:"Risk Management eJournal, Vol 17, No. 65",date:"Jul 2025",abstract:"Introduces HMRR combining GARCH-estimated return volatility, the Amihud illiquidity ratio, and Time-To-Recovery (TTR) following a 5% drawdown into a comprehensive quantitative framework for evaluating financial market robustness."},
-  {num:"10",title:"The Hafzan Prosperity Index (HPI): A Multidimensional Human-Centered Framework for National Well-being",journal:"Economic Anthropology eJournal, Vol. 8, Issue 11",date:"May 2025",abstract:"Proposed the HPI, a 10-dimensional index capturing human-centered national well-being using global data — an alternative to GDP and HDI, including justice, freedom, culture, environment, and digital access dimensions."},
-  {num:"11",title:"Hafzan's Tariff-Elasticity Model (HTEM): A Novel Framework for Trade Balance Analysis Under Retaliatory Tariff Dynamics",journal:"Financial Crises eJournal, Vol. 13, Issue 38",date:"May 2025",abstract:"Introduced HTEM, integrating retaliation sensitivity (α) into a non-linear, log-linearizable model of trade flow responsiveness to tariffs and FX, advancing upon Marshall-Lerner conditions."},
-  {num:"12",title:"Hafzan Composite Adaptive Valuation Model (HCAVM): A Comprehensive Framework for Startup and Private Firm Valuation",journal:"Corporate Finance eJournal, Vol. 16, No. 37",date:"May 2025",abstract:"Developed HCAVM, combining DCF, market comparables, real options, and sentiment/liquidity adjustments to value high-risk startups and private firms more accurately under uncertainty."},
-  {num:"13",title:"A Nonlinear Framework for Dynamic Tail-Risk Hedging Using Conditional VaR, Variance Swaps, and Regime Probabilities",journal:"Quantitative Methods in Investing eJournal, Vol. 4, Issue 53",date:"May 2025",abstract:"Created the Nonlinear Hafzan Hedge Ratio (NHHR), adjusting hedge ratios dynamically using CVaR, variance swaps, and regime-switching for real-time tail risk hedging."},
-  {num:"14",title:"Inequality-Adjusted Endogenous Growth: A Theoretical and Empirical Exploration",journal:"Development Economics eJournal, Vol. 14, Issue 85",date:"May 2025",abstract:"Proposed the Hafzan Endogenous Inequality-Growth Equation (HEIGE). Found a 1-point Gini increase reduces per capita GDP growth by 0.12–0.18pp across 80 countries (1990–2020)."},
-  {num:"15",title:"Introducing the Hafzan Stagflation Resilience Index (HSRI): A Composite Measure for Macroeconomic Adaptability",journal:"Macroeconomics eJournal, Vol. 18, Issue 64",date:"May 2025",abstract:"Developed HSRI combining Phillips Curve and Quantity Theory components to evaluate macroeconomic capacity to withstand stagflation."},
-  {num:"16",title:"Extending Merton: A Jump-Diffusion Structural Model for Sovereign Default Prediction",journal:"International Political Economy eJournal, Vol. 13, Issue 8",date:"Feb 2025",abstract:"Extended Merton's model with jump-diffusion to model sovereign-specific risks including political instability. Achieved 22% higher predictive accuracy on CDS and Moody's data."},
-  {num:"17",title:"The Relationship Between Faith and Reason in Early Islamic Theology",journal:"Zenodo · DOI: 10.5281/zenodo.14838791",date:"Feb 2025",abstract:"Analyzed frameworks of Al-Ghazālī, Ibn Sīnā, Al-Fārābī, Ibn Rushd, and theological schools on harmonizing revelation and rationality in early Islamic thought."},
-  {num:"18",title:"Quantum-Augmented Dynamic Networks for Real-Time Systemic Risk Management",journal:"Zenodo · DOI: 10.5281/zenodo.14788915",date:"Feb 2025",abstract:"Proposed a hybrid model fusing GNNs, transformers, and quantum annealing to monitor systemic risk. Improved AUC-ROC by 23.6% and reduced capital buffer requirements by 22%."},
+  {num:"01",title: "A Regime-Filtered Intraday Trading Framework for Gold: Integrating VWAP Microstructure and EMA-Based Dynamic Exit Mechanisms",journal: "Capital Markets: Market Microstructure Vol 18, Issue 60",date: "Apr 2026",abstract: "Presents a rule-based intraday strategy for XAU/USD using VWAP as a structural reference and EMAs as dynamic trend filters. Addresses gold's volatility using a 200-period EMA regime classifier and a 50-period EMA dynamic trailing stop to mitigate 'wick' penetrations. Backtested results demonstrate a 1.76 profit factor and 3.99 Sharpe ratio.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6650958"},
+  {num:"02",title: "Momentum Exhaustion and Fair Value Reversion: An ADX-conditioned VWAP Strategy in FX Markets",journal: "Econometric Modeling: International Financial Markets - Foreign Exchange Vol 15, Issue 14,",date: "Apr 2026",abstract: "Develops a regime-conditioned framework for FX markets exploiting mean reversion toward volume-weighted benchmarks. Integrates price location, VWAP deviation, and ADX trend strength to identify fading momentum at prior-session extremes, bridging market-microstructure theory with technical regime filtering.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6454659"},
+  {num:"03",title: "A Regime-Conditioned Statistical Mean Reversion Framework for Intraday FX Markets",journal: "Financial Mathematics Vol 4, Issue 65",date: "Jan 2026",abstract: "Proposes a framework for intraday FX markets that conditions mean reversion on higher-timeframe momentum states. Utilizes volatility-normalized Z-scores and multi-timeframe filtering to address performance degradation during trending regimes, including a MetaTrader 5 (MQL5) prototype for retail infrastructure implementation.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6087107"},
+  {num:"04",title: "The Observable Universe as the Interior of a Schwarzschild Black Hole: A Lemaître-FLRW Correspondence",journal: "Mathematical Physics Vol 5, Issue 90,",date: "Dec 2025",abstract: "Proposes that the observable universe exists within the event horizon of a supermassive black hole. Using Lemaître coordinates, the study demonstrates that Schwarzschild interior dynamics are isomorphic to FLRW cosmology, offering a unified relativistic interpretation of cosmic expansion and the Big Bang singularity.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5721262"},
+  {num:"05",title:"The Nexus of Choice and Scarcity: A Conceptual Review of Modern Economics",journal:"European Economics: Macroeconomics & Monetary Economics eJournal, Vol 18, Issue 130",date:"Oct 2025",abstract:"Synthesizes microeconomic and macroeconomic concepts — opportunity cost, comparative advantage, supply and demand, monetary and fiscal policy, and GDP measurement. Explores behavioral and institutional forces influencing real-world markets.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5598511"},
+  {num:"06",title:"A Network-Based Model for Predicting Market Impact in Fragmented Markets Using Venue-Level Dynamics",journal:" Financial Mathematics Vol 4, Issue 14,",date:"March 2026",abstract:"Proposes the Hafzan Network Impact Framework (HNIF) to quantify trade-induced price impact across fragmented financial markets. Integrates trade size, depth, and volatility with cross-venue correlations and eigenvector centrality to model liquidity propagation and improve execution algorithms.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5218176"},
+  {num:"07",title:"Measuring Market Power with Vertical Control: A Modified Lerner Index Framework",journal:"Development Economics eJournal, Vol 14, No. 143",date:"Aug 2025",abstract:"Introduces the Modified Lerner Index with Vertical Integration (LVI), incorporating a Vertical Integration Factor and elasticity parameter. Pharmaceutical case study demonstrates LVI's superior sensitivity versus HHI. Applied to the Pfizer-Allergan merger for antitrust enforcement.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5364957"},
+  {num:"08",title:"Dynamic Inflation-Adjusted Bond Pricing: Integrating Real-Time Expectations and Tax Policy",journal:"Discrete Mathematics & Combinatorics eJournal, Vol 3, No. 14",date:"Aug 2025",abstract:"Introduces a dynamic bond pricing model integrating real-time inflation expectations and tax adjustments. Reduces pricing errors by 12–15% relative to Vasicek and CIR models, validated through RMSE analysis of Eurozone sovereign bonds using ECB and OECD data.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5218224"},
+  {num:"09",title:"Introducing the Post-Shock Elastic Recovery Index (PERI): A Novel Metric for Economic Resilience",journal:"European Economics: Political Economy & Public Economics eJournal, Vol 18, Issue 108",date:"Jul 2025",abstract:"Introduces PERI, a composite metric integrating output rebound, fiscal space, institutional trust, and trade openness. Panel dataset of 30 OECD countries (2008–2020): a one-unit PERI increase is associated with 0.87% higher GDP growth (p < 0.01).",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5365845"},
+  {num:"10",title:"Quantifying Market Resilience: The Hafzan Market Resilience Ratio (HMRR)",journal:"Risk Management eJournal, Vol 17, No. 65",date:"Jul 2025",abstract:"Introduces HMRR combining GARCH-estimated return volatility, the Amihud illiquidity ratio, and Time-To-Recovery (TTR) following a 5% drawdown into a comprehensive quantitative framework for evaluating financial market robustness.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5275569"},
+  {num:"11",title:"The Hafzan Prosperity Index (HPI): A Multidimensional Human-Centered Framework for National Well-being",journal:"Economic Anthropology eJournal, Vol. 8, Issue 11",date:"May 2025",abstract:"Proposed the HPI, a 10-dimensional index capturing human-centered national well-being using global data — an alternative to GDP and HDI, including justice, freedom, culture, environment, and digital access dimensions.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5264387"},
+  {num:"12",title:"Lebanon's Economic Reconstruction: Institutional Innovation through Special Jurisdictions for Economic Recovery",journal:"International Institutions: Politics of International Institutions & Global Governance Vol 12, Issue 44, November 26, 2025",date:"Nov 2025",abstract:"Proposes five autonomous Special Economic Jurisdictions (SEJs) with independent legal frameworks and BRICS partnerships to address Lebanon's financial collapse. Leverages tax incentives and zero-coupon infrastructure bonds to attract foreign investment and restore energy independence.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5381478"},
+  {num:"13",title:"Hafzan's Tariff-Elasticity Model (HTEM): A Novel Framework for Trade Balance Analysis Under Retaliatory Tariff Dynamics",journal:"Financial Crises eJournal, Vol. 13, Issue 38",date:"May 2025",abstract:"Introduced HTEM, integrating retaliation sensitivity (α) into a non-linear, log-linearizable model of trade flow responsiveness to tariffs and FX, advancing upon Marshall-Lerner conditions.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5224454"},
+  {num:"14",title:"Hafzan Composite Adaptive Valuation Model (HCAVM): A Comprehensive Framework for Startup and Private Firm Valuation",journal:"Corporate Finance eJournal, Vol. 16, No. 37",date:"May 2025",abstract:"Developed HCAVM, combining DCF, market comparables, real options, and sentiment/liquidity adjustments to value high-risk startups and private firms more accurately under uncertainty.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5232587"},
+  {num:"15",title:"A Nonlinear Framework for Dynamic Tail-Risk Hedging Using Conditional VaR, Variance Swaps, and Regime Probabilities",journal:"Quantitative Methods in Investing eJournal, Vol. 4, Issue 53",date:"May 2025",abstract:"Created the Nonlinear Hafzan Hedge Ratio (NHHR), adjusting hedge ratios dynamically using CVaR, variance swaps, and regime-switching for real-time tail risk hedging.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5222992"},
+  {num:"16",title:"Inequality-Adjusted Endogenous Growth: A Theoretical and Empirical Exploration",journal:"Development Economics eJournal, Vol. 14, Issue 85",date:"May 2025",abstract:"Proposed the Hafzan Endogenous Inequality-Growth Equation (HEIGE). Found a 1-point Gini increase reduces per capita GDP growth by 0.12–0.18pp across 80 countries (1990–2020).",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5224442"},
+  {num:"17",title:"Introducing the Hafzan Stagflation Resilience Index (HSRI): A Composite Measure for Macroeconomic Adaptability",journal:"Macroeconomics eJournal, Vol. 18, Issue 64",date:"May 2025",abstract:"Developed HSRI combining Phillips Curve and Quantity Theory components to evaluate macroeconomic capacity to withstand stagflation.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5223004"},
+  {num:"18",title:"Extending Merton: A Jump-Diffusion Structural Model for Sovereign Default Prediction",journal:"International Political Economy eJournal, Vol. 13, Issue 8",date:"Feb 2025",abstract:"Extended Merton's model with jump-diffusion to model sovereign-specific risks including political instability. Achieved 22% higher predictive accuracy on CDS and Moody's data.",ssrn:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5119324"},
+  {num:"19",title:"The Relationship Between Faith and Reason in Early Islamic Theology",journal:"Zenodo · DOI: 10.5281/zenodo.14838791",date:"Feb 2025",abstract:"Analyzed frameworks of Al-Ghazālī, Ibn Sīnā, Al-Fārābī, Ibn Rushd, and theological schools on harmonizing revelation and rationality in early Islamic thought.",ssrn:"https://zenodo.org/records/14838791"},
+  {num:"20",title:"Quantum-Augmented Dynamic Networks for Real-Time Systemic Risk Management",journal:"Zenodo · DOI: 10.5281/zenodo.14788915",date:"Feb 2025",abstract:"Proposed a hybrid model fusing GNNs, transformers, and quantum annealing to monitor systemic risk. Improved AUC-ROC by 23.6% and reduced capital buffer requirements by 22%.",ssrn:"https://zenodo.org/records/14788915"},
 ];
 
 const projects = [
@@ -819,270 +927,281 @@ const projects = [
   ];
 
 const certs = [
-{name:"Islamic Finance for the Substainable Development Goals",issuer:"United Nations Development Programme (UNDP)",year:2026,cat:"Sustainability"},
-  {name:"ICAT Climate Finance Transparency",issuer:"Initiative for Climate Action Transparency (ICAT)",year:2026,cat:"Finance"},
-  {name:"Research Paper Presentation — ICEIM 2026",issuer:"Pandit Deendayal Energy University",year:2026,cat:"Academic"},
-  {name:"FinTech Industry Professional (FTIP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Financial Planning & Wealth Management Professional (FPWMP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Capital Markets & Securities Analyst (CMSA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Commercial Banking & Credit Analyst (CBCA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Business Intelligence & Data Analyst (BIDA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Financial Planning & Analysis Professional (FPAP)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Financial Modeling & Valuation Analyst (FMVA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance"},
-  {name:"Sustainable Energy Access for Communities",issuer:"Edraak",year:2025,cat:"Sustainability"},
-  {name:"Data Privacy Analyst Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Tech"},
-  {name:"BUS614: International Finance",issuer:"Saylor Academy",year:2025,cat:"Finance"},
-  {name:"BUS641: Strategic Negotiations and Conflict Management",issuer:"Saylor Academy",year:2025,cat:"Business"},
-  {name:"Canva for Work",issuer:"Canva",year:2025,cat:"Tech"},
-  {name:"Certificate Course in Market Research",issuer:"Reliance Foundation",year:2025,cat:"Business"},
-  {name:"Combating Terrorism Financing",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
-  {name:"English Language Trainer Certification Program",issuer:"Reliance Foundation",year:2025,cat:"Academic"},
-  {name:"Financial Integration in Southeast Asia",issuer:"Asian Development Bank Institute",year:2025,cat:"Finance"},
-  {name:"International Cooperation and Mutual Legal Assistance",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
-  {name:"Legal Assistant Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Legal"},
-  {name:"Open-source Intelligence",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
-  {name:"Operational Analysis of Suspicious Transaction Reports",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance"},
-  {name:"Private Financing for Infrastructure and Sustainable Growth",issuer:"Asian Development Bank Institute",year:2025,cat:"Finance"},
-  {name:"Project Associate Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Business"},
-  {name:"Source and Application of Funds Analysis",issuer:"Basel Institute on Governance",year:2025,cat:"Finance"},
-  {name:"The Field Guide to Human-Centered Design",issuer:"Canva",year:2025,cat:"Design"},
-  {name:"Certificate Programme in Banking, Finance and Insurance",issuer:"Bajaj Finserv",year:2025,cat:"Finance"},
-  {name:"HR Workshop — Certificate Programme in Banking, Finance and Insurance",issuer:"Bajaj Finserv",year:2025,cat:"Business"},
-  {name:"Webinar — IoT Application Development: From Concept to Reality",issuer:"Marwadi University",year:2025,cat:"Tech"},
-  {name:"Winner — Roundtable Discussion: India Tomorrow",issuer:"Marwadi University",year:2025,cat:"Academic"},
-  {name:"Advisors & Consulting Services",issuer:"Mastercard",year:2025,cat:"Finance"},
-  {name:"An Introduction to Risk: Evaluating Client Profiles and Real Estate Investments",issuer:"Goldman Sachs",year:2025,cat:"Finance"},
-  {name:"Participation Certificate — Roundtable Discussion: India Tomorrow",issuer:"Marwadi University",year:2025,cat:"Academic"},
-  {name:"Entrepreneurship and Innovation",issuer:"City of Moreton Bay",year:2025,cat:"Business"},
-  {name:"Financial Services: Climate Change",issuer:"Oliver Wyman",year:2025,cat:"Finance"},
-  {name:"Global Markets Sales and Trading Analyst",issuer:"Bank of America",year:2025,cat:"Finance"},
-  {name:"Introduction to Sales Strategies",issuer:"PepsiCo",year:2025,cat:"Business"},
-  {name:"Law and Professional Development",issuer:"Clyde & Co",year:2025,cat:"Legal"},
-  {name:"US Capital Markets",issuer:"White & Case LLP",year:2025,cat:"Finance"},
-  {name:"Webinar — Gen AI: Transforming the Future of Technology",issuer:"Marwadi University",year:2025,cat:"Tech"},
-  {name:"NCFM Mutual Fund Module",issuer:"NSE Academy",year:2025,cat:"Finance"},
-  {name:"NCFM Securities Market (Basic) Module",issuer:"NSE Academy",year:2025,cat:"Finance"},
-  {name:"National Financial Literacy Quiz 2025",issuer:"NISM",year:2025,cat:"Finance"},
-  {name:"Raisina Hackathon 2025 — Certificate of Contribution",issuer:"Ministry of External Affairs, India",year:2025,cat:"Academic"},
-  {name:"Assessing Contemporary Science",issuer:"The Open University",year:2025,cat:"Academic"},
-  {name:"Data Analysis: Hypothesis Testing",issuer:"The Open University",year:2025,cat:"Tech"},
-  {name:"Sustainability in Banking",issuer:"ACCA",year:2025,cat:"Finance"},
-  {name:"Art and the Environment in Southeast Asia: Landscape as Ideology",issuer:"National Gallery Singapore",year:2025,cat:"Academic"},
-  {name:"Organizing Committee — Vishleshan 2025: National Symposium on Union Budget",issuer:"Marwadi University",year:2025,cat:"Academic"},
-  {name:"Exercise and Mental Health",issuer:"The Open University",year:2025,cat:"Academic"},
-  {name:"Introduction to Offshore Wind Learning",issuer:"Offshore Wind Learning",year:2025,cat:"Sustainability"},
-  {name:"NCFM Wealth Management Module",issuer:"NSE Academy",year:2025,cat:"Finance"},
-  {name:"NSE Certified Investment Analyst Champion (NCIAC)",issuer:"NSE Academy",year:2025,cat:"Finance"},
-  {name:"Business Communication: Writing a SWOT Analysis",issuer:"The Open University",year:2025,cat:"Business"},
-  {name:"NCFM Capital Market (Dealers) Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"NCFM Commercial Banking: A Beginners Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"NCFM Derivatives Market (Dealers) Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"NCFM Financial Markets: A Beginners Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"NSE Certified Market Professional (NCMP) — Level 3",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"Advanced Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
-  {name:"Art and the Environment in Southeast Asia: Environment as Contested Space",issuer:"National Gallery Singapore",year:2024,cat:"Academic"},
-  {name:"Decision Making: How to Choose the Right Problem to Solve",issuer:"University of Leeds",year:2024,cat:"Business"},
-  {name:"Digital Citizenship and Safety",issuer:"Google",year:2024,cat:"Tech"},
-  {name:"Distance Learning for Educators",issuer:"Google",year:2024,cat:"Academic"},
-  {name:"Exploring Gender Equality in Education",issuer:"British Council",year:2024,cat:"Academic"},
-  {name:"Fraud Investigation: Following the Money",issuer:"Coventry University",year:2024,cat:"Compliance"},
-  {name:"How Do Empires Work",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"Microsoft Power BI",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
-  {name:"Nationalism, Self-Determination and Secession",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"Political Ordering",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
-  {name:"Power BI for Business Professionals",issuer:"Infosys Springboard",year:2024,cat:"Tech"},
-  {name: "Wealth Management",issuer: "TCS iON",year: 2024,cat: "Finance"},
-  {name:"Presenting Your Work with Impact: Presentation Skills",issuer:"University of Leeds",year:2024,cat:"Business"},
-  {name:"Rights and Justice in International Relations",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"The Use of Force in International Law",issuer:"The Open University",year:2024,cat:"Legal"},
-  {name:"Certificate of Recognition — Explorer 2024 National Business Conclave",issuer:"GLS University",year:2024,cat:"Academic"},
-  {name:"Economy's Vision Board & Investor Awareness Quiz",issuer:"NSE India",year:2024,cat:"Finance"},
-  {name:"Financial Literacy for Bharat",issuer:"NISM",year:2024,cat:"Finance"},
-  {name:"Modern Slavery",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"Online Dispute Resolution (ODR) Mechanism",issuer:"NISM",year:2024,cat:"Legal"},
-  {name:"Essay Competition — The Economics and Sustainability Side of Festivals",issuer:"Marwadi University",year:2024,cat:"Academic"},
-  {name:"Web Horizons: Expanding the Digital Landscape",issuer:"Marwadi University",year:2024,cat:"Tech"},
-  {name:"Commercial Banking",issuer:"HSBC",year:2024,cat:"Finance"},
-  {name:"Corporate Finance Fundamentals",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
-  {name:"Indian Knowledge System Quiz — Coinage of India",issuer:"Marwadi University",year:2024,cat:"Academic"},
-  {name:"NCFM Technical Analysis Module",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"NSE Certified Investment Analyst Pro (NCIAP)",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"NSE Certified Market Professional (NCMP) — Level 1",issuer:"NSE Academy",year:2024,cat:"Finance"},
-  {name:"Soft Power at The Workplace",issuer:"Chung Yuan Christian University",year:2024,cat:"Business"},
-  {name:"British Airways — Data Science",issuer:"British Airways",year:2024,cat:"Tech"},
-  {name:"Investment Management",issuer:"Fidelity International",year:2024,cat:"Finance"},
-  {name:"Corporate Advisory: Investment Banking",issuer:"Goodbody",year:2024,cat:"Finance"},
-  {name:"Global Banking & Markets",issuer:"HSBC",year:2024,cat:"Finance"},
-  {name:"NSE Quiz Series 4",issuer:"NSE India",year:2024,cat:"Finance"},
-  {name:"Winner of Group Discussion on Anti-Ragging",issuer:"Marwadi University",year:2024,cat:"Academic"},
-  {name:"Accounting Fundamentals",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
-  {name:"Consulting Unplugged: The Ultimate Consulting BootCamp",issuer:"Delhi Technological University (DTU)",year:2024,cat:"Business"},
-  {name:"EcoWizz Quiz Competition",issuer:"Great Lakes Institute of Management",year:2024,cat:"Sustainability"},
-  {name:"Equity in Informal STEM Learning: Using the Equity Compass",issuer:"University College London",year:2024,cat:"Academic"},
-  {name:"Global Challenges in Practice: Designing a Development Intervention",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"International Relations: Exploring Territorial Divisions",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"Introduction to Arabic",issuer:"The Open University",year:2024,cat:"Academic"},
-  {name:"Sustainable Seafood: Barriers and Opportunities",issuer:"EIT Food",year:2024,cat:"Sustainability"},
-  {name:"Participation in Stockathon: A Stock Market Simulation Game",issuer:"Marwadi University",year:2024,cat:"Finance"},
-  {name:"TCS iON Career Edge — Young Professional",issuer:"TCS iON",year:2024,cat:"Business"},
-  {name:"the Apex Spark | Ignite Your Business Acumen",issuer:"IIT Roorkee",year:2024,cat:"Business"},
-  {name:"Behavioural Economics",issuer:"Standard Bank Group",year:2024,cat:"Finance"},
-  {name:"Corporate Tax",issuer:"PwC Switzerland",year:2024,cat:"Legal"},
-  {name:"Cybersecurity",issuer:"Mastercard",year:2024,cat:"Tech"},
-  {name:"Data Visualisation: Empowering Business with Effective Insights",issuer:"Tata Consultancy Services",year:2024,cat:"Tech"},
-  {name:"Digital Assurance & Transparency",issuer:"PwC",year:2024,cat:"Finance"},
-  {name:"Excel Skills",issuer:"JPMorgan Chase",year:2024,cat:"Tech"},
-  {name:"Excel Skills for Business",issuer:"Goldman Sachs",year:2024,cat:"Tech"},
-  {name:"Fraud Prevention in the Charity Sector",issuer:"Australian Charities and Not-for-profits Commission",year:2024,cat:"Compliance"},
-  {name:"Fundamental Analysis Module",issuer:"NSE India",year:2024,cat:"Finance"},
-  {name:"G3Q Quiz Competition",issuer:"Government of Gujarat",year:2024,cat:"Academic"},
-  {name:"Global Private Banking",issuer:"J.P. Morgan Private Bank",year:2024,cat:"Finance"},
-  {name:"Group Discussion",issuer:"TCS iON",year:2024,cat:"Business"},
-  {name:"Presentation Skills",issuer:"TCS iON",year:2024,cat:"Business"},
-  {name:"Research Methods: A Practical Guide to Peer and Community Research",issuer:"King's College London",year:2024,cat:"Academic"},
-  {name:"The Corporate Investment Banking",issuer:"Standard Bank Group",year:2024,cat:"Finance"},
-  {name:"Understanding Risk Management in Financial Sector",issuer:"TCS iON",year:2024,cat:"Finance"},
-  {name:"Wealth Management",issuer:"Goodbody",year:2024,cat:"Finance"},
-  {name:"Agriculture, Economics and Nature",issuer:"The University of Western Australia",year:2024,cat:"Academic"},
-  {name:"Application of Advanced Analytics in Securities Markets",issuer:"NISM",year:2024,cat:"Finance"},
-  {name:"Asset Management",issuer:"J.P. Morgan",year:2024,cat:"Finance"},
-  {name:"Bushfires: Response, Relief, and Resilience",issuer:"CIFAL Newcastle",year:2024,cat:"Academic"},
-  {name:"Commercial Law",issuer:"Clyde & Co",year:2024,cat:"Legal"},
-  {name:"Economics and the 2008 Crisis: A Keynesian View",issuer:"The Open University",year:2024,cat:"Finance"},
-  {name:"Economics for Capital Markets",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
-  {name:"Equity Allocation for Wealth Management",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance"},
-  {name:"Financial Analyst",issuer:"New York Jobs CEO Council",year:2024,cat:"Finance"},
-  {name:"Financial Markets",issuer:"Great Learning",year:2024,cat:"Finance"},
-  {name:"Google Certified Search Ads 360 Professional",issuer:"Google",year:2024,cat:"Tech"},
-  {name:"Ignite the Future: Startup & Entrepreneurship Odyssey",issuer:"Delhi School of Economics",year:2024,cat:"Business"},
-  {name:"Investment Banking",issuer:"Bank of America",year:2024,cat:"Finance"},
-  {name:"Making Anti-Corruption Effective",issuer:"SOAS University of London",year:2024,cat:"Compliance"},
-  {name:"NIT Agartala Trading Competition 2023",issuer:"National Institute of Technology Agartala",year:2024,cat:"Finance"},
-  {name:"Online Pre Examination Test Executive Module — 1",issuer:"Institute of Company Secretaries of India",year:2024,cat:"Legal"},
-  {name:"Quantitative Research",issuer:"JPMorgan Chase",year:2024,cat:"Finance"},
-  {name:"Strategic Planning",issuer:"HP LIFE",year:2024,cat:"Business"},
-  {name:"Teaching and Assessing Core Skills",issuer:"British Council",year:2024,cat:"Academic"},
-  {name:"The Annual Information Statement",issuer:"Australian Charities and Not-for-profits Commission",year:2024,cat:"Compliance"},
-  {name:"The Constitutional Chronicle Quiz",issuer:"IIM Kozhikode",year:2024,cat:"Academic"},
-  {name:"The Mediterranean Action Plan and the Barcelona Convention",issuer:"InforMEA",year:2024,cat:"Sustainability"},
-  {name:"Understanding Real Estate Investment Trusts (REITs)",issuer:"NISM",year:2024,cat:"Finance"},
-  {name:"Virtual, Augmented and Mixed Reality",issuer:"Lancaster University",year:2024,cat:"Tech"},
-  {name:"Winner of Student's Discussion Forum on Union Budget 2024",issuer:"Marwadi University",year:2024,cat:"Academic"},
-  {name:"Advancing Sustainable Development in Practice",issuer:"UNITAR",year:2023,cat:"Sustainability"},
-  {name:"Asia Analyst Development Program (AADP)",issuer:"JPMorgan Chase",year:2023,cat:"Finance"},
-  {name:"Aspects of Prevention of Money Laundering Activities",issuer:"NISM",year:2023,cat:"Compliance"},
-  {name:"Business and Human Rights Global",issuer:"Clifford Chance",year:2023,cat:"Legal"},
-  {name:"Career Catalyst: Advisory",issuer:"KPMG US",year:2023,cat:"Finance"},
-  {name:"Certified Google Creative Professional",issuer:"Google",year:2023,cat:"Tech"},
-  {name:"Data Privacy Fundamentals",issuer:"IBM",year:2023,cat:"Tech"},
-  {name:"Data Science for Business Level 2",issuer:"IBM",year:2023,cat:"Tech"},
-  {name:"Development Economics",issuer:"Marginal Revolution University",year:2023,cat:"Finance"},
-  {name:"Digital Analytics & Regression",issuer:"IBM",year:2023,cat:"Tech"},
-  {name:"Digital Intelligence",issuer:"PwC Switzerland",year:2023,cat:"Tech"},
-  {name:"Financial Methods in Environmental Decisions",issuer:"The Open University",year:2023,cat:"Finance"},
-  {name:"Option Strategies",issuer:"Zerodha Varsity",year:2023,cat:"Finance"},
-  {name:"Predictive Modeling Fundamentals",issuer:"IBM",year:2023,cat:"Tech"},
-  {name:"Presenting Data",issuer:"HP",year:2023,cat:"Tech"},
-  {name:"Python for Data Science",issuer:"IBM",year:2023,cat:"Tech"},
-  {name:"The Overall Opportunities in the Securities Markets",issuer:"NISM",year:2023,cat:"Finance"},
-  {name:"Virtual Stock Market Event",issuer:"GSFC University",year:2023,cat:"Finance"},
-  {name:"Anti Money Laundering",issuer:"Alfaisal University",year:2023,cat:"Compliance"},
-  {name:"Certified Google Analytics Individual Qualification (GAIQ)",issuer:"Google",year:2023,cat:"Tech"},
-  {name:"Data Analytics Consulting",issuer:"KPMG Australia",year:2023,cat:"Finance"},
-  {name:"Data Visualization with Advanced Excel",issuer:"PwC",year:2023,cat:"Tech"},
-  {name:"Do Well Do Good Quiz",issuer:"IIM Calcutta",year:2023,cat:"Academic"},
-  {name:"FINQUEST '23",issuer:"Aryabhatta College, University of Delhi",year:2023,cat:"Finance"},
-  {name:"Green Economy and Trade",issuer:"Partnership for Action on Green Economy (PAGE)",year:2023,cat:"Sustainability"},
-  {name:"Green Industrial Policy",issuer:"Partnership for Action on Green Economy (PAGE)",year:2023,cat:"Sustainability"},
-  {name:"Introduction to Capital Markets",issuer:"Corporate Finance Institute (CFI)",year:2023,cat:"Finance"},
-  {name:"NISM Financial Literacy Quiz",issuer:"NISM",year:2023,cat:"Finance"},
-  {name:"Private Equity and Venture Capital",issuer:"Università Bocconi / Coursera",year:2023,cat:"Finance"},
-  {name:"Quantitative and Qualitative Research in Finance",issuer:"The Open University",year:2023,cat:"Finance"},
-  {name:"The India Policy: The Open India Quiz",issuer:"IIM Calcutta",year:2023,cat:"Academic"},
-  {name:"Global Diplomacy",issuer:"University of London",year:2023,cat:"Academic"},
-  {name:"Investment Banking",issuer:"Citi",year:2023,cat:"Finance"},
-  {name:"Management Consulting",issuer:"PwC",year:2023,cat:"Business"},
-  {name:"Microsoft Word — Business Documents",issuer:"Corporate Finance Institute (CFI)",year:2023,cat:"Tech"},
-  {name:"SIMSREE Trading League",issuer:"SIMSREE",year:2023,cat:"Finance"},
-  {name:"Talent Titan Quiz Participation",issuer:"NIT Calicut",year:2023,cat:"Academic"},
-  {name:"The Economics of Festivals 2.0 Quiz",issuer:"IIM Rohtak",year:2023,cat:"Academic"},
-  {name:"5-Day Soft Skill Training and Mock Interview",issuer:"IIT Madras",year:2023,cat:"Business"},
-  {name:"Financial Markets",issuer:"Yale University",year:2023,cat:"Finance"},
-  {name:"Investment Analysis & Portfolio Management",issuer:"NSE India",year:2023,cat:"Finance"},
-  {name:"Strategy Consulting Virtual Internship",issuer:"Accenture",year:2023,cat:"Business"},
-  {name:"Understanding Financial Markets",issuer:"University of Geneva",year:2023,cat:"Finance"},
-  {name:"Certificate of Participation in Shri Ram Trading Challenge 2023",issuer:"Shri Ram College of Commerce (SRCC)",year:2023,cat:"Finance"},
-  {name:"Corporate Analyst Development Program (CADP)",issuer:"JPMorgan Chase",year:2023,cat:"Finance"},
-  {name:"Wealth and Personal Banking Virtual Internship",issuer:"HSBC",year:2023,cat:"Finance"},
-  {name:"Asset Allocation in Investment",issuer:"The Open University",year:2023,cat:"Finance"},
-  {name:"Liquidity Management",issuer:"The Open University",year:2023,cat:"Finance"},
-  {name:"Options Trading",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
-  {name:"Fundamental Analysis",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
-  {name:"Stock Market Basics",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
-  {name:"Technical Analysis",issuer:"Zerodha Varsity",year:2020,cat:"Finance"},
-  {name:"Computer Science 101",issuer:"Stanford Online",year:2020,cat:"Tech"},
-  {name:"The Fundamentals of Digital Marketing",issuer:"Google Digital Garage",year:2020,cat:"Tech"},
-  {name:"Reading Financial Statements",issuer:"Corporate Finance Institute (CFI)",year:2020,cat:"Finance"},
-  {name:"Effective Presentations",issuer:"HP",year:2020,cat:"Business"},
-  {name:"Android Enterprise Professional",issuer:"Google",year:2019,cat:"Tech"},
-  {name:"Bing Ads Accredited Professional Status",issuer:"Microsoft",year:2019,cat:"Tech"},
-  {name:"Introductory Course to International Environmental Law",issuer:"InforMEA",year:2019,cat:"Legal"},
-  {name:"Introduction to Sustainable Finance",issuer:"GIZ",year:2019,cat:"Finance"},
-  {name:"Specialized Module on Cities and Climate Change",issuer:"UNITAR",year:2019,cat:"Sustainability"},
-  {name:"Google My Business",issuer:"Google",year:2019,cat:"Tech"},
-  {name:"Launching Microsoft Teams to the Company",issuer:"Microsoft",year:2019,cat:"Tech"},
-  {name:"Mobile in Display & Video 360 Basics",issuer:"Google",year:2019,cat:"Tech"},
-  {name:"Windows 10: Speech Recognition and Cortana Integration",issuer:"Microsoft",year:2018,cat:"Tech"},
-  {name:"YouTube Creative Essentials",issuer:"Google",year:2018,cat:"Tech"},
-  {name:"3D Printing",issuer:"HP",year:2018,cat:"Tech"},
-  {name:"ASP .NET Core",issuer:"Microsoft",year:2018,cat:"Tech"},
-  {name:"Edit and Manage Facebook Ads",issuer:"Facebook",year:2018,cat:"Tech"},
-  {name:"Facebook and Instagram",issuer:"Facebook",year:2018,cat:"Tech"},
-  {name:"Google Web Designer Basics",issuer:"Google",year:2018,cat:"Tech"},
-  {name:"IT Expert Roundtable Information Protection at Microsoft",issuer:"Microsoft",year:2018,cat:"Tech"},
-  {name:"Redesign for the Cloud: Building a Cloud-First Network",issuer:"Microsoft",year:2018,cat:"Tech"},
-  {name:"Send/Receive API: Building for the Messenger Platform",issuer:"Facebook",year:2018,cat:"Tech"},
-  {name:"Top Design Thinking Concepts",issuer:"Microsoft",year:2018,cat:"Design"},
-  {name:"C++",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"CSS",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"HTML",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"JQuery",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"Java",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"PHP",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"SQL",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"Swift 4",issuer:"Sololearn",year:2018,cat:"Tech"},
-  {name:"JavaScript",issuer:"Sololearn",year:2017,cat:"Tech"},
+{name:"Islamic Finance for the Substainable Development Goals",issuer:"United Nations Development Programme (UNDP)",year:2026,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah-Bhatti-Islamic-Finance-for-the-Sustainable-Development-Goals-Islamic-Finance-for-the-Sustainable-Development-Goals-Learning-for-Nature_page_1.png"},
+  {name:"ICAT Climate Finance Transparency",issuer:"Initiative for Climate Action Transparency (ICAT)",year:2026,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah-Bhatti-ICAT-Climate-Finance-Transparency-Course-ICAT-Climate-Finance-Transparency-Course-Learning-for-Nature_page_1.png"},
+  {name:"Research Paper Presentation — ICEIM 2026",issuer:"Pandit Deendayal Energy University",year:2026,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/ICEIM-117_page_1.png"},
+  {name:"FinTech Industry Professional (FTIP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/l1yb2urc_1778141122936_page_1.png"},
+  {name:"Financial Planning & Wealth Management Professional (FPWMP®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/dbct61qy_1778141160699_page_1.png"},
+  {name:"Capital Markets & Securities Analyst (CMSA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/l1xrsd6n_1778141194388_page_1.png"},
+  {name:"Commercial Banking & Credit Analyst (CBCA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/5ie5m8sw_1778141177592_page_1.png"},
+  {name:"Business Intelligence & Data Analyst (BIDA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/4ja0jtmx_1778141216042_page_1.png"},
+  {name:"Financial Planning & Analysis Professional (FPAP)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/xsp190ib_1778141139893_page_1.png"},
+  {name:"Financial Modeling & Valuation Analyst (FMVA®)",issuer:"Corporate Finance Institute (CFI)",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/p98xm3ra_1778141231232_page_1.png"},
+  {name:"Sustainable Energy Access for Communities",issuer:"Edraak",year:2025,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/download%20(3)_merged_page_2.png"},
+  {name:"Data Privacy Analyst Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/ilovepdf_merged%20(1)_page_1.png"},
+  {name:"BUS614: International Finance",issuer:"Saylor Academy",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/3554898162AB_page_1.png"},
+  {name:"BUS641: Strategic Negotiations and Conflict Management",issuer:"Saylor Academy",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/3017605880AB_page_1.png"},
+  {name:"Canva for Work",issuer:"Canva",year:2025,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/ammanullah-bhatti-canva-for-work-certificate_page_1.png"},
+  {name:"Certificate Course in Market Research",issuer:"Reliance Foundation",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/ilovepdf_merged-3_page_1.png"},
+  {name:"Combating Terrorism Financing",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_of_Completion_copy(1)_page_1.png"},
+  {name:"English Language Trainer Certification Program",issuer:"Reliance Foundation",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/ilovepdf_merged-4_page_2.png"},
+  {name:"Financial Integration in Southeast Asia",issuer:"Asian Development Bank Institute",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/66ed614f511ea5f17a41a7d7e6edd76f245ac35b/Amaanullah-Bhatti–Financial-Integration-in-Southeast-Asia–Financial-Integration-in-Southeast-Asia–ADBI-E-Learning_page_1.png"},
+  {name:"International Cooperation and Mutual Legal Assistance",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certficate_of_Completiion_copy(1)_page_1.png"},
+  {name:"Legal Assistant Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/ilovepdf_merged-2_page_1.png"},
+  {name:"Open-source Intelligence",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certficate_of_Completiion_copy_page_1.png"},
+  {name:"Operational Analysis of Suspicious Transaction Reports",issuer:"Basel Institute on Governance",year:2025,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_of_completion_copy_page_1.png"},
+  {name:"Private Financing for Infrastructure and Sustainable Growth",issuer:"Asian Development Bank Institute",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/66ed614f511ea5f17a41a7d7e6edd76f245ac35b/Amaanullah-Bhatti–Course-Evaluation-Form-Private-Financing-for-Infrastructure-and-Sustainable-Growth–Private-Financing-for-Infrastructure-and-Sustainable-Growth–ADBI-E-Learning_page_1.png"},
+  {name:"Project Associate Certification Programme",issuer:"Reliance Foundation",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/ilovepdf_merged-5_page_1.png"},
+  {name:"Source and Application of Funds Analysis",issuer:"Basel Institute on Governance",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certficate_of_Completion_copy_page_1.png"},
+  {name:"The Field Guide to Human-Centered Design",issuer:"Canva",year:2025,cat:"Design",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/ammanullah-bhatti-the-field-guide-to-human-centered-design-certificate_page_1.png"},
+  {name:"Certificate Programme in Banking, Finance and Insurance",issuer:"Bajaj Finserv",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/IMG_20250514_133612.jpg"},
+  {name:"HR Workshop — Certificate Programme in Banking, Finance and Insurance",issuer:"Bajaj Finserv",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/IMG_20250514_133516.jpg"},
+  {name:"Webinar — IoT Application Development: From Concept to Reality",issuer:"Marwadi University",year:2025,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah%20Bhatti%20Webinar%20Certificate%20(1)_page_1.png"},
+  {name:"Winner — Roundtable Discussion: India Tomorrow",issuer:"Marwadi University",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1%20(1).jpg"},
+  {name:"Advisors & Consulting Services",issuer:"Mastercard",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/DZxgGgvMB6cEtEyJg_mfxGwGDp6WkQmtmTf_kXJuEXnuZrPLYmcJm_1744044369592_completion_certificate_page_1.png"},
+  {name:"An Introduction to Risk: Evaluating Client Profiles and Real Estate Investments",issuer:"Goldman Sachs",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/ETGMhLB5eCrYjcH8o_MBA4MnZTNFEoJZGnk_kXJuEXnuZrPLYmcJm_1744045242322_completion_certificate_page_1.png"},
+  {name:"Participation Certificate — Roundtable Discussion: India Tomorrow",issuer:"Marwadi University",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1.jpg"},
+  {name:"Entrepreneurship and Innovation",issuer:"City of Moreton Bay",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/EKaCv98yuzCpMzj2X_2t4QruSmKkrN8jr7G_kXJuEXnuZrPLYmcJm_1744044513998_completion_certificate_page_1.png"},
+  {name:"Financial Services: Climate Change",issuer:"Oliver Wyman",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/95F4TchDaRn5N7WWQ_fY3bMbfYA6To3yPgX_kXJuEXnuZrPLYmcJm_1744044823978_completion_certificate_page_1.png"},
+  {name:"Global Markets Sales and Trading Analyst",issuer:"Bank of America",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/rKCBL7y5yKgzDGZmR_fMCqmt8qR4G85Puue_kXJuEXnuZrPLYmcJm_1744045988356_completion_certificate_page_1.png"},
+  {name:"Introduction to Sales Strategies",issuer:"PepsiCo",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/2HLNLMsC4TWo72csu_q4xKoFY2CvfXHSpyB_kXJuEXnuZrPLYmcJm_1744046144143_completion_certificate_page_1.png"},
+  {name:"Law and Professional Development",issuer:"Clyde & Co",year:2025,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/XGEiuJkuiHNt9eFS2_KyNNo9RWfY2FF3pNs_kXJuEXnuZrPLYmcJm_1744044696443_completion_certificate_page_1.png"},
+  {name:"US Capital Markets",issuer:"White & Case LLP",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/ZGAZdyxnn8eLNn4W4_9hK4eiXfvszdvjn3j_kXJuEXnuZrPLYmcJm_1744045542809_completion_certificate_page_1.png"},
+  {name:"Webinar — Gen AI: Transforming the Future of Technology",issuer:"Marwadi University",year:2025,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah%20Bhatti%20Webinar%20Certificate_page_1.png"},
+  {name:"NISM Financial Literacy Quiz",issuer:"NISM",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate_8734062786_02032025203317_page_1.png"},
+  {name:"NCFM Mutual Fund Module",issuer:"NSE Academy",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/ncfm_mf_page_1.png"},
+  {name:"NCFM Securities Market (Basic) Module",issuer:"NSE Academy",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/92201449021-Amaanullah-smb_page_1.png"},
+  {name:"National Financial Literacy Quiz 2025",issuer:"NISM",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_8734062786_02032025203317_page_1.png"},
+  {name:"Raisina Hackathon 2025 — Certificate of Contribution",issuer:"Ministry of External Affairs, India",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah%20Mehboob%20Bhatti_Vadodara_RaisinaHackathon_Contributors_Certificates7.jpg"},
+  {name:"Assessing Contemporary Science",issuer:"The Open University",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/S350_1_statement_page_1.png"},
+  {name:"Data Analysis: Hypothesis Testing",issuer:"The Open University",year:2025,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/66ed614f511ea5f17a41a7d7e6edd76f245ac35b/B126_2_statement-2_page_1.png"},
+  {name:"Sustainability in Banking",issuer:"ACCA",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/uY9Mkm9Emf8frDPeb_MuLqSKBp5sav83L6j_kXJuEXnuZrPLYmcJm_1739158557262_completion_certificate_page_1.png"},
+  {name:"Art and the Environment in Southeast Asia: Landscape as Ideology",issuer:"National Gallery Singapore",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/art-and-the-environment-in-southeast-asia-landscape-as-ideology_certificate_of_achievement_sa64684_page_1.png"},
+  {name:"Organizing Committee — Vishleshan 2025: National Symposium on Union Budget",issuer:"Marwadi University",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/IMG_20250317_112907.jpg"},
+  {name:"Exercise and Mental Health",issuer:"The Open University",year:2025,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/E233_2_statement_page_1.png"},
+  {name:"Introduction to Offshore Wind Learning",issuer:"Offshore Wind Learning",year:2025,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/offshore-wind-learning-an-introduction_certificate_of_achievement_4s9hpvo_page_1.png"},
+  {name:"NCFM Wealth Management Module",issuer:"NSE Academy",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/wm_ncfn-1.png"},
+  {name:"NSE Certified Investment Analyst Champion (NCIAC)",issuer:"NSE Academy",year:2025,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/NCIAC.png"},
+  {name:"Business Communication: Writing a SWOT Analysis",issuer:"The Open University",year:2025,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/LB170_1_statement_page_1.png"},
+  {name:"NCFM Capital Market (Dealers) Module",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/ncfm-cm_page_1.png"},
+  {name:"NCFM Commercial Banking: A Beginners Module",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/ncfm-cb_page_1.png"},
+  {name:"NCFM Derivatives Market (Dealers) Module",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/ncfm-dmo_page_1.png"},
+  {name:"NCFM Financial Markets: A Beginners Module",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/ncfm-fmm_page_1.png"},
+  {name:"NSE Certified Market Professional (NCMP) — Level 3",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/ncmp-lv-3_page_1.png"},
+  {name:"Advanced Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1-44a6aa08-5719-4b59-8fb0-6ab2cf71b88d%20(1)_page_1.png"},
+  {name:"Art and the Environment in Southeast Asia: Environment as Contested Space",issuer:"National Gallery Singapore",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/art-and-the-environment-in-southeast-asia-environment-as-contested-space_certificate_of_achievement_imdpfog_page_1.png"},
+  {name:"Decision Making: How to Choose the Right Problem to Solve",issuer:"University of Leeds",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/decision-making-how-to-choose-the-right-problem-to-solve-sc_certificate_of_achievement_3jzqe60_page_1.png"},
+  {name:"NSE Certified Market Professional (NCMP) — Level 2",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/ncmp-lv2.png"},
+  {name:"Digital Citizenship and Safety",issuer:"Google",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/digital-citizenship-google.png"},
+  {name:"Distance Learning for Educators",issuer:"Google",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/distance-e-learning-for-educators.png"},
+  {name:"Exploring Gender Equality in Education",issuer:"British Council",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/exploring-gender-equality-education_certificate_of_achievement_q3ukbcy_page_1.png"},
+  {name:"Fraud Investigation: Following the Money",issuer:"Coventry University",year:2024,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/fraud-investigation-following-the-money-op_certificate_of_achievement_02pqnjk_page_1.png"},
+  {name:"How Do Empires Work",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/A326_1_statement_page_1.png"},
+  {name:"Microsoft Power BI",issuer:"Infosys Springboard",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1-3294068d-261a-4c58-97fd-d602e93aacaf_page_1.png"},
+  {name:"Nationalism, Self-Determination and Secession",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/DD203_2_statement_page_1.png"},
+  {name:"Political Ordering",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/DD101_1_statement_page_1.png"},
+  {name:"Power BI Training",issuer:"Infosys Springboard",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1-df73f8cd-eb3a-45ba-a9bf-571eb0e39c0a_page_1.png"},
+  {name:"Power BI for Business Professionals",issuer:"Infosys Springboard",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1-be201a95-710b-40f8-8266-0293f4582893_page_1.png"},
+  {name: "Wealth Management",issuer: "TCS iON",year: 2024,cat: "Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah_Bhatti_3624804_page_1.png"},
+  {name:"Presenting Your Work with Impact: Presentation Skills",issuer:"University of Leeds",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/presenting-your-work-with-impact-presentation-skills-training-sc_certificate_of_achievement_nkk7bt2_page_1.png"},
+  {name:"Rights and Justice in International Relations",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/DU301_1_statement_page_1.png"},
+  {name:"The Use of Force in International Law",issuer:"The Open University",year:2024,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/W821_2_statement_page_1.png"},
+  {name:"Certificate of Recognition — Explorer 2024 National Business Conclave",issuer:"GLS University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/DocScanner%20Oct%202%2C%202024%208-04%20PM_page_1.png"},
+  {name:"Economy's Vision Board & Investor Awareness Quiz",issuer:"NSE India",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/nse_vision_board.png"},
+  {name:"Financial Literacy for Bharat",issuer:"NISM",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/Financial-Literacy-for-Bharat_Financial-Literacy-Course-for-Bharat_Amaanullah-Bhatti_page_1.png"},
+  {name:"Modern Slavery",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/W102_1_statement_page_1.png"},
+  {name:"Online Dispute Resolution (ODR) Mechanism",issuer:"NISM",year:2024,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/Online-Dispute-Resolution-ODR-Mechanism_Online-Dispute-Resolution-ODR-Mechanism_Amaanullah-Bhatti_page_1.png"},
+  {name:"Essay Competition — The Economics and Sustainability Side of Festivals",issuer:"Marwadi University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/2.png"},
+  {name:"Web Horizons: Expanding the Digital Landscape",issuer:"Marwadi University",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/Web-Horizons_page_1.png"},
+  {name:"Commercial Banking",issuer:"HSBC",year:2024,cat:"Finance",url:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/MJhrYNfq2exZdYFd2_HSBC_kXJuEXnuZrPLYmcJm_1726900037347_completion_certificate_page_1.png"},
+  {name:"Corporate Finance Fundamentals",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/cfi_corporate_finance_page_1.png"},
+  {name:"Indian Knowledge System Quiz — Coinage of India",issuer:"Marwadi University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/fe20fbad-0394-4225-a00b-00e8c64d9e96.jpg"},
+  {name:"NCFM Technical Analysis Module",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Screenshot%202024-09-06%20at%206.21.53%20PM.png"},
+  {name:"NSE Certified Investment Analyst Pro (NCIAP)",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Screenshot%202024-09-06%20at%206.20.41%20PM.png"},
+  {name:"NSE Certified Market Professional (NCMP) — Level 1",issuer:"NSE Academy",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Screenshot%202024-09-06%20at%206.21.20%20PM.png"},
+  {name:"Soft Power at The Workplace",issuer:"Chung Yuan Christian University",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/the-power-of-soft-skills-in-the-workplace_certificate_of_achievement_6l12bpf_page_1.png"},
+  {name:"British Airways — Data Science",issuer:"British Airways",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/NjynCWzGSaWXQCxSX_British%20Airways_kXJuEXnuZrPLYmcJm_1722877131952_completion_certificate_page_1.png"},
+  {name:"Investment Management",issuer:"Fidelity International",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/hgCWHF8riBbyFjPfd_Fidelity%20International_kXJuEXnuZrPLYmcJm_1722929974198_completion_certificate_page_1.png"},
+  {name:"Corporate Advisory: Investment Banking",issuer:"Goodbody",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/Dov7RY3TYgfMtmBfe_Goodbody_kXJuEXnuZrPLYmcJm_1722878409659_completion_certificate_page_1.png"},
+  {name:"Global Banking & Markets",issuer:"HSBC",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/cEn98BQrAXAHRqqQB_HSBC_kXJuEXnuZrPLYmcJm_1722878147977_completion_certificate_page_1.png"},
+  {name:"NSE Quiz Series 4",issuer:"NSE India",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/339922826_page_1.png"},
+  {name:"Winner of Group Discussion on Anti-Ragging",issuer:"Marwadi University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/IMG_20240815_104956.jpg"},
+  {name:"Accounting Fundamentals",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/certificate%20(2)_page_1.png"},
+  {name:"Consulting Unplugged: The Ultimate Consulting BootCamp",issuer:"Delhi Technological University (DTU)",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/a58d7696-b74b-4b9b-b1e9-570e01f54229_page_1.png"},
+  {name:"EcoWizz Quiz Competition",issuer:"Great Lakes Institute of Management",year:2024,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/b8d87c8e-96e0-48aa-a5ce-8c87954dee36.jpg"},
+  {name:"Equity in Informal STEM Learning: Using the Equity Compass",issuer:"University College London",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/equity-informal-stem-learning-using-the-equity-compass_certificate_of_achievement_ru1gg06_page_1.png"},
+  {name:"Global Challenges in Practice: Designing a Development Intervention",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/GCIP_1_statement_page_1.png"},
+  {name:"International Relations: Exploring Territorial Divisions",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/d818_1_statement_page_1.png"},
+  {name:"Introduction to Arabic",issuer:"The Open University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/LGXA001_1_statement_page_1.png"},
+  {name:"Sustainable Seafood: Barriers and Opportunities",issuer:"EIT Food",year:2024,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/sustainable-seafood_certificate_of_achievement_3f5vkp7_page_1.png"},
+  {name:"Participation in Stockathon: A Stock Market Simulation Game",issuer:"Marwadi University",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah%20Mehboob%20Bhatti_page_1.png"},
+  {name:"TCS iON Career Edge — Young Professional",issuer:"TCS iON",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah_Bhatti_3672778_page_1.png"},
+  {name:"the Apex Spark | Ignite Your Business Acumen",issuer:"IIT Roorkee",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/b1f75222-cbdd-45ae-87c9-23713e4a374b_page_1.png"},
+  {name:"Behavioural Economics",issuer:"Standard Bank Group",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/JKTZPdhF8pSwr98qd_Standard%20Bank%20_kXJuEXnuZrPLYmcJm_1706799762886_completion_certificate_page_1.png"},
+  {name:"Corporate Tax",issuer:"PwC Switzerland",year:2024,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/aiwcEMsW2KExMQ7k7_PwC%20Switzerland_kXJuEXnuZrPLYmcJm_1706796462746_completion_certificate_page_1.png"},
+  {name:"Cybersecurity",issuer:"Mastercard",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/vcKAB5yYAgvemepGQ_Mastercard_kXJuEXnuZrPLYmcJm_1706798629407_completion_certificate_page_1.png"},
+  {name:"Data Visualisation: Empowering Business with Effective Insights",issuer:"Tata Consultancy Services",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/MyXvBcppsW2FkNYCX_Tata_kXJuEXnuZrPLYmcJm_1706797708441_completion_certificate_page_1.png"},
+  {name:"Digital Assurance & Transparency",issuer:"PwC",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/gHDy4YyDkoBoPH2DM_PwC%20US_kXJuEXnuZrPLYmcJm_1706799011501_completion_certificate_page_1.png"},
+  {name:"Excel Skills",issuer:"JPMorgan Chase",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/XiuvjcwqWRqH9oy38_JPMorgan%20Chase%20%26%20Co._kXJuEXnuZrPLYmcJm_1706798091152_completion_certificate_page_1.png"},
+  {name:"Excel Skills for Business",issuer:"Goldman Sachs",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/eLeZHcwX7CqLhhps7_Goldman%20Sachs_kXJuEXnuZrPLYmcJm_1706797453611_completion_certificate_page_1.png"},
+  {name:"Fraud Prevention in the Charity Sector",issuer:"Australian Charities and Not-for-profits Commission",year:2024,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/fraud-prevention-in-the-charity-sector_certificate_of_achievement_i43bvzj_page_1.png"},
+  {name:"Fundamental Analysis Module",issuer:"NSE India",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Screenshot%202024-02-20%20at%208.04.39%20PM.png"},
+  {name:"G3Q Quiz Competition",issuer:"Government of Gujarat",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/Participation_certificate-GJT0001480-Week-0_page_1.png"},
+  {name:"Global Private Banking",issuer:"J.P. Morgan Private Bank",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/57t6vcuqvMGsK6PA9_JPMorgan%20Chase_kXJuEXnuZrPLYmcJm_1706796959295_completion_certificate_page_1.png"},
+  {name:"Group Discussion",issuer:"TCS iON",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah_Bhatti_3624750_page_1.png"},
+  {name:"Presentation Skills",issuer:"TCS iON",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah_Bhatti_3624743_page_1.png"},
+  {name:"Research Methods: A Practical Guide to Peer and Community Research",issuer:"King's College London",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/research-methods-a-practical-guide-to-peer-and-community-research_certificate_of_achievement_r8abvsu_page_1.png"},
+  {name:"The Corporate Investment Banking",issuer:"Standard Bank Group",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/gPeqXLCuhf9mvqLN2_Standard%20Bank_kXJuEXnuZrPLYmcJm_1706800084160_completion_certificate_page_1.png"},
+  {name:"Understanding Risk Management in Financial Sector",issuer:"TCS iON",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah_Bhatti_3624790_page_1.png"},
+  {name:"Wealth Management",issuer:"Goodbody",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/8BaB5qqxthtBxa7gm_Goodbody_kXJuEXnuZrPLYmcJm_1706799453384_completion_certificate_page_1.png"},
+  {name:"Agriculture, Economics and Nature",issuer:"The University of Western Australia",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/agriculture-economic-nature_certificate_of_achievement_apz2gkc_page_1.png"},
+  {name:"Application of Advanced Analytics in Securities Markets",issuer:"NISM",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_WB4224000116_11012024110915_page_1.png"},
+  {name:"Asset Management",issuer:"J.P. Morgan",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/X7JHqavmZAmbDW6Fq_JPMorgan%20Chase_kXJuEXnuZrPLYmcJm_1704360693254_completion_certificate_page_1.png"},
+  {name:"Bushfires: Response, Relief, and Resilience",issuer:"CIFAL Newcastle",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/bushfires_certificate_of_achievement_c5qwybi_page_1.png"},
+  {name:"Commercial Law",issuer:"Clyde & Co",year:2024,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/QBfhTrfzu53YDvH3A_Clyde%20%26%20Co%20UK_kXJuEXnuZrPLYmcJm_1705147410501_completion_certificate_page_1.png"},
+  {name:"Economics and the 2008 Crisis: A Keynesian View",issuer:"The Open University",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/DD209_1_statement_page_1.png"},
+  {name:"Economics for Capital Markets",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/10fg4guy_1704638715837_page_1.png"},
+  {name:"Equity Allocation for Wealth Management",issuer:"Corporate Finance Institute (CFI)",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/wbp8pgjr_1705501602687_page_1.png"},
+  {name:"NISM Financial Literacy Quiz",issuer:"NISM",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/Certificate_8734062786_27112023191436_page_1.png"},
+  {name:"Financial Analyst",issuer:"New York Jobs CEO Council",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/TtC5eCKD3FFzH5xcz_New%20York%20Jobs%20CEO%20Council_kXJuEXnuZrPLYmcJm_1704361718450_completion_certificate_page_1.png"},
+  {name:"Financial Markets",issuer:"Great Learning",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah%20Bhatti%20(3)_page_1.png"},
+  {name:"Google Certified Search Ads 360 Professional",issuer:"Google",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/Search%20Ads%20360%20Certification%20Exam%20_%20Google_page_1.png"},
+  {name:"Ignite the Future: Startup & Entrepreneurship Odyssey",issuer:"Delhi School of Economics",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/7dfd9ce5-73d6-46cd-aa8b-92425ee1c466_page_1.png"},
+  {name:"Investment Banking",issuer:"Bank of America",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/Hi8MJQE5T3MeTRWQR_Bank%20of%20America_kXJuEXnuZrPLYmcJm_1704361212879_completion_certificate_page_1.png"},
+  {name:"Making Anti-Corruption Effective",issuer:"SOAS University of London",year:2024,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/making-anti-corruption-effective_certificate_of_achievement_6tia72p_page_1.png"},
+  {name:"NIT Agartala Trading Competition 2023",issuer:"National Institute of Technology Agartala",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/447fb066-7c91-49c6-b7a8-3c78b330fa75_page_1.png"},
+  {name:"Online Pre Examination Test Executive Module — 1",issuer:"Institute of Company Secretaries of India",year:2024,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Amaanullah_Bhatti_8534610_page_1.png"},
+  {name:"Quantitative Research",issuer:"JPMorgan Chase",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/bWqaecPDbYAwSDqJy_JPMorgan%20Chase%20%26%20Co._kXJuEXnuZrPLYmcJm_1704362110403_completion_certificate_page_1.png"},
+  {name:"Strategic Planning",issuer:"HP LIFE",year:2024,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/e5b240e1-acec-4495-bbbc-96e0078a579c_page_1.png"},
+  {name:"Teaching and Assessing Core Skills",issuer:"British Council",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/teaching-core-skills_certificate_of_achievement_extkwgu_page_1.png"},
+  {name:"The Annual Information Statement",issuer:"Australian Charities and Not-for-profits Commission",year:2024,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/the-annual-information-statement_certificate_of_achievement_mguxgn4_page_1.png"},
+  {name:"The Constitutional Chronicle Quiz",issuer:"IIM Kozhikode",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/8fed20d4-f715-43bf-84a3-72675c457801_page_1.png"},
+  {name:"The Mediterranean Action Plan and the Barcelona Convention",issuer:"InforMEA",year:2024,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/490817049e157348b459b086c449a4befce1c02e/Barcelona%20Convention_Certificate%20of%20completion_page_1.png"},
+  {name:"Understanding Real Estate Investment Trusts (REITs)",issuer:"NISM",year:2024,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_WB4424000205_23012024173744_page_1.png"},
+  {name:"Virtual, Augmented and Mixed Reality",issuer:"Lancaster University",year:2024,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/introduction-to-virtual-reality_certificate_of_achievement_i67ibv6_page_1.png"},
+  {name:"Winner of Student's Discussion Forum on Union Budget 2024",issuer:"Marwadi University",year:2024,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/IMG_20240131_120247.jpg"},
+  {name:"Advancing Sustainable Development in Practice",issuer:"UNITAR",year:2023,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_page_1.png"},
+  {name:"Asia Analyst Development Program (AADP)",issuer:"JPMorgan Chase",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/xZD6SXsXLQwN82Q2k_JPMorgan%20Chase%20%26%20Co._kXJuEXnuZrPLYmcJm_1702361949792_completion_certificate_page_1.png"},
+  {name:"Aspects of Prevention of Money Laundering Activities",issuer:"NISM",year:2023,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_WB3623000384_04122023154144_page_1.png"},
+  {name:"Business and Human Rights Global",issuer:"Clifford Chance",year:2023,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/LwEBXEbGovMeaZowq_Clifford%20Chance_kXJuEXnuZrPLYmcJm_1702696873121_completion_certificate_page_1.png"},
+  {name:"Career Catalyst: Advisory",issuer:"KPMG US",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/hYHYPu9opWBBtfipd_KPMG%20U.S._kXJuEXnuZrPLYmcJm_1702700476289_completion_certificate-2_page_1.png"},
+  {name:"Certified Google Creative Professional",issuer:"Google",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/Creative%20Certification%20Exam%20_%20Google_page_1.png"},
+  {name:"Data Privacy Fundamentals",issuer:"IBM",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/Fireside%20Analytics%20Inc.%20DS0301EN%20Certificate%20_%20Cognitive%20Class_page_1.png"},
+  {name:"Data Science for Business Level 2",issuer:"IBM",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/Data_Science_for_Business___Level_2_Badge20231222-29-l5hcbp_page_1.png"},
+  {name:"Development Economics",issuer:"Marginal Revolution University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/9df9304525518f387fd32a75fb11eb77e97ef8c6/MRUniversity%20Certificate-1.png"},
+  {name:"Digital Analytics & Regression",issuer:"IBM",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/IBM%20ML0103EN%20Certificate%20_%20Cognitive%20Class_page_1.png"},
+  {name:"Digital Intelligence",issuer:"PwC Switzerland",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/Kaib4AmLSAG5mDsD4_PwC%20Switzerland_kXJuEXnuZrPLYmcJm_1703245832932_completion_certificate_page_1.png"},
+  {name:"Financial Methods in Environmental Decisions",issuer:"The Open University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/T867_1_statement_page_1.png"},
+  {name:"Option Strategies",issuer:"Zerodha Varsity",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/1703989562_page_1.png"},
+  {name:"Predictive Modeling Fundamentals",issuer:"IBM",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/IBM%20Skills%20Network%20PA0101EN%20Certificate%20_%20Cognitive%20Class_page_1.png"},
+  {name:"Presenting Data",issuer:"HP",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/7c4e4a5e-692f-44af-9e41-4afdee819880_page_1.png"},
+  {name:"Python for Data Science",issuer:"IBM",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/Python_for_Data_Science_Badge20231222-45-y3h69k_page_1.png"},
+  {name:"The Overall Opportunities in the Securities Markets",issuer:"NISM",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Certificate_WB4023000218_19122023164055_page_1.png"},
+  {name:"Virtual Stock Market Event",issuer:"GSFC University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/c4cacc10-a41b-4a7f-ab8e-ba0ded15b44b.jpg"},
+  {name:"Anti Money Laundering",issuer:"Alfaisal University",year:2023,cat:"Compliance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Coursera%209LFF3R24YXXV_page_1.png"},
+  {name:"Certified Google Analytics Individual Qualification (GAIQ)",issuer:"Google",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/cc8a3faed9e8bc11a6360c74f498ae538f009a33/zgpk27cs_1699891974012_page_1.png"},
+  {name:"Data Analytics Consulting",issuer:"KPMG Australia",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/m7W4GMqeT3bh9Nb2c_KPMG%20AU_kXJuEXnuZrPLYmcJm_1699341993401_completion_certificate_page_1.png"},
+  {name:"Data Visualization with Advanced Excel",issuer:"PwC",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/Coursera%20X5DQRTXQWVD5_page_1.png"},
+  {name:"Do Well Do Good Quiz",issuer:"IIM Calcutta",year:2023,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/d546122f-2595-4606-8e43-f4bc5b40d7bb.jpg"},
+  {name:"FINQUEST '23",issuer:"Aryabhatta College, University of Delhi",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/179565cf-bae7-4758-a3ba-6fddb7ab1f91.jpg"},
+  {name:"Green Economy and Trade",issuer:"Partnership for Action on Green Economy (PAGE)",year:2023,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/greentrade_page_1.png"},
+  {name:"Green Industrial Policy",issuer:"Partnership for Action on Green Economy (PAGE)",year:2023,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/Greenindpolicy_page_1.png"},
+  {name:"Introduction to Capital Markets",issuer:"Corporate Finance Institute (CFI)",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/i2cm_page_1.png"},
+  {name:"Private Equity and Venture Capital",issuer:"Università Bocconi / Coursera",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Coursera%202KFX7WCEZ777_page_1.png"},
+  {name:"Quantitative and Qualitative Research in Finance",issuer:"The Open University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/66ed614f511ea5f17a41a7d7e6edd76f245ac35b/B860_1_statement_page_1.png"},
+  {name:"The India Policy: The Open India Quiz",issuer:"IIM Calcutta",year:2023,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/c504671c-97da-4c4a-ae4b-2ff0b3cce966.jpg"},
+  {name:"Global Diplomacy",issuer:"University of London",year:2023,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/120222be0934c96948af7b5c570fa12f0ca8e9b8/Coursera%2055P66PGM6TYW_page_1.png"},
+  {name:"Investment Banking",issuer:"Citi",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/amBSJDTDDFcYiKq9Z_Citi_kXJuEXnuZrPLYmcJm_1697956889775_completion_certificate_page_1.png"},
+  {name:"Management Consulting",issuer:"PwC",year:2023,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/douE8ih9jWMQ2P7sS_PwC%20US_kXJuEXnuZrPLYmcJm_1698210965377_completion_certificate_page_1.png"},
+  {name:"Microsoft Word — Business Documents",issuer:"Corporate Finance Institute (CFI)",year:2023,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/ywn9gc2i_1697193854241_page_1.png"},
+  {name:"SIMSREE Trading League",issuer:"SIMSREE",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/8a42107f-a2e8-4862-b7f3-a984ae1ec947%20(1).jpg"},
+  {name:"Talent Titan Quiz Participation",issuer:"NIT Calicut",year:2023,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/0b17f50b-5401-4571-ba3a-6b0f736ddd60.jpg"},
+  {name:"The Economics of Festivals 2.0 Quiz",issuer:"IIM Rohtak",year:2023,cat:"Academic",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/a3c8c2a7-8fa3-41ad-be9b-65f7db1da489_page_1.png"},
+  {name:"5-Day Soft Skill Training and Mock Interview",issuer:"IIT Madras",year:2023,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/4c896ab04ea18ce62fb8675531a5ea03a83054ff/soft-skills-iit_page_1.png"},
+  {name:"Financial Markets",issuer:"Yale University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/financial_markets_yale_page_1.png"},
+  {name:"Investment Analysis & Portfolio Management",issuer:"NSE India",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Invapm.png"},
+  {name:"Strategy Consulting Virtual Internship",issuer:"Accenture",year:2023,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/4fed5ee29a2db3d482cde2415a21a37c0c116519/rMSFymzsPCwMGRun8_Accenture%20North%20America_kXJuEXnuZrPLYmcJm_1693731221220_completion_certificate_page_1.png"},
+  {name:"Understanding Financial Markets",issuer:"University of Geneva",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/understanding-markets%20.png"},
+  {name:"Certificate of Participation in Shri Ram Trading Challenge 2023",issuer:"Shri Ram College of Commerce (SRCC)",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/64e0d5f90b80295523aaf1f4_page_1.png"},
+  {name:"Corporate Analyst Development Program (CADP)",issuer:"JPMorgan Chase",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/4dy5SP43KMPppKz2i_JPMorgan%20Chase%20%26%20Co._kXJuEXnuZrPLYmcJm_1693399566708_completion_certificate_page_1.png"},
+  {name:"Wealth and Personal Banking Virtual Internship",issuer:"HSBC",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/38fec103c98d27f82783c4050660890e79017470/JuJuCEGtKKQd8E4NH_HSBC_kXJuEXnuZrPLYmcJm_1693401495318_completion_certificate_page_1.png"},
+  {name:"Asset Allocation in Investment",issuer:"The Open University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/B861_1_statement-1.png"},
+  {name:"Liquidity Management",issuer:"The Open University",year:2023,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/B862_1_statement-1.png"},
+  {name:"Options Trading",issuer:"Zerodha Varsity",year:2020,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1678205410-1.png"},
+  {name:"Fundamental Analysis",issuer:"Zerodha Varsity",year:2020,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1678205415-1.png"},
+  {name:"Stock Market Basics",issuer:"Zerodha Varsity",year:2020,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1678205396-1.png"},
+  {name:"Technical Analysis",issuer:"Zerodha Varsity",year:2020,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/1678205406-1.png"},
+  {name:"Computer Science 101",issuer:"Stanford Online",year:2020,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Statement-1.png"},
+  {name:"The Fundamentals of Digital Marketing",issuer:"Google Digital Garage",year:2020,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/certificate-1(1).png"},
+  {name:"Reading Financial Statements",issuer:"Corporate Finance Institute (CFI)",year:2020,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/79a2qd2t-1.png"},
+  {name:"Effective Presentations",issuer:"HP",year:2020,cat:"Business",img:"https://raw.githubusercontent.com/amaanullah21/certs/c57ee934db7a8453174432a092be7db1464a7944/effectivepresentation_page_1.png"},
+  {name:"Android Enterprise Professional",issuer:"Google",year:2019,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Android%20Enterprise%20Professional%20isob4_%20Google-1.png"},
+  {name:"Bing Ads Accredited Professional Status",issuer:"Microsoft",year:2019,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/BAAP%20-%20Certificate%20-%20en-US%20-%20Final-1.png"},
+  {name:"Introductory Course to International Environmental Law",issuer:"InforMEA",year:2019,cat:"Legal",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/IEL_Certificate%20of%20completion-1.png"},
+  {name:"Introduction to Sustainable Finance",issuer:"GIZ",year:2019,cat:"Finance",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate%20(1)-1.png"},
+  {name:"Specialized Module on Cities and Climate Change",issuer:"UNITAR",year:2019,cat:"Sustainability",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Unenviro-1.png"},
+  {name:"Google My Business",issuer:"Google",year:2019,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/f9af121ecbf3634abfee7ce389524f51d4936d83/Google%20My%20Business%20-%20Google_page_1.png"},
+  {name:"Launching Microsoft Teams to the Company",issuer:"Microsoft",year:2019,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate-1.png"},
+  {name:"Mobile in Display & Video 360 Basics",issuer:"Google",year:2019,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/googlevideocre-1.png"},
+  {name:"Windows 10: Speech Recognition and Cortana Integration",issuer:"Microsoft",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Cortana-1.jpg"},
+  {name:"YouTube Creative Essentials",issuer:"Google",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Youtube-1.jpg"},
+  {name:"3D Printing",issuer:"HP",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/certificate%20(3)-1.jpg"},
+  {name:"ASP .NET Core",issuer:"Microsoft",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate-1.jpg"},
+  {name:"Edit and Manage Facebook Ads",issuer:"Facebook",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/EditManageFacebookAds-1.jpg"},
+  {name:"Facebook and Instagram",issuer:"Facebook",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Facebook%20and%20Instagram_%20Blueprint-1.jpg"},
+  {name:"Google Web Designer Basics",issuer:"Google",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Google%20Web%20Designer%20Basics_%20Google-1.jpg"},
+  {name:"IT Expert Roundtable Information Protection at Microsoft",issuer:"Microsoft",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate%20(2)-1.jpg"},
+  {name:"Redesign for the Cloud: Building a Cloud-First Network",issuer:"Microsoft",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate%20(1)-1.jpg"},
+  {name:"Send/Receive API: Building for the Messenger Platform",issuer:"Facebook",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/fbapi-1.jpg"},
+  {name:"Top Design Thinking Concepts",issuer:"Microsoft",year:2018,cat:"Design",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/Certificate4-1.jpg"},
+  {name:"C++",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(9)-1.jpg"},
+  {name:"CSS",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(4)-1.jpg"},
+  {name:"HTML",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(3)-1.jpg"},
+  {name:"JQuery",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(1)-1.jpg"},
+  {name:"Java",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(2)-1.jpg"},
+  {name:"PHP",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(5)-1.jpg"},
+  {name:"SQL",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(7)-1.jpg"},
+  {name:"Swift 4",issuer:"Sololearn",year:2018,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download%20(8)-1.jpg"},
+  {name:"JavaScript",issuer:"Sololearn",year:2017,cat:"Tech",img:"https://raw.githubusercontent.com/amaanullah21/certs/refs/heads/main/download-1.jpg"},
 ];
 
+// ── GLOBAL STATE ──
+let activeCat = 'All';
+let activeSearch = '';
+
 // ── RENDER PUBLICATIONS ──
-(function(){
+function renderPubs() {
   const el = document.getElementById('pubList');
-  publications.forEach((p,i) => {
+  if(!el) return;
+  el.innerHTML = '';
+  publications.forEach((p) => {
     const div = document.createElement('div');
     div.className = 'pub-item';
-    div.innerHTML = `<div class="pub-num">${p.num} / ${publications.length}</div>
+    const viewUrl = p.ssrn || "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=7376580";
+    const downloadUrl = p.download || "#"; 
+    div.innerHTML = `
+      <div class="pub-num">${p.num} / ${publications.length}</div>
       <div class="pub-title">${p.title}</div>
       <div class="pub-journal">${p.journal} · ${p.date}</div>
       <div class="pub-abstract">${p.abstract}</div>
-      <button class="pub-toggle"><span class="pub-toggle-icon">↓</span> Abstract</button>`;
+      <div class="pub-actions">
+        <button class="pub-toggle"><span class="pub-toggle-icon">↓</span> Abstract</button>
+        <a href="${viewUrl}" target="_blank" class="pub-btn">View Research Paper ↗</a>
+      </div>`;
     div.querySelector('.pub-toggle').addEventListener('click',()=>div.classList.toggle('expanded'));
     el.appendChild(div);
   });
-})();
+}
 
 // ── RENDER PROJECTS ──
-(function(){
+function renderProjects() {
   const el = document.getElementById('projGrid');
+  if(!el) return;
+  el.innerHTML = '';
   projects.forEach(p => {
     const div = document.createElement('div');
     div.className = 'proj-card';
-    
-    // Create the Link HTML only if a link exists in the data
-    const linkHTML = p.link 
-      ? `<a href="${p.link}" target="_blank" class="proj-link">View Project ↗</a>` 
-      : '';
-
+    const linkHTML = p.link ? `<a href="${p.link}" target="_blank" class="proj-link">View Project ↗</a>` : '';
     div.innerHTML = `
       <div class="proj-card-top">
         <div class="proj-icon">${p.icon}</div>
@@ -1090,100 +1209,122 @@ const certs = [
       </div>
       <div class="proj-name">${p.name}</div>
       <p class="proj-desc">${p.desc}</p>
-      <div class="proj-tags">
-        ${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}
-      </div>
-      ${linkHTML} 
-    `;
-    
-    // Optional: Make the whole card clickable if link exists
-    if(p.link) {
-        div.onclick = (e) => {
-            // Prevent trigger if tags or existing links are clicked directly
-            if(e.target.tagName !== 'A') window.open(p.link, '_blank');
-        };
-    }
-    
+      <div class="proj-tags">${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
+      ${linkHTML}`;
+    if(p.link) div.onclick = (e) => { if(e.target.tagName !== 'A') window.open(p.link, '_blank'); };
     el.appendChild(div);
   });
-})();
+}
 
-// ── RENDER CERTS ──
-const cats = ['All',...[...new Set(certs.map(c=>c.cat))].sort()];
-const filterEl = document.getElementById('certFilters');
-const gridEl = document.getElementById('certGrid');
-const countEl = document.getElementById('certCount');
-let activeCat = 'All', activeSearch = '';
-
-cats.forEach(cat => {
-  const btn = document.createElement('button');
-  btn.className = 'cert-filter-btn' + (cat==='All'?' active':'');
-  btn.textContent = cat;
-  btn.addEventListener('click',()=>{
-    activeCat = cat;
-    document.querySelectorAll('.cert-filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderCerts();
-  });
-  filterEl.appendChild(btn);
-});
-
-function renderCerts(){
+// ── RENDER CERTIFICATES ──
+function renderCerts() {
+  const gridEl = document.getElementById('certGrid');
+  const countEl = document.getElementById('certCount');
+  if(!gridEl) return;
+  
   const q = activeSearch.toLowerCase();
   gridEl.innerHTML = '';
   let n = 0;
+  
   certs.forEach(c => {
-    const show = (activeCat==='All'||c.cat===activeCat) && (!q || c.name.toLowerCase().includes(q) || c.issuer.toLowerCase().includes(q));
+    const show = (activeCat==='All' || c.cat===activeCat) && 
+                 (!q || c.name.toLowerCase().includes(q) || c.issuer.toLowerCase().includes(q));
     if(!show) return;
     n++;
     const d = document.createElement('div');
     d.className = 'cert-card';
-    d.innerHTML = `<div class="cert-card-dot"></div><div><div class="cert-card-name">${c.name}</div><div class="cert-card-meta"><span>${c.issuer}</span><span class="cert-card-sep">·</span><span class="cert-card-year">${c.year}</span></div></div>`;
+    d.style.cursor = 'pointer';
+    d.innerHTML = `
+      <div class="cert-card-dot"></div>
+      <div>
+        <div class="cert-card-name">${c.name}</div>
+        <div class="cert-card-meta"><span>${c.issuer}</span><span class="cert-card-sep">·</span><span class="cert-card-year">${c.year}</span></div>
+      </div>`;
+    d.onclick = () => openCert(c.img);
     gridEl.appendChild(d);
   });
   countEl.textContent = n + ' certificates';
 }
-renderCerts();
-document.getElementById('certSearch').addEventListener('input',e=>{activeSearch=e.target.value;renderCerts();});
 
-// ── THEME ──
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const html = document.documentElement;
-  html.dataset.theme = html.dataset.theme==='dark'?'light':'dark';
-});
+// ── MODAL CONTROL ──
+function openCert(imgUrl) {
+  const modal = document.getElementById('certModal');
+  const img = document.getElementById('modalImg');
+  if(!imgUrl) { alert("Certificate image coming soon."); return; }
+  img.src = imgUrl;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
-// ── SCROLL SPY — highlight active tab/nav link & AUTO-CENTER ──
-const sections = ['about','experience','education','publications','projects','certifications'];
+function closeCert() {
+  const modal = document.getElementById('certModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ── THEME & SCROLL SPY ──
+const sectionIds = ['about','experience','education','publications','projects','certifications'];
 
 function updateActive(){
-  const scrollY = window.scrollY + 120;
-  let current = sections[0];
+  const scrollY = window.scrollY + 140;
+  let current = sectionIds[0];
   
-  sections.forEach(id => {
+  sectionIds.forEach(id => {
     const el = document.getElementById('sec-'+id);
     if(el && el.offsetTop <= scrollY) current = id;
   });
 
-  const container = document.querySelector('.tabs-inner'); // The scrollable wrapper
+  const container = document.querySelector('.tabs-inner');
 
   document.querySelectorAll('.tab-btn, .nav-link').forEach(b => {
     const href = b.getAttribute('href') || '';
     const isActive = href === '#sec-'+current;
-    
     b.classList.toggle('active', isActive);
 
-    // ── NEW: AUTO-CENTER LOGIC ──
     if (isActive && b.classList.contains('tab-btn') && container) {
-      // Calculate center: Tab's left position - half of container width + half of tab width
       const scrollLeft = b.offsetLeft - (container.offsetWidth / 2) + (b.offsetWidth / 2);
-      
-      container.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth' // Smooth sliding effect
-      });
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
     }
   });
 }
+
+// ── INITIALIZE ON LOAD ──
+window.addEventListener('DOMContentLoaded', () => {
+  renderPubs();
+  renderProjects();
+  
+  // Setup Modal Closing
+  document.getElementById('modalClose').onclick = closeCert;
+  document.getElementById('certModal').onclick = (e) => {
+    if(e.target.id === 'certModal') closeCert();
+  };
+
+  // Setup Cert Search
+  document.getElementById('certSearch').oninput = (e) => {
+    activeSearch = e.target.value;
+    renderCerts();
+  };
+
+  // Setup Cert Filters
+  const filterWrap = document.getElementById('certFilters');
+  const uniqueCats = ['All', ...new Set(certs.map(c => c.cat).filter(Boolean))].sort();
+  
+  uniqueCats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cert-filter-btn' + (cat === 'All' ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = () => {
+      activeCat = cat;
+      document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCerts();
+    };
+    filterWrap.appendChild(btn);
+  });
+
+  renderCerts();
+  updateActive();
+});
 
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
@@ -1191,8 +1332,17 @@ window.addEventListener('scroll', () => {
   updateActive();
 }, {passive:true});
 
-// Run once on load
-updateActive();
+document.getElementById('themeBtn').onclick = () => {
+  const html = document.documentElement;
+  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+};
 </script>
+<!-- Certificate Preview Modal -->
+<div class="cert-modal" id="certModal">
+  <button class="modal-close" id="modalClose">&times;</button>
+  <div class="modal-content">
+    <img src="" id="modalImg" alt="Certificate Preview">
+  </div>
+</div>
 </body>
 </html>
