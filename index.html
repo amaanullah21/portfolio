@@ -6,6 +6,11 @@
 <meta name="google-site-verification" content="kInyCIL6jnAjG4BtA3nVLB85GrqkUPUPFCWhhxGeDNE" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://raw.githubusercontent.com/amaanullah21/portfolio/refs/heads/gh-pages/153793176.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amaanullah Bhatti (Hafzan Osmanoğlu) | Portfolio">
+<meta name="twitter:description" content="Finance professional, researcher, and Junior Risk Analyst based in Dubai.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -89,9 +94,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .nav-link{font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all var(--tr);cursor:pointer;border:none;background:none;font-family:var(--sans);display:inline-flex;align-items:center}
 .nav-link:hover,.nav-link.active{color:var(--text);background:var(--bg3)}
 .nav-actions{display:flex;align-items:center;gap:10px}
-.theme-btn{width:36px;height:20px;border-radius:10px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;position:relative;transition:all var(--tr);flex-shrink:0}
-.theme-btn::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--text3);transition:all var(--tr)}
-[data-theme="dark"] .theme-btn::after{transform:translateX(16px);background:var(--gold)}
+.theme-btn {width: 44px;height: 44px;border-radius: 10px;border: 1px solid var(--border);background: var(--bg2);cursor: pointer;display: flex;align-items: center;justify-content: center;transition: all var(--tr);padding: 0;color: var(--text2);}
+.theme-btn:hover {border-color: var(--gold);color: var(--gold);background: var(--bg3);}
+
+/* Hide icons based on theme */
+.theme-btn .sun-icon { display: block; }
+.theme-btn .moon-icon { display: none; }
+
+[data-theme="dark"] .theme-btn .sun-icon { display: none; }
+[data-theme="dark"] .theme-btn .moon-icon { display: block; }
+
+.theme-btn svg {width: 20px;height: 20px;stroke: currentColor;fill: none;stroke-width: 2;stroke-linecap: round;stroke-linejoin: round;}
 .layout-btn{font-size:11px;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;background:transparent;font-family:var(--sans);transition:all var(--tr);white-space:nowrap}
 .layout-btn:hover{border-color:var(--border2);color:var(--text)}
 
@@ -452,7 +465,12 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:none;backg
       <a class="nav-link" href="#sec-certifications">Certifications</a>
     </div>
     <div class="nav-actions">
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"></button>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle Dark/Light Mode">
+        <!-- Sun Icon (Visible in Light Mode) -->
+        <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <!-- Moon Icon (Visible in Dark Mode) -->
+        <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
     </div>
   </div>
 </nav>
