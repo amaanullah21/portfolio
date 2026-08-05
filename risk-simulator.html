@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Risk Simulator Pro | Dynamic Trading & Margin Dashboard</title>
+    <meta name="title" content="Risk Simulator Pro | Dynamic Trading & Margin Dashboard">
+    <meta name="description" content="A browser-based trading risk simulator for calculating margin health, stop-out prices, and bonus mechanics. Built by Amaanullah Bhatti for professional risk analysis.">
+    <link rel="canonical" href="https://hafzan.pages.dev/risk-simulator" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hafzan.pages.dev/risk-simulator">
+    <meta property="og:title" content="Risk Simulator Pro — Interactive Risk & Margin Engine">
+    <meta property="og:description" content="Simulate broker-side margin engines, bonus mechanics (Tradeable/Lossable), and detect exact stop-out prices before placing a trade.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/amaanullah21/portfolio/refs/heads/gh-pages/153793176.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hafzan.pages.dev/risk-simulator">
+    <meta property="twitter:title" content="Risk Simulator Pro | Amaanullah Bhatti">
+    <meta property="twitter:description" content="Real-time trading risk dashboard featuring visual margin gauges and strict equity mode simulation.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/amaanullah21/portfolio/refs/heads/gh-pages/153793176.png">
+
+
+    <!-- Structured Data (JSON-LD) for Software/Tools -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Risk Simulator Pro",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Browser-based (Vanilla JS)",
+      "url": "https://hafzan.pages.dev/risk-simulator",
+      "description": "Professional trading risk dashboard for simulating margin requirements, liquidation prices, and broker bonus mechanics.",
+      "author": {
+        "@type": "Person",
+        "name": "Amaanullah Bhatti",
+        "alternateName": "Hafzan Osmanoğlu"
+      },
+      "featureList": [
+        "Real-time stop-out price detection",
+        "Broker-side bonus system simulation (Tradeable/Lossable)",
+        "Strict Equity Mode protection logic",
+        "Interactive Live Price scenario slider",
+        "Direction-aware P/L and margin calculations"
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --bg-color: #f4f7f9;
+            --container-bg: #ffffff;
+            --sidebar-bg: #fcfcfc;
+            --text-main: #333333;
+            --text-dim: #666666;
+            --border-color: #d1d9e0;
+            --accent-blue: #004a99;
+            --success: #28a745;
+            --warning: #f39c12;
+            --danger: #d9534f;
+            --input-bg: #ffffff;
+        }
+
+        [data-theme='dark'] {
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --sidebar-bg: #0d1117;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --border-color: #30363d;
+            --accent-blue: #58a6ff;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --input-bg: #0d1117;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 20px;
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header {
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--sidebar-bg);
+        }
+
+        .header-title h1 {
+            font-size: 18px;
+            margin: 0;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-title p { font-size: 11px; margin: 2px 0 0; color: var(--text-dim); }
+
+        .mode-toggle {
+            cursor: pointer;
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 11px;
+            background: var(--bg-color);
+            color: var(--text-main);
+            font-weight: bold;
+        }
+
+        .main-content { display: flex; flex-direction: row; min-height: 500px; }
+
+        /* SIDEBAR */
+        aside {
+            width: 320px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .form-group { margin-bottom: 12px; }
+        label { 
+            display: block; font-size: 10px; font-weight: bold; margin-bottom: 4px; 
+            color: var(--text-dim); text-transform: uppercase;
+        }
+
+        input, select {
+            width: 100%; padding: 8px; border: 1px solid var(--border-color);
+            border-radius: 4px; background: var(--input-bg); color: var(--text-main); font-size: 13px;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        .slider-wrap {
+            margin: 15px 0; padding: 10px; background: var(--bg-color);
+            border-radius: 4px; border: 1px solid var(--border-color);
+        }
+
+        /* MAIN DASHBOARD */
+        main { flex-grow: 1; padding: 25px; background-color: var(--container-bg); }
+
+        .status-box {
+            padding: 20px; border-radius: 6px; margin-bottom: 20px;
+            border: 1px solid var(--border-color); text-align: center;
+            transition: all 0.3s ease;
+        }
+        .status-box.safe { border-left: 6px solid var(--success); background: rgba(40, 167, 69, 0.05); color: var(--success); }
+        .status-box.warning { border-left: 6px solid var(--warning); background: rgba(243, 156, 18, 0.05); color: var(--warning); }
+        .status-box.danger { border-left: 6px solid var(--danger); background: rgba(217, 83, 79, 0.05); color: var(--danger); }
+        
+        .status-box h3 { margin: 0; font-size: 20px; text-transform: uppercase; }
+        .status-box p { margin: 5px 0 0; font-size: 13px; font-weight: bold; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+        .metric-item { padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--container-bg); }
+        .metric-label { font-size: 10px; color: var(--text-dim); font-weight: bold; letter-spacing: 0.5px; }
+        .metric-value { font-size: 20px; font-weight: bold; margin-top: 4px; }
+
+        .bar-bg { height: 8px; background: #eee; border-radius: 4px; margin-top: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        #margin-bar { height: 100%; width: 0%; transition: width 0.3s; }
+
+        .logic-panel {
+            margin-top: 20px; padding: 15px; background: var(--sidebar-bg);
+            border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; line-height: 1.5;
+        }
+
+        footer {
+            padding: 20px; text-align: center; font-size: 11px;
+            color: var(--text-dim); border-top: 1px solid var(--border-color); background: var(--sidebar-bg);
+        }
+        footer a { color: var(--accent-blue); text-decoration: none; margin: 0 10px; font-weight: bold; }
+
+        @media (max-width: 768px) {
+            .main-content { flex-direction: column; }
+            aside { width: 100%; border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <div class="header-title">
+            <h1>Risk Simulator Pro</h1>
+            <p>Dynamic Trading Scenario Engine | By Amaanullah Bhatti</p>
+        </div>
+        <button class="mode-toggle" onclick="toggleTheme()">DARK / LIGHT MODE</button>
+    </header>
+
+    <div class="main-content">
+        <!-- SIDEBAR -->
+        <aside>
+            <h2>Trade Settings</h2>
+            
+            <div class="form-group">
+                <label>Trade Direction</label>
+                <select id="direction">
+                    <option value="buy">BUY (LONG)</option>
+                    <option value="sell">SELL (SHORT)</option>
+                </select>
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Entry Price</label>
+                    <input type="number" id="entryPrice" value="5000" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Target Price</label>
+                    <input type="number" id="predictedPrice" value="5500" step="0.01">
+                </div>
+            </div>
+
+            <div class="slider-wrap">
+                <label>Price Simulation</label>
+                <input type="range" id="priceSlider" min="2500" max="7500" step="1">
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Lots</label>
+                    <input type="number" id="lotSize" value="0.01" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Leverage</label>
+                    <input type="text" id="leverage" value="1:500">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Account Balance ($)</label>
+                <input type="number" id="balance" value="1000">
+            </div>
+
+            <div class="form-group">
+                <label>Bonus System</label>
+                <select id="bonusType">
+                    <option value="tradeable">Tradeable Bonus</option>
+                    <option value="lossable">Lossable Bonus</option>
+                </select>
+            </div>
+
+            <div id="toggleContainer" class="form-group" style="display:flex; align-items:center; gap:8px; background:rgba(0,0,0,0.05); padding:8px; border-radius:4px;">
+                <input type="checkbox" id="strictToggle" style="width:auto;">
+                <label style="margin:0; cursor:pointer; font-size:9px;">STRICT EQUITY (IGNORE BONUS)</label>
+            </div>
+
+            <div class="form-group">
+                <label>Bonus Amount ($)</label>
+                <input type="number" id="bonusAmount" value="500">
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Stop-Out (%)</label>
+                    <input type="number" id="stopOutLevel" value="20">
+                </div>
+                <div class="form-group">
+                    <label>Contract Size</label>
+                    <input type="number" id="contractSize" value="100">
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN DASHBOARD -->
+        <main>
+            <div id="statusBox" class="status-box safe">
+                <h3 id="statusTitle">Trade Active</h3>
+                <p id="statusDesc">System analysis in progress...</p>
+            </div>
+
+            <div id="mainDisplay">
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-label">PROJECTED EQUITY</div>
+                        <div id="outEquity" class="metric-value">$0.00</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">MARGIN LEVEL (%)</div>
+                        <div id="outMarginLevel" class="metric-value">0.00%</div>
+                        <div class="bar-bg"><div id="margin-bar"></div></div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">USED MARGIN</div>
+                        <div id="outMargin" class="metric-value">$0.00</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">FLOATING P/L</div>
+                        <div id="outPL" class="metric-value">$0.00</div>
+                    </div>
+                    <div class="metric-item" style="border-top: 2px solid var(--accent-blue);">
+                        <div class="metric-label">MAX BUYABLE LOTS</div>
+                        <div id="outMaxLots" class="metric-value">0.00</div>
+                    </div>
+                    <div class="metric-item" style="border-top: 2px solid var(--warning);">
+                        <div class="metric-label">DISTANCE TO STOP-OUT</div>
+                        <div id="outDistance" class="metric-value">0.00</div>
+                    </div>
+                    <div class="metric-item" style="grid-column: span 2; border-top: 2px solid var(--danger); background: rgba(217,83,79,0.03);">
+                        <div class="metric-label" style="color: var(--danger);">LIQUIDATION (STOP-OUT) PRICE</div>
+                        <div id="outStopPrice" class="metric-value" style="color: var(--danger);">0.00</div>
+                    </div>
+                </div>
+
+                <div class="logic-panel">
+                    <div style="font-weight: bold; margin-bottom: 5px; color: var(--accent-blue); font-size: 11px;">LOGIC BREAKDOWN:</div>
+                    <div id="reasonText">Adjust parameters to view logic.</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        © 2025 Amaanullah Bhatti | Junior Risk Analyst | 
+        <a href="https://amaanullah21.github.io/portfolio/" target="_blank">Website</a>
+        <a href="https://www.linkedin.com/in/amaanullah-bhatti" target="_blank">LinkedIn</a>
+        <a href="https://github.com/amaanullah21" target="_blank">GitHub</a>
+    </footer>
+</div>
+
+<script>
+    const ids = ['entryPrice', 'predictedPrice', 'direction', 'lotSize', 'balance', 'leverage', 'bonusType', 'bonusAmount', 'stopOutLevel', 'contractSize', 'strictToggle'];
+    const ui = {};
+    ids.forEach(id => ui[id] = document.getElementById(id));
+    const slider = document.getElementById('priceSlider');
+
+    function toggleTheme() {
+        const doc = document.documentElement;
+        doc.getAttribute('data-theme') === 'dark' ? doc.setAttribute('data-theme', 'light') : doc.setAttribute('data-theme', 'dark');
+    }
+
+    function parseLeverage(v) { return parseFloat(v.toString().replace('1:', '')) || 1; }
+
+    function update() {
+        const entry = parseFloat(ui.entryPrice.value) || 0;
+        const pred = parseFloat(ui.predictedPrice.value) || 0;
+        const dir = ui.direction.value;
+        const lot = parseFloat(ui.lotSize.value) || 0;
+        const contract = parseFloat(ui.contractSize.value) || 0;
+        const balance = parseFloat(ui.balance.value) || 0;
+        const bonus = parseFloat(ui.bonusAmount.value) || 0;
+        const leverage = parseLeverage(ui.leverage.value);
+        const soPercent = parseFloat(ui.stopOutLevel.value) || 0;
+        const type = ui.bonusType.value;
+        const strict = ui.strictToggle.checked && type === 'tradeable';
+
+        // Visibility and Constraints
+        document.getElementById('toggleContainer').style.opacity = (type === 'tradeable') ? "1" : "0.3";
+        ui.strictToggle.disabled = (type !== 'tradeable');
+
+        // Logic 1: Margin & Entry Check
+        const marginReq = (lot * contract * entry) / leverage;
+        const totalCapital = balance + bonus;
+
+        const statusBox = document.getElementById('statusBox');
+        const mainDisplay = document.getElementById('mainDisplay');
+
+        if (marginReq > totalCapital) {
+            statusBox.className = 'status-box warning';
+            document.getElementById('statusTitle').innerText = "Insufficient Funds";
+            document.getElementById('statusDesc').innerText = `Margin ($${marginReq.toFixed(2)}) exceeds Total Capital ($${totalCapital.toFixed(2)})`;
+            mainDisplay.style.opacity = "0.3";
+            return;
+        } else {
+            mainDisplay.style.opacity = "1";
+        }
+
+        // Price Calculations
+        if (document.activeElement !== slider) {
+            slider.min = entry * 0.5; slider.max = entry * 1.5; slider.value = pred;
+        }
+
+        const currentPL = (dir === 'buy' ? (pred - entry) : (entry - pred)) * lot * contract;
+        const equity = strict ? (balance + currentPL) : (balance + bonus + currentPL);
+        const marginLevel = marginReq > 0 ? (equity / marginReq) * 100 : 0;
+
+        // Max Lots Calculation
+        const marginPerLot = (contract * entry) / leverage;
+        const maxLots = totalCapital / marginPerLot;
+
+        // Logic 2: Stop Out Math
+        const multiplier = dir === 'buy' ? 1 : -1;
+        const currentEquityBase = strict ? balance : (balance + bonus);
+        const targetEquitySO = marginReq * (soPercent / 100);
+        
+        // Threshold: Margin Stop out
+        const priceSO = entry + ((targetEquitySO - currentEquityBase) / (lot * contract * multiplier));
+
+        // Threshold: Floor logic (Bonus protection)
+        let priceFloor = dir === 'buy' ? -Infinity : Infinity;
+        if (type === 'tradeable') {
+            const floorVal = strict ? 0 : bonus;
+            priceFloor = entry + ((floorVal - currentEquityBase) / (lot * contract * multiplier));
+        }
+
+        const stopPrice = dir === 'buy' ? Math.max(priceSO, priceFloor) : Math.min(priceSO, priceFloor);
+        const isStopped = dir === 'buy' ? (pred <= stopPrice) : (pred >= stopPrice);
+
+        // UI Updates
+        document.getElementById('outMargin').innerText = `$${marginReq.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('outEquity').innerText = `$${equity.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('outPL').innerText = `$${currentPL.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('outPL').style.color = currentPL >= 0 ? 'var(--success)' : 'var(--danger)';
+        document.getElementById('outMarginLevel').innerText = `${marginLevel.toFixed(2)}%`;
+        document.getElementById('outStopPrice').innerText = stopPrice.toFixed(2);
+        document.getElementById('outDistance').innerText = Math.abs(pred - stopPrice).toFixed(2);
+        document.getElementById('outMaxLots').innerText = maxLots.toFixed(2);
+
+        // Progress Bar Color
+        const bar = document.getElementById('margin-bar');
+        bar.style.width = `${Math.min(marginLevel / 10, 100)}%`;
+        if (marginLevel > 200) bar.style.backgroundColor = 'var(--success)';
+        else if (marginLevel > soPercent + 20) bar.style.backgroundColor = 'var(--warning)';
+        else bar.style.backgroundColor = 'var(--danger)';
+
+        // Logic 3: Status Messages
+        const reason = document.getElementById('reasonText');
+        if (isStopped) {
+            statusBox.className = 'status-box danger';
+            document.getElementById('statusTitle').innerText = "LIQUIDATION ALERT";
+            document.getElementById('statusDesc').innerText = `Simulated price ${pred.toFixed(2)} hits stop-out floor.`;
+            
+            const wasFloor = (dir === 'buy' && stopPrice === priceFloor) || (dir === 'sell' && stopPrice === priceFloor);
+            reason.innerHTML = wasFloor 
+                ? `<strong>Liquidation Trigger:</strong> Your ${strict ? 'Physical Balance' : 'Equity'} hit the ${strict ? 'Zero' : 'Bonus'} protection floor.`
+                : `<strong>Liquidation Trigger:</strong> Margin Level dropped to the broker's ${soPercent}% Stop-Out threshold.`;
+        } else {
+            statusBox.className = 'status-box safe';
+            document.getElementById('statusTitle').innerText = "ACCOUNT SAFE";
+            document.getElementById('statusDesc').innerText = `Scenario maintains healthy margin levels.`;
+            reason.innerText = `Projected Equity ($${equity.toFixed(2)}) is safely above liquidation price. Logic: ${type}${strict ? ' (Strict Mode)' : ''}. Distance: ${Math.abs(pred - stopPrice).toFixed(2)} points.`;
+        }
+    }
+
+    ids.forEach(id => ui[id].addEventListener('input', update));
+    slider.addEventListener('input', (e) => { ui.predictedPrice.value = e.target.value; update(); });
+    update();
+</script>
+</body>
+</html>
